@@ -1,0 +1,30 @@
+{
+  "name": "crouzet/pricing",
+  "description": "Price tracking app",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gaspard Bariller",
+      "email": "gaspard.bariller@tutanota.com"
+    }
+  ],
+  "require": {
+    "symfony/browser-kit": "^5.0"
+  },
+  "require-dev": {
+    "atoum/atoum": "^3.4",
+    "atoum/stubs": "^2.6",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "phpunit/phpunit": "^9",
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "scripts": {
+    "stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
+    "stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
+    "stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
