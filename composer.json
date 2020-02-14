@@ -10,12 +10,12 @@
     }
   ],
   "require": {
-    "symfony/browser-kit": "^5.0"
   },
   "require-dev": {
     "atoum/atoum": "^3.4",
     "atoum/stubs": "^2.6",
     "friendsofphp/php-cs-fixer": "^2.16",
+    "kint-php/kint": "^3.3",
     "phpunit/phpunit": "^9",
     "squizlabs/php_codesniffer": "^3.5"
   },
