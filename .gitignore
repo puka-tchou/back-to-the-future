@@ -13,3 +13,6 @@ node_modules/
 
 # Distribution
 dist/
+
+# Work folder
+.work/
