@@ -32,9 +32,9 @@ class AlliedElec
         $parts_min_order = -1;
         // As ther may be multiple results, we need to select only the one
         // that matches exactly the part number.
-        foreach ($details as $detail => $value) {
-            if (preg_match($regex, $value->nodeValue)) {
-                $xml = simplexml_import_dom($value);
+        foreach ($details as $detail) {
+            if (preg_match($regex, $detail->nodeValue)) {
+                $xml = simplexml_import_dom($detail);
                 break;
             }
         }
