@@ -1,11 +1,14 @@
 <?php namespace dealers\AlliedElec;
 
+/**
+ * AlliedElec distributor stock check.
+ */
 class AlliedElec
 {
     /**
      * Check the stock of a given part number.
      * @param string $part_number The part number that you want to check.
-     * 
+     *
      * @return array An array containing the stock, the stock on order and the minimum number of parts to order.
      */
     public function getStock(string $part_number): array
