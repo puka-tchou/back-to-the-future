@@ -1,0 +1,17 @@
+{
+  "name": "pricing",
+  "version": "0.0.1",
+  "main": "src/index.html",
+  "author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel watch src/index.html"
+  },
+  "dependencies": {
+    "spectre.css": "^0.5.8"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "parcel-bundler": "^1.12.4"
+  }
+}

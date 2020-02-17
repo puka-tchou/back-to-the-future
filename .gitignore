@@ -1,5 +1,6 @@
 # Vendor files
 vendor/
+node_modules/
 
 # IDE configuration
 .vscode/
