@@ -7,18 +7,56 @@
       rel="stylesheet"
       href="../node_modules/spectre.css/dist/spectre.min.css"
     />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- Favicons -->
     <!-- Main color: #ff8a00 -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff8a00" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ff8a00" />
     <meta name="msapplication-TileColor" content="#ff8a00" />
     <meta name="theme-color" content="#ffffff" />
     <title>Stock check</title>
   </head>
   <body>
-    <h1>Pricing and stock history</h1>
+    <header class="navbar bg-gray">
+      <section class="navbar-section">
+        <a href="/" class="navbar-brand"
+          ><img
+            src="./assets/images/icon.color.48x.png"
+            alt="The logo: the letter 'g' in a circle."
+            width="48"
+            height="48"
+        /></a>
+      </section>
+      <section class="navbar-section">
+        <a href="#" class="btn btn-link">Documentation</a>
+        <a href="mailto:gaspard.bariller@crouzet.com" class="btn btn-link"
+          >Contact</a
+        >
+      </section>
+    </header>
+    <section>
+      <h2>Parts selection</h2>
+      <form action="#">
+        <label for="file-upload">Select a set of parts to check:</label><br />
+        <input type="file" id="file-upload" accept=".txt,.xml" />
+      </form>
+    </section>
   </body>
 </html>
