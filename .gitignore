@@ -1,3 +1,11 @@
+# Vendor files
 vendor/
+
+# IDE configuration
 .vscode/
+
+# SonarQube analysis files
+.scannerwork/
+
+# php-cs cache files
 *.cache
