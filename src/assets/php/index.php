@@ -1,8 +1,9 @@
 <?php
+
 require __DIR__ . '/../../../vendor/autoload.php';
 
 use data\Database\Database;
-use Stock\Stock;
+use data\Stock\Stock;
 use utilities\PartList\PartList;
 
 $stock = new Stock;

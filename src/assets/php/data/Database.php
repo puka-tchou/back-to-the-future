@@ -1,7 +1,5 @@
 <?php namespace data\Database;
 
-require __DIR__ . '/../../../../vendor/autoload.php';
-
 use PDO;
 
 /**
@@ -15,7 +13,15 @@ class Database
      */
     public function __construct()
     {
-        $this->connection = new PDO('mysql:dbname=testdb;host=127.0.0.1;charset=UTF8', 'testuser', 'test');
+        $db = parse_ini_file(__DIR__ . '/../db.ini');
+        $this->connection = new PDO(
+            $db['type']
+            .':dbname='.$db['name']
+            .';host='.$db['host']
+            .';charset=UTF8',
+            $db['user'],
+            $db['pass']
+        );
     }
 
     /** Get all products stored in the database.

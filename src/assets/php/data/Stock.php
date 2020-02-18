@@ -1,9 +1,6 @@
-<?php namespace Stock;
-
-require __DIR__ . '/../../../vendor/autoload.php';
+<?php namespace data\Stock;
 
 use dealers\AlliedElec\AlliedElec;
-use utilities\PartList\PartList;
 
 /**
  * Retrieve the current stock informations from online stores.
