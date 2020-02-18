@@ -5,13 +5,16 @@
   "author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel watch src/index.html"
+    "start": "parcel watch src/index.html",
+    "stylefix": "prettier --write {src/,docs/}**/*.{js,html,css,md,xml}"
   },
   "dependencies": {
     "spectre.css": "^0.5.8"
   },
   "devDependencies": {
+    "@prettier/plugin-xml": "^0.7.2",
     "gulp": "^4.0.2",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1"
   }
 }

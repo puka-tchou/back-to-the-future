@@ -2,7 +2,9 @@
 
 class DigiKey
 {
-    /**@todo Implementation may need NodeJS because DigiKey dynamically generates its pages.
+    /** Get stock information from DigiKey.
+     * @todo Implementation may need NodeJS because DigiKey dynamically generates its pages.
+     *
      * @return string
      */
     public function getStock(): string
