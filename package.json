@@ -12,8 +12,11 @@
     "spectre.css": "^0.5.8"
   },
   "devDependencies": {
+    "@cedx/gulp-php-minify": "^10.2.0",
     "@prettier/plugin-xml": "^0.7.2",
+    "esm": "^3.2.25",
     "gulp": "^4.0.2",
+    "gulp-replace": "^1.0.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1"
   }

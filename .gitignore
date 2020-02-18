@@ -2,8 +2,9 @@
 vendor/
 node_modules/
 
-# IDE configuration
+# IDE configuration and work folder
 .vscode/
+.work/
 
 # SonarQube analysis files
 .scannerwork/
@@ -16,5 +17,5 @@ node_modules/
 # Distribution
 dist/
 
-# Work folder
-.work/
+# Credentials
+*.ini
