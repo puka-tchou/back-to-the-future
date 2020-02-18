@@ -10,21 +10,18 @@ use utilities\PartList\PartList;
  */
 class Stock
 {
-    /**
-     * @param string $path The path to a file containing a list of part numbers.
+    /** Retrieve stock informations for a given part number.
+     * @param string $part The part number to test.
      *
      * @return array
      */
-    public function get(string $path): array
+    public function get(string $part): array
     {
-        $set = new PartList;
         $alliedelec = new AlliedElec;
         $stockByPart = array();
         
-        $parts = $set->readFromFile($path);
-        foreach ($parts as $part) {
-            $stockByPart[$part] = $alliedelec->getStock($part);
-        }
+        $stockByPart = $alliedelec->getStock($part);
+
         return $stockByPart;
     }
 }
