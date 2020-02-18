@@ -8,8 +8,10 @@ node_modules/
 # SonarQube analysis files
 .scannerwork/
 
-# php-cs cache files
+# Cache files and folders
 *.cache
+.cache/
+.phpdoc/
 
 # Distribution
 dist/
