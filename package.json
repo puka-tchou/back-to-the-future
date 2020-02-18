@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel watch src/index.html",
-    "stylefix": "prettier --write {src/,docs/}**/*.{js,html,css,md,xml}"
+    "stylefix": "prettier --write {src/}**/*.{js,html,css,md,xml}"
   },
   "dependencies": {
     "spectre.css": "^0.5.8"
