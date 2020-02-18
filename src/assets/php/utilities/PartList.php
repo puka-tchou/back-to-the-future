@@ -1,9 +1,9 @@
-<?php namespace utilities\Setlist;
+<?php namespace utilities\PartList;
 
 /**
  * Construct a list of part numbers from a file.
  */
-class Setlist
+class PartList
 {
     /**
      * Reads a file input in YAML format and output an array containing the part numbers.

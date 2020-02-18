@@ -3,7 +3,7 @@
 require __DIR__ . '/../../../vendor/autoload.php';
 
 use dealers\AlliedElec\AlliedElec;
-use utilities\Setlist\Setlist;
+use utilities\PartList\PartList;
 
 /**
  * Retrieve the current stock informations from online stores.
@@ -17,7 +17,7 @@ class Stock
      */
     public function get(string $path): array
     {
-        $set = new Setlist;
+        $set = new PartList;
         $alliedelec = new AlliedElec;
         $stockByPart = array();
         
