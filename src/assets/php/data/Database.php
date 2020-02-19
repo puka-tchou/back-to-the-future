@@ -30,7 +30,7 @@ class Database
     public function getAllProducts(): array
     {
         $database = new Database();
-        $query = $database->connection->prepare('SELECT * from newtable;');
+        $query = $database->connection->prepare('SELECT * from products;');
         
         $query->execute();
 
@@ -46,11 +46,12 @@ class Database
     {
         $partNumber = strtoupper($partNumber);
         $database = new Database();
-        $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM testdb.newtable WHERE `part-number` = ?)');
+        $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM crouzet_pricing.products WHERE part_number= ?)');
         
         $query->execute(array($partNumber));
+        $res = $query->fetch(PDO::FETCH_NUM);
 
-        return (($query->fetch(PDO::FETCH_NUM)) == 1);
+        return ($res[0] == 1);
     }
 
     public function getStock(string $partNumber)
