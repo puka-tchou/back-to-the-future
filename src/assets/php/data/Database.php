@@ -8,7 +8,7 @@ use PDO;
 class Database
 {
     /** Construct a new connection to the database.
-     * @todo Move connection parameters to another file.
+     * @todo Make this a singleton.
      * @return void
      */
     public function __construct()
@@ -29,7 +29,7 @@ class Database
      */
     public function getAllProducts(): array
     {
-        $database = new Database();
+        $database = new Database;
         $query = $database->connection->prepare('SELECT * from products;');
         
         $query->execute();
@@ -40,13 +40,13 @@ class Database
     /** Check if a given part number is present in the database.
      * @param string $partNumber The part number to test (case insensitive).
      *
-     * @return bool true if the part-number exists in the database.
+     * @return bool `true` if the part-number exists in the database.
      */
     public function partNumberExists(string $partNumber): bool
     {
         $partNumber = strtoupper($partNumber);
-        $database = new Database();
-        $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM crouzet_pricing.products WHERE part_number= ?)');
+        $database = new Database;
+        $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM products WHERE part_number= ?)');
         
         $query->execute(array($partNumber));
         $res = $query->fetch(PDO::FETCH_NUM);
@@ -69,11 +69,38 @@ class Database
     public function getStock(string $partNumber): array
     {
         $partNumber = strtoupper($partNumber);
-        $database = new Database();
-        $query = $database->connection->prepare('SELECT date_checked, stock, supplier FROM crouzet_pricing.stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;');
+        $database = new Database;
+        $query = $database->connection->prepare('SELECT date_checked, stock, supplier FROM stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;');
 
         $query->execute(array($partNumber));
+        $res = $query->fetch(PDO::FETCH_ASSOC);
+        if (!$res) {
+            $res = array('err' => true, 'errMessage' => 'No stock records found for "' . $partNumber . '"');
+        }
 
-        return ($query->fetch(PDO::FETCH_ASSOC));
+        return $res;
+    }
+
+    /** Add a product to the database.
+     * @param string $partNumber The product part-number.
+     * @param integer $updateInterval The time, in days, between each update of the stock and the prices.
+     * @param string $manufacturer The part manufacturer.
+     * 
+     * @return bool `true` if the creation succeded.
+     */
+    public function addProduct(string $partNumber, int $updateInterval, string $manufacturer): bool
+    {
+        $partNumber = strtoupper($partNumber);
+        $tracked_since = date('Y-m-d');
+        $database = new Database;
+        $query = $database->connection->prepare('INSERT INTO products (part_number,tracked_since,update_interval,state,manufacturer) VALUES (?,?,?,?,?);');
+
+        return $query->execute(array(
+            $partNumber,
+            $tracked_since,
+            $updateInterval,
+            'PENDING',
+            $manufacturer
+        ));
     }
 }

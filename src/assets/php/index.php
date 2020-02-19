@@ -18,6 +18,7 @@ foreach ($parts as $part) {
         $stockByPart[$part] = $database->getStock($part);
     } else {
         $stockByPart[$part]['stock'] = $stock->get($part);
+        $database->addProduct($part, 7, 'crouzet');
     }
 }
 
