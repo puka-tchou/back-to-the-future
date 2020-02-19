@@ -11,31 +11,38 @@ $database = new Database;
 $partList = new PartList;
 
 $parts = $partList->readFromFile(__DIR__ . '/xml/setlist.template.txt');
-$what = isset($_GET["what"]) ? $_GET["what"] : null;
-$method = $_SERVER["REQUEST_METHOD"];
+$what = isset($_GET['what']) ? $_GET['what'] : null;
+$method = $_SERVER['REQUEST_METHOD'];
+$request = $_SERVER['REDIRECT_URL'];
 
-if($method !== 'GET') {
+if ($method !== 'GET') {
     header('HTTP/1.1 405 Method Not Allowed');
     die();
 }
 
-switch ($what) {
-    case 'products':
+header('Content-Type: application/json');
+
+switch ($request) {
+    case '/api/products':
         echo json_encode($database->getAllProducts());
         break;
-    case 'part':
-        $id = isset($_GET["id"]) ? $_GET["id"] : null;
-        if ($database->partNumberExists($id)) {
-            $response = $database->getStock($id);
-            $response['source'] = 'DB';
-            echo json_encode($response);
-        } else {
-            $response = $stock->get($id);
-            $response['source'] = 'WEB';
-            echo json_encode($response);
+    case '/api/part':
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
+        $response['source'] = $source;
+
+        if (($source == 'DB' || $source == 'BOTH')
+            && $database->partNumberExists($id)
+        ) {
+            $response['DB'] = $database->getStock($id);
         }
+        if ($source == 'WEB' || $source == 'BOTH') {
+            $response['WEB'] = $stock->get($id);
+        }
+        echo json_encode($response);
         break;
     case 'TODO':
+        // TODO: Well, do this.
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
                 $stockByPart[$part] = $database->getStock($part);
@@ -45,15 +52,29 @@ switch ($what) {
         }
         echo json_encode($stockByPart);
         break;
-    case 'coffee':
+    case '/api/coffee':
         header("HTTP/1.1 418 I'm a teapot");
+        $quote = json_decode(file_get_contents("https://programming-quotes-api.herokuapp.com/quotes/random"));
+        echo json_encode(array(
+            "☕" => $quote->en . " (" . $quote->author . ")"
+        ));
         break;
     default:
-        echo json_encode(array(
-            '/api' => array(
-                '?what=products' => 'Get all products in the database',
-                '?what=part&id=YOURID' => 'Get stock info for a given part number either from the DB or from the WEB'
+        echo json_encode(
+            array(
+                'query' => $request,
+                '/api/products' => array(
+                    'description' => 'Get all the products in the database',
+                    'parameters' => 'none'
+                ),
+                '/api/part' => array(
+                    'description' => 'Get the stock of a given part number.',
+                    'parameters' => array(
+                        'id' => 'The part-number to check',
+                        'source' => '(DB, WEB, BOTH) Get data from the database, the web or both. Defaults to BOTH'
+                    )
+                )
             )
-        ));
+        );
         break;
 }

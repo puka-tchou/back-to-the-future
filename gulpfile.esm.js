@@ -7,8 +7,9 @@ const php = () => {
     .pipe(dest('dist/api/'));
 };
 
-const copyXml = () => {
-  return src('src/api/**/*.txt').pipe(dest('dist/api/'));
+const copy = () => {
+  // FIXME: `.htaccess` copy is not working.
+  return src('src/api/**/*.{txt,htaccess}').pipe(dest('dist/api/'));
 };
 
-exports.build = parallel(php, copyXml);
+exports.build = parallel(php, copy);
