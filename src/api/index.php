@@ -12,6 +12,12 @@ $partList = new PartList;
 
 $parts = $partList->readFromFile(__DIR__ . '/xml/setlist.template.txt');
 $what = isset($_GET["what"]) ? $_GET["what"] : null;
+$method = $_SERVER["REQUEST_METHOD"];
+
+if($method !== 'GET') {
+    header('HTTP/1.1 405 Method Not Allowed');
+    die();
+}
 
 switch ($what) {
     case 'products':
@@ -43,6 +49,11 @@ switch ($what) {
         header("HTTP/1.1 418 I'm a teapot");
         break;
     default:
-        header("HTTP/1.1 204 API endpoint not defined");
+        echo json_encode(array(
+            '/api' => array(
+                '?what=products' => 'Get all products in the database',
+                '?what=part&id=YOURID' => 'Get stock info for a given part number either from the DB or from the WEB'
+            )
+        ));
         break;
 }
