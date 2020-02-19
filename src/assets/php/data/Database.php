@@ -50,6 +50,6 @@ class Database
         
         $query->execute(array($partNumber));
 
-        return ($query->fetch(PDO::FETCH_NUM)[0] == 1);
+        return (($query->fetch(PDO::FETCH_NUM)) == 1);
     }
 }
