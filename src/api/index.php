@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use data\Database\Database;
 use data\Stock\Stock;
@@ -10,7 +10,7 @@ $stock = new Stock;
 $database = new Database;
 $partList = new PartList;
 
-$parts = $partList->readFromFile(__DIR__ . '/../xml/setlist.template.txt');
+$parts = $partList->readFromFile(__DIR__ . '/xml/setlist.template.txt');
 
 // Check the current state of the history
 foreach ($parts as $part) {

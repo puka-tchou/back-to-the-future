@@ -85,7 +85,7 @@ class Database
      * @param string $partNumber The product part-number.
      * @param integer $updateInterval The time, in days, between each update of the stock and the prices.
      * @param string $manufacturer The part manufacturer.
-     * 
+     *
      * @return bool `true` if the creation succeded.
      */
     public function addProduct(string $partNumber, int $updateInterval, string $manufacturer): bool

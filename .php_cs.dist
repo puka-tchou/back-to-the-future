@@ -1,8 +1,6 @@
 <?php
 /* Ruleset based on: https://github.com/FriendsOfPhp/PHP-CS-Fixer#config-file */
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('platform/hub/algolia_scripts/algolia_src')
-    ->exclude('platform/hub/salesforce/soap')
     ->in(__DIR__ . '/src')
 ;
 
