@@ -1,8 +1,14 @@
-import { dest,  src, task } from 'gulp';
+import { dest, src, task, parallel } from 'gulp';
 import { phpMinify } from '@cedx/gulp-php-minify';
 
-task('php', () =>
-  src('src/api/**/*.php')
+const php = () => {
+  return src('src/api/**/*.php')
     .pipe(phpMinify())
-    .pipe(dest('dist/api/'))
-);
+    .pipe(dest('dist/api/'));
+};
+
+const copyXml = () => {
+  return src('src/api/**/*.txt').pipe(dest('dist/api/'));
+};
+
+exports.build = parallel(php, copyXml);
