@@ -52,4 +52,15 @@ class Database
 
         return (($query->fetch(PDO::FETCH_NUM)) == 1);
     }
+
+    public function getStock(string $partNumber)
+    {
+        $partNumber = strtoupper($partNumber);
+        $database = new Database();
+        $query = $database->connection->prepare("SELECT date_checked, stock, supplier FROM crouzet_pricing.stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;");
+
+        $query->execute(array($partNumber));
+
+        return ($query->fetch(PDO::FETCH_ASSOC));
+    }
 }

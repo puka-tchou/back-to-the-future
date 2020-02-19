@@ -13,8 +13,12 @@ $partList = new PartList;
 $parts = $partList->readFromFile(__DIR__ . '/../xml/setlist.template.txt');
 
 foreach ($parts as $part) {
-    $partIsAlreadyInDB[$part] = $database->partNumberExists($part);
-    $stockByPart[$part] = $stock->get($part);
+    if($database->partNumberExists($part))
+    {
+        $stockByPart[$part] = $database->getStock($part);
+    } else {
+        $stockByPart[$part] = $stock->get($part);
+    }
 }
 
 var_dump($stockByPart);
