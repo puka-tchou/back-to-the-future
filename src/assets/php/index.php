@@ -12,12 +12,12 @@ $partList = new PartList;
 
 $parts = $partList->readFromFile(__DIR__ . '/../xml/setlist.template.txt');
 
+// Check the current state of the history
 foreach ($parts as $part) {
-    if($database->partNumberExists($part))
-    {
+    if ($database->partNumberExists($part)) {
         $stockByPart[$part] = $database->getStock($part);
     } else {
-        $stockByPart[$part] = $stock->get($part);
+        $stockByPart[$part]['stock'] = $stock->get($part);
     }
 }
 
