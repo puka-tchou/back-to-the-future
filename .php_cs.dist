@@ -5,10 +5,13 @@ $finder = PhpCsFixer\Finder::create()
 ;
 
 return PhpCsFixer\Config::create()
+    ->setIndent("\t")
+    ->setLineEnding("\r\n")
     ->setRules([
         '@PSR1' => true,
         '@PSR2' => true,
-        'single_quote' => true
+        'single_quote' => true,
+        'trim_array_spaces' => true
     ])
     ->setFinder($finder)
 ;
