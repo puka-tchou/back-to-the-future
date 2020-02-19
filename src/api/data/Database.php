@@ -70,12 +70,12 @@ class Database
     {
         $partNumber = strtoupper($partNumber);
         $database = new Database;
-        $query = $database->connection->prepare('SELECT date_checked, stock, supplier FROM stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;');
+        $query = $database->connection->prepare('SELECT part_number, date_checked, stock, supplier FROM stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;');
 
         $query->execute(array($partNumber));
         $res = $query->fetch(PDO::FETCH_ASSOC);
         if (!$res) {
-            $res = array('err' => true, 'errMessage' => 'No stock records found for "' . $partNumber . '"');
+            $res = array('err' => true, 'response' => 'No stock records found for ' . $partNumber);
         }
 
         return $res;
@@ -93,7 +93,7 @@ class Database
         $partNumber = strtoupper($partNumber);
         $tracked_since = date('Y-m-d');
         $database = new Database;
-        $query = $database->connection->prepare('INSERT INTO products (part_number,tracked_since,update_interval,state,manufacturer) VALUES (?,?,?,?,?);');
+        $query = $database->connection->prepare('INSERT INTO products (part_number, tracked_since, update_interval, state, manufacturer) VALUES (?, ?, ?, ?, ?);');
 
         return $query->execute(array(
             $partNumber,

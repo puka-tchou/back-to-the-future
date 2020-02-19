@@ -15,9 +15,13 @@ class Stock
     public function get(string $part): array
     {
         $alliedelec = new AlliedElec;
-        $stockByPart = array();
+        $stockByPart = array(
+            'part_number' => $part,
+            'date_checked' => date('Y-m-d'),
+        );
         
-        $stockByPart = $alliedelec->getStock($part);
+        $stockByPart['stock'] = $alliedelec->getStock($part);
+        $stockByPart['supplier'] = 'alliedelec';
 
         return $stockByPart;
     }
