@@ -61,29 +61,29 @@
         <div class="nine phpdocumentor-columns phpdocumentor-content">
             <ul class="phpdocumentor-breadcrumbs">
     <li><a href="../index.html">Home</a></li>
-                        <li><a href="../namespaces/dealers.html">dealers</a></li>
-                    <li><a href="../namespaces/dealers-digikey.html">DigiKey</a></li>
+                        <li><a href="../namespaces/utilities.html">utilities</a></li>
+                    <li><a href="../namespaces/utilities-partlist.html">PartList</a></li>
             </ul>
 
     <article class="phpdocumentor-element phpdocumentor-class">
         <h2 class="phpdocumentor-content__title">
-            DigiKey
+            PartList
                                                         </h2>
         <aside class="phpdocumentor-element-found-in">
-            <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/dealers/DigiKey.php"><a href="../files/src-assets-php-dealers-digikey.html"><abbr title="src/assets/php/dealers/DigiKey.php">DigiKey.php</abbr></a></abbr>
+            <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/utilities/PartList.php"><a href="../files/src-assets-php-utilities-partlist.html"><abbr title="src/assets/php/utilities/PartList.php">PartList.php</abbr></a></abbr>
             :
-            <span class="phpdocumentor-element-found-in__line">3</span>
+            <span class="phpdocumentor-element-found-in__line">6</span>
         </aside>
 
-        <p class="phpdocumentor-class__summary"></p>
+        <p class="phpdocumentor-class__summary">Construct a list of part numbers from a file.</p>
         <section class="phpdocumentor-class__description"></section>
 
         <h3>Table of Contents</h3>
         <table class="phpdocumentor-table_of_contents">
                                                                             <tr>
-                    <th class="phpdocumentor-heading"><a href="../classes/dealers-DigiKey-DigiKey.html#method_getStock">getStock()</a></th>
-                    <td class="phpdocumentor-cell">Get stock information from DigiKey.</td>
-                    <td class="phpdocumentor-cell">string</td>
+                    <th class="phpdocumentor-heading"><a href="../classes/utilities-PartList-PartList.html#method_readFromFile">readFromFile()</a></th>
+                    <td class="phpdocumentor-cell">Reads a file input in YAML format and output an array containing the part numbers.</td>
+                    <td class="phpdocumentor-cell">array</td>
                 </tr>
                                             </table>
 
@@ -91,39 +91,44 @@
         
                     <section>
                 <h3 class="phpdocumentor-methods__header">Methods</h3>
-                                    <a id="method_getStock"></a>
+                                    <a id="method_readFromFile"></a>
 <article
         class="
             phpdocumentor-method
             phpdocumentor-method--public
                                                         "
 >
-    <h4 class="phpdocumentor-method__name">getStock()</h4>
+    <h4 class="phpdocumentor-method__name">readFromFile()</h4>
     <aside class="phpdocumentor-element-found-in">
-        <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/dealers/DigiKey.php"><a href="../files/src-assets-php-dealers-digikey.html"><abbr title="src/assets/php/dealers/DigiKey.php">DigiKey.php</abbr></a></abbr>
+        <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/utilities/PartList.php"><a href="../files/src-assets-php-utilities-partlist.html"><abbr title="src/assets/php/utilities/PartList.php">PartList.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">10</span>
+        <span class="phpdocumentor-element-found-in__line">14</span>
     </aside>
-        <p class="phpdocumentor-summary">Get stock information from DigiKey.</p>
+        <p class="phpdocumentor-summary">Reads a file input in YAML format and output an array containing the part numbers.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
-                                <span class="phpdocumentor-signature__name">getStock</span>(
+                                <span class="phpdocumentor-signature__name">readFromFile</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$path</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
                 )
-        : <span class="phpdocumentor-signature__response_type">string</span>
+        : <span class="phpdocumentor-signature__response_type">array</span>
     </code>
 
     
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$path</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The path to the file.</p></section></dd>
+                    </dl>
     
-                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
-        <dl class="phpdocumentor-tag-list">
-                                                <dt class="phpdocumentor-tag-list__entry">
-                        <span class="phpdocumentor-tag__name">todo</span>
-                    </dt>
-                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Implementation may need NodeJS because DigiKey dynamically generates its pages.</p></section></dd>
-                                    </dl>
-    
+        
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type">array</span>
             
 </article>
                                                             </section>
