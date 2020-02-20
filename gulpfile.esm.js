@@ -9,7 +9,7 @@ const php = () => {
 
 const copy = () => {
   // FIXME: `.htaccess` copy is not working.
-  return src('src/api/**/*.{txt,htaccess}').pipe(dest('dist/api/'));
+  return src('src/api/**/*.{yaml,htaccess}').pipe(dest('dist/api/'));
 };
 
 exports.build = parallel(php, copy);

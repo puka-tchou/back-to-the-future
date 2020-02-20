@@ -18,4 +18,9 @@ class PartList
         }
         return yaml_parse_file($path);
     }
+
+    public function readFromString(string $input): array
+    {
+        return yaml_parse($input);
+    }
 }

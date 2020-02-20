@@ -10,12 +10,11 @@ $stock = new Stock;
 $database = new Database;
 $partList = new PartList;
 
-$parts = $partList->readFromFile(__DIR__ . '/xml/setlist.template.txt');
-$what = isset($_GET['what']) ? $_GET['what'] : null;
-$method = $_SERVER['REQUEST_METHOD'];
-$request = $_SERVER['REDIRECT_URL'];
+$parts = $partList->readFromString(file_get_contents('php://input'));
+$request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : "/";
+$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : "INVALID";
 
-if ($method !== 'GET') {
+if ($method !== 'GET' && $method !== 'HEAD') {
     header('HTTP/1.1 405 Method Not Allowed');
     die();
 }
@@ -41,7 +40,7 @@ switch ($request) {
         }
         echo json_encode($response);
         break;
-    case 'TODO':
+    case '/api/TODO':
         // TODO: Well, do this.
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
