@@ -17,5 +17,9 @@
   parameters: NONE
 '/api/update':
   method: POST
-  description: Request a manual update of the stock data.
+  description: Request a manual update of the stock data for a set of parts.
+  parameters: NONE
+'/api/add':
+  method: POST
+  description: Add parts to the database and start tracking stock.
   parameters: NONE

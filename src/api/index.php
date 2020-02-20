@@ -3,6 +3,7 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 use data\Database\Database;
+use data\Product\Product;
 use data\Stock\Stock;
 use tasks\UpdateStock\UpdateStock;
 use utilities\PartList\PartList;
@@ -25,6 +26,7 @@ $stock = new Stock;
 $database = new Database;
 $partList = new PartList;
 $update = new UpdateStock;
+$product = new Product;
 
 switch ($request) {
     case '/api/products':
@@ -65,6 +67,14 @@ switch ($request) {
         $status;
         foreach ($parts as $part) {
             $status[$part] = $update->addRecord($part);
+        }
+        echo json_encode($status);
+        break;
+    case '/api/add':
+        $parts = $partList->readFromFile($file_input);
+        $status;
+        foreach ($parts as $part => $manufacturer) {
+            $status[$part] = $product->add($part, 7, $manufacturer);
         }
         echo json_encode($status);
         break;
