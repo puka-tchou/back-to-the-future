@@ -1,0 +1,17 @@
+---
+'/api/products':
+  method: GET
+  description: Get all the products in the database
+  parameters: NONE
+'/api/part':
+  method: GET
+  description: Get the stock of a given part number.
+  parameters:
+    id: The part-number to check
+    source:
+      '(DB, WEB, BOTH) Get data from the database, the web or both. Defaults
+      to BOTH'
+'/api/parts':
+  method: POST
+  description: Get the stock history for a given set of parts.
+  parameters: NONE

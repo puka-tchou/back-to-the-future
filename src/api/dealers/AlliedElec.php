@@ -5,8 +5,7 @@
  */
 class AlliedElec
 {
-    /**
-     * Check the stock of a given part number.
+    /** Check the stock of a given part number.
      * @param string $part_number The part number that you want to check.
      *
      * @return array An array containing the stock, the stock on order and the minimum number of parts to order.

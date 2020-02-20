@@ -5,8 +5,7 @@
  */
 class PartList
 {
-    /**
-     * Reads a file input in YAML format and output an array containing the part numbers.
+    /** Reads a file input in YAML format and output an array containing the part numbers.
      * @param string $path The path to the file.
      *
      * @return array
@@ -19,6 +18,11 @@ class PartList
         return yaml_parse_file($path);
     }
 
+    /** Reads a YAML string and return an array.
+     * @param string $input The YAML string to parse.
+     *
+     * @return array
+     */
     public function readFromString(string $input): array
     {
         return yaml_parse($input);

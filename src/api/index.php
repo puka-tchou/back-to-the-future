@@ -6,20 +6,23 @@ use data\Database\Database;
 use data\Stock\Stock;
 use utilities\PartList\PartList;
 
-$stock = new Stock;
-$database = new Database;
-$partList = new PartList;
+$file_input = isset($_FILES['parts_yaml']['tmp_name']) ? $_FILES['parts_yaml']['tmp_name'] : null;
+$request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
+$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'INVALID';
 
-$parts = $partList->readFromString(file_get_contents('php://input'));
-$request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : "/";
-$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : "INVALID";
-
-if ($method !== 'GET' && $method !== 'HEAD') {
+if ($method !== 'GET'
+&& $method !== 'HEAD'
+&& $method !== 'POST'
+) {
     header('HTTP/1.1 405 Method Not Allowed');
     die();
 }
 
 header('Content-Type: application/json');
+
+$stock = new Stock;
+$database = new Database;
+$partList = new PartList;
 
 switch ($request) {
     case '/api/products':
@@ -40,8 +43,9 @@ switch ($request) {
         }
         echo json_encode($response);
         break;
-    case '/api/TODO':
-        // TODO: Well, do this.
+    case '/api/parts':
+        $parts = $partList->readFromFile($file_input);
+
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
                 $stockByPart[$part] = $database->getStock($part);
@@ -53,27 +57,14 @@ switch ($request) {
         break;
     case '/api/coffee':
         header("HTTP/1.1 418 I'm a teapot");
-        $quote = json_decode(file_get_contents("https://programming-quotes-api.herokuapp.com/quotes/random"));
+        $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
         echo json_encode(array(
-            "☕" => $quote->en . " (" . $quote->author . ")"
+            '☕' => $quote->en . ' (' . $quote->author . ')'
         ));
         break;
     default:
-        echo json_encode(
-            array(
-                'query' => $request,
-                '/api/products' => array(
-                    'description' => 'Get all the products in the database',
-                    'parameters' => 'none'
-                ),
-                '/api/part' => array(
-                    'description' => 'Get the stock of a given part number.',
-                    'parameters' => array(
-                        'id' => 'The part-number to check',
-                        'source' => '(DB, WEB, BOTH) Get data from the database, the web or both. Defaults to BOTH'
-                    )
-                )
-            )
-        );
+        $documentation = $partList->readFromFile(__DIR__ . '/yaml/documentation.yaml');
+        $documentation['your_query'] = $request;
+        echo json_encode($documentation);
         break;
 }
