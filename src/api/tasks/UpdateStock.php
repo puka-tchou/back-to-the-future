@@ -29,7 +29,7 @@ class UpdateStock
 
         $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, stock, supplier) VALUES (?, ?, ?, ?);');
         
-        $stockValues = json_encode($stock->get($partNumber)['stock'], true);
+        $stockValues = json_encode($stock->getFromDealers($partNumber)['stock'], true);
         $date = date('Y-m-d');
         $res = $query->execute(array($partNumber, $date, $stockValues, 'alliedelec'));
         

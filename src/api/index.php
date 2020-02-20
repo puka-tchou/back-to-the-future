@@ -38,10 +38,10 @@ switch ($request) {
         if (($source == 'DB' || $source == 'BOTH')
             && $database->partNumberExists($id)
         ) {
-            $response['DB'] = $database->getStock($id);
+            $response['DB'] = $stock->getLast($id);
         }
         if ($source == 'WEB' || $source == 'BOTH') {
-            $response['WEB'] = $stock->get($id);
+            $response['WEB'] = $stock->getFromDealers($id);
         }
         echo json_encode($response);
         break;
@@ -50,7 +50,7 @@ switch ($request) {
 
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
-                $stockByPart[$part] = $database->getStock($part);
+                $stockByPart[$part] = $stock->getLast($part);
             } else {
                 $stockByPart[$part] = array(
                     'err' => true,

@@ -54,33 +54,6 @@ class Database
         return ($res[0] == 1);
     }
 
-    /** Get the last recorder stock of a given part number.
-     * @param string $partNumber The part-number to check.
-     * @return array The last record.
-     * ```php
-     * // The array structure
-     * array(
-     *  'date_checked' => string '2020-02-20'
-     *  'stock' => string 'test2'
-     *  'supplier' => string 'alliedelec'
-     * );
-     * ````
-     */
-    public function getStock(string $partNumber): array
-    {
-        $partNumber = strtoupper($partNumber);
-        $database = new Database;
-        $query = $database->connection->prepare('SELECT part_number, date_checked, stock, supplier FROM stock_history WHERE part_number = ? ORDER BY id DESC LIMIT 1;');
-
-        $query->execute(array($partNumber));
-        $res = $query->fetch(PDO::FETCH_ASSOC);
-        if (!$res) {
-            $res = array('err' => true, 'response' => 'No stock records found for ' . $partNumber);
-        }
-
-        return $res;
-    }
-
     /** Add a product to the database.
      * @param string $partNumber The product part-number.
      * @param integer $updateInterval The time, in days, between each update of the stock and the prices.
