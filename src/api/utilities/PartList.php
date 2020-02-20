@@ -10,12 +10,24 @@ class PartList
      *
      * @return array
      */
-    public function readFromFile(string $path): array
+    public function readFromFile(string $path)
     {
+        $content = array();
+
         if (!file_exists($path)) {
             throw new \Exception("File '" . $path . "' does not seem to exist.", 1);
         }
-        return yaml_parse_file($path);
+
+        $handle = fopen($path, 'r');
+        while (($data = fgetcsv($handle, 1000, ';')) !== false) {
+            if (isset($data[1])) {
+                $content[$data[1]] = $data[0];
+            } else {
+                $content[$data[0]] = $data[0];
+            }
+        }
+
+        return $content;
     }
 
     /** Reads a YAML string and return an array.

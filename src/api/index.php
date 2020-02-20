@@ -66,13 +66,20 @@ switch ($request) {
         $parts = $partList->readFromFile($file_input);
         $status;
         foreach ($parts as $part) {
-            $status[$part] = $update->addRecord($part);
+            if ($database->partNumberExists($part)) {
+                $status[$part] = $update->addRecord($part);
+            } else {
+                $status[$part] = array(
+                    'err' => true,
+                    'response' => 'Part-number not found in the database.'
+                );
+            }
         }
         echo json_encode($status);
         break;
     case '/api/add':
         $parts = $partList->readFromFile($file_input);
-        $status;
+        $status = array();
         foreach ($parts as $part => $manufacturer) {
             $status[$part] = $product->add($part, 7, $manufacturer);
         }

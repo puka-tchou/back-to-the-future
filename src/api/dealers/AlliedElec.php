@@ -38,7 +38,10 @@ class AlliedElec
             }
         }
         if (!isset($xml)) {
-            throw new \Exception('Exact part number not found');
+            return array(
+                'err' => true,
+                'response' => 'Exact part number not found ' . $part_number
+            );
         }
         $stocks = $xml->div[1][0]->div[0]->span;
         // We know the structure of the array, so we know that we can test only one element out of two.

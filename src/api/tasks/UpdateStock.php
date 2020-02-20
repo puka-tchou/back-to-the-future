@@ -27,11 +27,24 @@ class UpdateStock
             );
         }
 
-        $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, stock, supplier) VALUES (?, ?, ?, ?);');
+        $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, stock, supplier, state) VALUES (?, ?, ?, ?, ?);');
         
-        $stockValues = json_encode($stock->getFromDealers($partNumber)['stock'], true);
+        $stockValues = $stock->getFromDealers($partNumber)['stock'];
         $date = date('Y-m-d');
-        $res = $query->execute(array($partNumber, $date, $stockValues, 'alliedelec'));
+        $state = 'OK';
+        $flag = true;
+
+        if (isset($stockValues['err'])) {
+            $res['err'] = array(
+                'err' => true,
+                'response' => $stockValues['response']
+            );
+            $state = 'ERROR';
+            $flag = false;
+        }
+
+        $stockValues = json_encode($stockValues);
+        $res = $query->execute(array($partNumber, $date, $stockValues, 'alliedelec', $state));
         
         if (!$res) {
             return array(
@@ -41,9 +54,10 @@ class UpdateStock
                     'errorCode' => $query->errorCode(),
                     'errorInfo' => $query->errorInfo()
                     )
-            );
+                );
         }
-
-        return $res;
+            
+        // If there was an error while getting the stock values, set the result to false.
+        return $res && $flag;
     }
 }

@@ -16,6 +16,7 @@ class Stock
      */
     public function getFromDealers(string $part): array
     {
+        $part = strtoupper($part);
         $alliedelec = new AlliedElec;
         $stockByPart = array(
             'part_number' => $part,
