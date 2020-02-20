@@ -4,6 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use data\Database\Database;
 use data\Stock\Stock;
+use tasks\UpdateStock\UpdateStock;
 use utilities\PartList\PartList;
 
 $file_input = isset($_FILES['parts_yaml']['tmp_name']) ? $_FILES['parts_yaml']['tmp_name'] : null;
@@ -23,6 +24,7 @@ header('Content-Type: application/json');
 $stock = new Stock;
 $database = new Database;
 $partList = new PartList;
+$update = new UpdateStock;
 
 switch ($request) {
     case '/api/products':
@@ -50,10 +52,21 @@ switch ($request) {
             if ($database->partNumberExists($part)) {
                 $stockByPart[$part] = $database->getStock($part);
             } else {
-                $stockByPart[$part]['stock'] = $stock->get($part);
+                $stockByPart[$part] = array(
+                    'err' => true,
+                    'response' => 'Part-number not found in the database.'
+                );
             }
         }
         echo json_encode($stockByPart);
+        break;
+    case '/api/update':
+        $parts = $partList->readFromFile($file_input);
+        $status;
+        foreach ($parts as $part) {
+            $status[$part] = $update->addRecord($part);
+        }
+        echo json_encode($status);
         break;
     case '/api/coffee':
         header("HTTP/1.1 418 I'm a teapot");

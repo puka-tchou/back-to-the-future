@@ -15,3 +15,7 @@
   method: POST
   description: Get the stock history for a given set of parts.
   parameters: NONE
+'/api/update':
+  method: POST
+  description: Request a manual update of the stock data.
+  parameters: NONE
