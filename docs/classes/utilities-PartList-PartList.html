@@ -70,7 +70,7 @@
             PartList
                                                         </h2>
         <aside class="phpdocumentor-element-found-in">
-            <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/utilities/PartList.php"><a href="../files/src-assets-php-utilities-partlist.html"><abbr title="src/assets/php/utilities/PartList.php">PartList.php</abbr></a></abbr>
+            <abbr class="phpdocumentor-element-found-in__file" title="src/api/utilities/PartList.php"><a href="../files/src-api-utilities-partlist.html"><abbr title="src/api/utilities/PartList.php">PartList.php</abbr></a></abbr>
             :
             <span class="phpdocumentor-element-found-in__line">6</span>
         </aside>
@@ -83,6 +83,11 @@
                                                                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/utilities-PartList-PartList.html#method_readFromFile">readFromFile()</a></th>
                     <td class="phpdocumentor-cell">Reads a file input in YAML format and output an array containing the part numbers.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/utilities-PartList-PartList.html#method_readFromString">readFromString()</a></th>
+                    <td class="phpdocumentor-cell">Reads a YAML string and return an array.</td>
                     <td class="phpdocumentor-cell">array</td>
                 </tr>
                                             </table>
@@ -100,9 +105,9 @@
 >
     <h4 class="phpdocumentor-method__name">readFromFile()</h4>
     <aside class="phpdocumentor-element-found-in">
-        <abbr class="phpdocumentor-element-found-in__file" title="src/assets/php/utilities/PartList.php"><a href="../files/src-assets-php-utilities-partlist.html"><abbr title="src/assets/php/utilities/PartList.php">PartList.php</abbr></a></abbr>
+        <abbr class="phpdocumentor-element-found-in__file" title="src/api/utilities/PartList.php"><a href="../files/src-api-utilities-partlist.html"><abbr title="src/api/utilities/PartList.php">PartList.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">14</span>
+        <span class="phpdocumentor-element-found-in__line">13</span>
     </aside>
         <p class="phpdocumentor-summary">Reads a file input in YAML format and output an array containing the part numbers.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -124,6 +129,46 @@
                     : <span class="phpdocumentor-signature__argument__return-type">string</span>
                                     </dt>
                 <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The path to the file.</p></section></dd>
+                    </dl>
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+            
+</article>
+                                    <a id="method_readFromString"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">readFromString()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/api/utilities/PartList.php"><a href="../files/src-api-utilities-partlist.html"><abbr title="src/api/utilities/PartList.php">PartList.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">26</span>
+    </aside>
+        <p class="phpdocumentor-summary">Reads a YAML string and return an array.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">readFromString</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$input</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$input</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The YAML string to parse.</p></section></dd>
                     </dl>
     
         

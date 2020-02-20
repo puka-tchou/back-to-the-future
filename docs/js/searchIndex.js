@@ -71,6 +71,11 @@ Search.appendIndex(
             "summary": "Reads\u0020a\u0020file\u0020input\u0020in\u0020YAML\u0020format\u0020and\u0020output\u0020an\u0020array\u0020containing\u0020the\u0020part\u0020numbers.",
             "url": "../classes/utilities-PartList-PartList.html#method_readFromFile"
         },                {
+            "fqsen": "\\utilities\\PartList\\PartList\u003A\u003AreadFromString\u0028\u0029",
+            "name": "readFromString",
+            "summary": "Reads\u0020a\u0020YAML\u0020string\u0020and\u0020return\u0020an\u0020array.",
+            "url": "../classes/utilities-PartList-PartList.html#method_readFromString"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
