@@ -39,12 +39,17 @@
                     <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/data.html"><abbr title="\data">data</abbr></a></h3>
             <ul class="phpdocumentor-list">
                                     <li><a href="../namespaces/data-database.html"><abbr title="\data\Database">Database</abbr></a></li>
+                                    <li><a href="../namespaces/data-product.html"><abbr title="\data\Product">Product</abbr></a></li>
                                     <li><a href="../namespaces/data-stock.html"><abbr title="\data\Stock">Stock</abbr></a></li>
                             </ul>
                     <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/dealers.html"><abbr title="\dealers">dealers</abbr></a></h3>
             <ul class="phpdocumentor-list">
                                     <li><a href="../namespaces/dealers-alliedelec.html"><abbr title="\dealers\AlliedElec">AlliedElec</abbr></a></li>
                                     <li><a href="../namespaces/dealers-digikey.html"><abbr title="\dealers\DigiKey">DigiKey</abbr></a></li>
+                            </ul>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/tasks.html"><abbr title="\tasks">tasks</abbr></a></h3>
+            <ul class="phpdocumentor-list">
+                                    <li><a href="../namespaces/tasks-updatestock.html"><abbr title="\tasks\UpdateStock">UpdateStock</abbr></a></li>
                             </ul>
                     <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/utilities.html"><abbr title="\utilities">utilities</abbr></a></h3>
             <ul class="phpdocumentor-list">
@@ -93,16 +98,6 @@
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/data-Database-Database.html#method_partNumberExists">partNumberExists()</a></th>
                     <td class="phpdocumentor-cell">Check if a given part number is present in the database.</td>
-                    <td class="phpdocumentor-cell">bool</td>
-                </tr>
-                            <tr>
-                    <th class="phpdocumentor-heading"><a href="../classes/data-Database-Database.html#method_getStock">getStock()</a></th>
-                    <td class="phpdocumentor-cell">Get the last recorder stock of a given part number.</td>
-                    <td class="phpdocumentor-cell">array</td>
-                </tr>
-                            <tr>
-                    <th class="phpdocumentor-heading"><a href="../classes/data-Database-Database.html#method_addProduct">addProduct()</a></th>
-                    <td class="phpdocumentor-cell">Add a product to the database.</td>
                     <td class="phpdocumentor-cell">bool</td>
                 </tr>
                                             </table>
@@ -212,112 +207,6 @@
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash; <span class="phpdocumentor-description"><p><code class="prettyprint">true</code> if the part-number exists in the database.</p></span>
-            
-</article>
-                                    <a id="method_getStock"></a>
-<article
-        class="
-            phpdocumentor-method
-            phpdocumentor-method--public
-                                                        "
->
-    <h4 class="phpdocumentor-method__name">getStock()</h4>
-    <aside class="phpdocumentor-element-found-in">
-        <abbr class="phpdocumentor-element-found-in__file" title="src/api/data/Database.php"><a href="../files/src-api-data-database.html"><abbr title="src/api/data/Database.php">Database.php</abbr></a></abbr>
-        :
-        <span class="phpdocumentor-element-found-in__line">69</span>
-    </aside>
-        <p class="phpdocumentor-summary">Get the last recorder stock of a given part number.</p>
-        <code class="phpdocumentor-signature phpdocumentor-code ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-                                <span class="phpdocumentor-signature__name">getStock</span>(
-                    <span class="phpdocumentor-signature__argument">
-                            <span class="phpdocumentor-signature__argument__name">$partNumber</span> :
-                <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </span>
-                )
-        : <span class="phpdocumentor-signature__response_type">array</span>
-    </code>
-
-    
-            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-        <dl class="phpdocumentor-argument-list">
-                            <dt class="phpdocumentor-argument-list__entry">
-                    <span class="phpdocumentor-signature__argument__name">$partNumber</span>
-                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                                    </dt>
-                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The part-number to check.</p></section></dd>
-                    </dl>
-    
-        
-            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><p>The last record.</p>
-<pre class="prettyprint"><code class="language-php">// The array structure
-array(
- 'date_checked' =&gt; string '2020-02-20'
- 'stock' =&gt; string 'test2'
- 'supplier' =&gt; string 'alliedelec'
-);</code></pre></span>
-            
-</article>
-                                    <a id="method_addProduct"></a>
-<article
-        class="
-            phpdocumentor-method
-            phpdocumentor-method--public
-                                                        "
->
-    <h4 class="phpdocumentor-method__name">addProduct()</h4>
-    <aside class="phpdocumentor-element-found-in">
-        <abbr class="phpdocumentor-element-found-in__file" title="src/api/data/Database.php"><a href="../files/src-api-data-database.html"><abbr title="src/api/data/Database.php">Database.php</abbr></a></abbr>
-        :
-        <span class="phpdocumentor-element-found-in__line">91</span>
-    </aside>
-        <p class="phpdocumentor-summary">Add a product to the database.</p>
-        <code class="phpdocumentor-signature phpdocumentor-code ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-                                <span class="phpdocumentor-signature__name">addProduct</span>(
-                    <span class="phpdocumentor-signature__argument">
-                            <span class="phpdocumentor-signature__argument__name">$partNumber</span> :
-                <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </span>
-                    <span class="phpdocumentor-signature__argument">
-            ,                 <span class="phpdocumentor-signature__argument__name">$updateInterval</span> :
-                <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </span>
-                    <span class="phpdocumentor-signature__argument">
-            ,                 <span class="phpdocumentor-signature__argument__name">$manufacturer</span> :
-                <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </span>
-                )
-        : <span class="phpdocumentor-signature__response_type">bool</span>
-    </code>
-
-    
-            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-        <dl class="phpdocumentor-argument-list">
-                            <dt class="phpdocumentor-argument-list__entry">
-                    <span class="phpdocumentor-signature__argument__name">$partNumber</span>
-                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                                    </dt>
-                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The product part-number.</p></section></dd>
-                            <dt class="phpdocumentor-argument-list__entry">
-                    <span class="phpdocumentor-signature__argument__name">$updateInterval</span>
-                    : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                                    </dt>
-                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The time, in days, between each update of the stock and the prices.</p></section></dd>
-                            <dt class="phpdocumentor-argument-list__entry">
-                    <span class="phpdocumentor-signature__argument__name">$manufacturer</span>
-                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                                    </dt>
-                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>The part manufacturer.</p></section></dd>
-                    </dl>
-    
-        
-            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash; <span class="phpdocumentor-description"><p><code class="prettyprint">true</code> if the creation succeded.</p></span>
             
 </article>
                                                             </section>

@@ -5,7 +5,7 @@ use dealers\AlliedElec\AlliedElec;
 use PDO;
 
 /**
- * Retrieve the current stock informations from online stores.
+ * Manipulate stock data, get data from online stores.
  */
 class Stock
 {

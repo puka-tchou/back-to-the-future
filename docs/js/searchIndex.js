@@ -21,25 +21,20 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020a\u0020given\u0020part\u0020number\u0020is\u0020present\u0020in\u0020the\u0020database.",
             "url": "../classes/data-Database-Database.html#method_partNumberExists"
         },                {
-            "fqsen": "\\data\\Database\\Database\u003A\u003AgetStock\u0028\u0029",
-            "name": "getStock",
-            "summary": "Get\u0020the\u0020last\u0020recorder\u0020stock\u0020of\u0020a\u0020given\u0020part\u0020number.",
-            "url": "../classes/data-Database-Database.html#method_getStock"
-        },                {
-            "fqsen": "\\data\\Database\\Database\u003A\u003AaddProduct\u0028\u0029",
-            "name": "addProduct",
-            "summary": "Add\u0020a\u0020product\u0020to\u0020the\u0020database.",
-            "url": "../classes/data-Database-Database.html#method_addProduct"
-        },                {
             "fqsen": "\\data\\Stock\\Stock",
             "name": "Stock",
-            "summary": "Retrieve\u0020the\u0020current\u0020stock\u0020informations\u0020from\u0020online\u0020stores.",
+            "summary": "Manipulate\u0020stock\u0020data,\u0020get\u0020data\u0020from\u0020online\u0020stores.",
             "url": "../classes/data-Stock-Stock.html"
         },                {
-            "fqsen": "\\data\\Stock\\Stock\u003A\u003Aget\u0028\u0029",
-            "name": "get",
+            "fqsen": "\\data\\Stock\\Stock\u003A\u003AgetFromDealers\u0028\u0029",
+            "name": "getFromDealers",
             "summary": "Retrieve\u0020stock\u0020informations\u0020for\u0020a\u0020given\u0020part\u0020number.",
-            "url": "../classes/data-Stock-Stock.html#method_get"
+            "url": "../classes/data-Stock-Stock.html#method_getFromDealers"
+        },                {
+            "fqsen": "\\data\\Stock\\Stock\u003A\u003AgetLast\u0028\u0029",
+            "name": "getLast",
+            "summary": "Get\u0020the\u0020last\u0020recorded\u0020stock\u0020for\u0020a\u0020given\u0020part\u0020number.",
+            "url": "../classes/data-Stock-Stock.html#method_getLast"
         },                {
             "fqsen": "\\dealers\\AlliedElec\\AlliedElec",
             "name": "AlliedElec",
@@ -76,6 +71,26 @@ Search.appendIndex(
             "summary": "Reads\u0020a\u0020YAML\u0020string\u0020and\u0020return\u0020an\u0020array.",
             "url": "../classes/utilities-PartList-PartList.html#method_readFromString"
         },                {
+            "fqsen": "\\data\\Product\\Product",
+            "name": "Product",
+            "summary": "Manipulate\u0020products\u0020in\u0020the\u0020database.",
+            "url": "../classes/data-Product-Product.html"
+        },                {
+            "fqsen": "\\data\\Product\\Product\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Add\u0020a\u0020product\u0020to\u0020the\u0020database.",
+            "url": "../classes/data-Product-Product.html#method_add"
+        },                {
+            "fqsen": "\\tasks\\UpdateStock\\UpdateStock",
+            "name": "UpdateStock",
+            "summary": "Update\u0020stock\u0020data.",
+            "url": "../classes/tasks-UpdateStock-UpdateStock.html"
+        },                {
+            "fqsen": "\\tasks\\UpdateStock\\UpdateStock\u003A\u003AaddRecord\u0028\u0029",
+            "name": "addRecord",
+            "summary": "Add\u0020a\u0020stock\u0020record\u0020for\u0020the\u0020given\u0020part\u002Dnumber.",
+            "url": "../classes/tasks-UpdateStock-UpdateStock.html#method_addRecord"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -90,6 +105,11 @@ Search.appendIndex(
             "name": "data",
             "summary": "",
             "url": "../namespaces/data.html"
+        },                {
+            "fqsen": "\\data\\Product",
+            "name": "Product",
+            "summary": "",
+            "url": "../namespaces/data-product.html"
         },                {
             "fqsen": "\\data\\Stock",
             "name": "Stock",
@@ -110,6 +130,16 @@ Search.appendIndex(
             "name": "DigiKey",
             "summary": "",
             "url": "../namespaces/dealers-digikey.html"
+        },                {
+            "fqsen": "\\tasks\\UpdateStock",
+            "name": "UpdateStock",
+            "summary": "",
+            "url": "../namespaces/tasks-updatestock.html"
+        },                {
+            "fqsen": "\\tasks",
+            "name": "tasks",
+            "summary": "",
+            "url": "../namespaces/tasks.html"
         },                {
             "fqsen": "\\utilities\\PartList",
             "name": "PartList",
