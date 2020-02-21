@@ -2,97 +2,62 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use data\Database\Database;
-use data\Product\Product;
-use data\Stock\Stock;
-use tasks\UpdateStock\UpdateStock;
-use utilities\PartList\PartList;
+use route\Route\Route;
 
-$file_input = isset($_FILES['parts_yaml']['tmp_name']) ? $_FILES['parts_yaml']['tmp_name'] : null;
-$request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
-$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'INVALID';
+filterConnection();
+route();
 
-if ($method !== 'GET'
-&& $method !== 'HEAD'
-&& $method !== 'POST'
-) {
-    header('HTTP/1.1 405 Method Not Allowed');
-    die();
+/** Filter connection method and `die();` if the method is not allowed.
+ * @return void
+ */
+function filterConnection()
+{
+    $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'INVALID';
+
+    if ($method !== 'GET'
+        && $method !== 'HEAD'
+        && $method !== 'POST'
+    ) {
+        header('HTTP/1.1 405 Method Not Allowed');
+        die();
+    }
 }
 
-header('Content-Type: application/json');
-
-$stock = new Stock;
-$database = new Database;
-$partList = new PartList;
-$update = new UpdateStock;
-$product = new Product;
-
-switch ($request) {
-    case '/api/products':
-        echo json_encode($database->getAllProducts());
-        break;
-    case '/api/part':
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
-        $response['source'] = $source;
-
-        if ($source == 'DB' || $source == 'BOTH') {
-            $response['DB'] = $stock->get($id, -1);
-        }
-        if ($source == 'WEB' || $source == 'BOTH') {
-            $response['WEB'] = $stock->getFromDealers($id);
-        }
-        echo json_encode($response);
-        break;
-    case '/api/parts':
-        $parts = $partList->readFromFile($file_input);
-
-        foreach ($parts as $part) {
-            if ($database->partNumberExists($part)) {
-                $stockByPart[$part] = $stock->get($part, -1);
-            } else {
-                $stockByPart[$part] = array(
-                    'err' => true,
-                    'response' => 'Part-number not found in the database.'
-                );
-            }
-        }
-        echo json_encode($stockByPart);
-        break;
-    case '/api/update':
-        $parts = $partList->readFromFile($file_input);
-        $status;
-        foreach ($parts as $part) {
-            if ($database->partNumberExists($part)) {
-                $status[$part] = $update->addRecord($part);
-            } else {
-                $status[$part] = array(
-                    'err' => true,
-                    'response' => 'Part-number not found in the database.'
-                );
-            }
-        }
-        echo json_encode($status);
-        break;
-    case '/api/add':
-        $parts = $partList->readFromFile($file_input);
-        $status = array();
-        foreach ($parts as $part => $manufacturer) {
-            $status[$part] = $product->add($part, 7, $manufacturer);
-        }
-        echo json_encode($status);
-        break;
-    case '/api/coffee':
-        header("HTTP/1.1 418 I'm a teapot");
-        $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
-        echo json_encode(array(
-            '☕' => $quote->en . ' (' . $quote->author . ')'
-        ));
-        break;
-    default:
-        $documentation = $partList->readFromFile(__DIR__ . '/yaml/documentation.yaml');
-        $documentation['your_query'] = $request;
-        echo json_encode($documentation);
-        break;
+/** Routing.
+ * @return void
+ */
+function route()
+{
+    header('Content-Type: application/json');
+    
+    $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
+    $route = new Route;
+    
+    switch ($url) {
+        case '/api/add':
+            echo $route->add();
+            break;
+        case '/api/part':
+            echo $route->part();
+            break;
+        case '/api/parts':
+            echo $route->parts();
+            break;
+        case '/api/products':
+            echo $route->products();
+            break;
+        case '/api/update':
+            echo $route->update();
+            break;
+        case '/api/coffee':
+            header("HTTP/1.1 418 I'm a teapot");
+            $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
+            echo json_encode(array(
+                '☕' => $quote->en . ' (' . $quote->author . ')'
+            ));
+            break;
+        default:
+            echo $route->documentation($url);
+            break;
+    }
 }

@@ -1,16 +1,16 @@
-<?php namespace utilities\PartList;
+<?php namespace utilities\Reader;
 
 /**
  * Construct a list of part numbers from a file.
  */
-class PartList
+class Reader
 {
     /** Reads a file input in YAML format and output an array containing the part numbers.
      * @param string $path The path to the file.
      *
      * @return array
      */
-    public function readFromFile(string $path)
+    public function readCSVFile(string $path)
     {
         $content = array();
 

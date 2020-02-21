@@ -1,4 +1,4 @@
-import { dest, src, task, parallel } from 'gulp';
+import { dest, src, parallel } from 'gulp';
 import { phpMinify } from '@cedx/gulp-php-minify';
 
 const php = () => {
