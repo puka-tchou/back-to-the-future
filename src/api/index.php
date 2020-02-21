@@ -37,10 +37,8 @@ switch ($request) {
         $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
         $response['source'] = $source;
 
-        if (($source == 'DB' || $source == 'BOTH')
-            && $database->partNumberExists($id)
-        ) {
-            $response['DB'] = $stock->getLast($id);
+        if ($source == 'DB' || $source == 'BOTH') {
+            $response['DB'] = $stock->get($id, -1);
         }
         if ($source == 'WEB' || $source == 'BOTH') {
             $response['WEB'] = $stock->getFromDealers($id);
@@ -52,7 +50,7 @@ switch ($request) {
 
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
-                $stockByPart[$part] = $stock->getLast($part);
+                $stockByPart[$part] = $stock->get($part, -1);
             } else {
                 $stockByPart[$part] = array(
                     'err' => true,
