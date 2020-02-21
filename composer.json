@@ -24,7 +24,7 @@
     "phpdocumentor/phpdocumentor": "^3"
   },
   "scripts": {
-    "doc": "phpdoc -d ./src/api -t ./docs",
+    "doc": "phpdoc -d ./src/api -t ./docs/api",
     "stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
     "stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
     "stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
