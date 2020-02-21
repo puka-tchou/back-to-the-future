@@ -66,6 +66,16 @@ Search.appendIndex(
             "summary": "Get\u0020stock\u0020information\u0020from\u0020DigiKey.",
             "url": "../classes/dealers-DigiKey-DigiKey.html#method_getStock"
         },                {
+            "fqsen": "\\filterConnection\u0028\u0029",
+            "name": "filterConnection",
+            "summary": "Filter\u0020connection\u0020method\u0020and\u0020\u0060die\u0028\u0029\u003B\u0060\u0020if\u0020the\u0020method\u0020is\u0020not\u0020allowed.",
+            "url": "../namespaces/default.html#function_filterConnection"
+        },                {
+            "fqsen": "\\route\u0028\u0029",
+            "name": "route",
+            "summary": "Routing.",
+            "url": "../namespaces/default.html#function_route"
+        },                {
             "fqsen": "\\tasks\\UpdateStock\\UpdateStock",
             "name": "UpdateStock",
             "summary": "Update\u0020stock\u0020data.",
@@ -76,20 +86,60 @@ Search.appendIndex(
             "summary": "Add\u0020a\u0020stock\u0020record\u0020for\u0020the\u0020given\u0020part\u002Dnumber.",
             "url": "../classes/tasks-UpdateStock-UpdateStock.html#method_addRecord"
         },                {
-            "fqsen": "\\utilities\\PartList\\PartList",
-            "name": "PartList",
+            "fqsen": "\\route\\Route\\Route",
+            "name": "Route",
+            "summary": "Class\u0020Route",
+            "url": "../classes/route-Route-Route.html"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Add\u0020products\u0020to\u0020the\u0020database\u0020from\u0020a\u0020given\u0020CSV\u0020file.",
+            "url": "../classes/route-Route-Route.html#method_add"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Adocumentation\u0028\u0029",
+            "name": "documentation",
+            "summary": "Read\u0020API\u0020documentation\u0020from\u0020a\u0020YAML\u0020file.",
+            "url": "../classes/route-Route-Route.html#method_documentation"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Aproducts\u0028\u0029",
+            "name": "products",
+            "summary": "Get\u0020all\u0020products\u0020from\u0020the\u0020database.",
+            "url": "../classes/route-Route-Route.html#method_products"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Apart\u0028\u0029",
+            "name": "part",
+            "summary": "Get\u0020stock\u0020information\u0020for\u0020a\u0020part\u002Dnumber.",
+            "url": "../classes/route-Route-Route.html#method_part"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Aparts\u0028\u0029",
+            "name": "parts",
+            "summary": "Get\u0020stock\u0020information\u0020for\u0020a\u0020set\u0020of\u0020parts\u0020in\u0020a\u0020CSV\u0020file.",
+            "url": "../classes/route-Route-Route.html#method_parts"
+        },                {
+            "fqsen": "\\route\\Route\\Route\u003A\u003Aupdate\u0028\u0029",
+            "name": "update",
+            "summary": "Update\u0020stock\u0020informations\u0020for\u0020a\u0020set\u0020of\u0020parts\u0020in\u0020a\u0020CSV\u0020file.",
+            "url": "../classes/route-Route-Route.html#method_update"
+        },                {
+            "fqsen": "\\utilities\\Reader\\Reader",
+            "name": "Reader",
             "summary": "Construct\u0020a\u0020list\u0020of\u0020part\u0020numbers\u0020from\u0020a\u0020file.",
-            "url": "../classes/utilities-PartList-PartList.html"
+            "url": "../classes/utilities-Reader-Reader.html"
         },                {
-            "fqsen": "\\utilities\\PartList\\PartList\u003A\u003AreadFromFile\u0028\u0029",
-            "name": "readFromFile",
-            "summary": "Reads\u0020a\u0020file\u0020input\u0020in\u0020YAML\u0020format\u0020and\u0020output\u0020an\u0020array\u0020containing\u0020the\u0020part\u0020numbers.",
-            "url": "../classes/utilities-PartList-PartList.html#method_readFromFile"
+            "fqsen": "\\utilities\\Reader\\Reader\u003A\u003AreadCSVFile\u0028\u0029",
+            "name": "readCSVFile",
+            "summary": "Reads\u0020a\u0020file\u0020input\u0020in\u0020CSV\u0020format.",
+            "url": "../classes/utilities-Reader-Reader.html#method_readCSVFile"
         },                {
-            "fqsen": "\\utilities\\PartList\\PartList\u003A\u003AreadFromString\u0028\u0029",
+            "fqsen": "\\utilities\\Reader\\Reader\u003A\u003AreadYAMLFile\u0028\u0029",
+            "name": "readYAMLFile",
+            "summary": "Reads\u0020a\u0020file\u0020input\u0020in\u0020YAML\u0020format.",
+            "url": "../classes/utilities-Reader-Reader.html#method_readYAMLFile"
+        },                {
+            "fqsen": "\\utilities\\Reader\\Reader\u003A\u003AreadFromString\u0028\u0029",
             "name": "readFromString",
             "summary": "Reads\u0020a\u0020YAML\u0020string\u0020and\u0020return\u0020an\u0020array.",
-            "url": "../classes/utilities-PartList-PartList.html#method_readFromString"
+            "url": "../classes/utilities-Reader-Reader.html#method_readFromString"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -131,6 +181,16 @@ Search.appendIndex(
             "summary": "",
             "url": "../namespaces/dealers-digikey.html"
         },                {
+            "fqsen": "\\route\\Route",
+            "name": "Route",
+            "summary": "",
+            "url": "../namespaces/route-route.html"
+        },                {
+            "fqsen": "\\route",
+            "name": "route",
+            "summary": "",
+            "url": "../namespaces/route.html"
+        },                {
             "fqsen": "\\tasks\\UpdateStock",
             "name": "UpdateStock",
             "summary": "",
@@ -141,10 +201,10 @@ Search.appendIndex(
             "summary": "",
             "url": "../namespaces/tasks.html"
         },                {
-            "fqsen": "\\utilities\\PartList",
-            "name": "PartList",
+            "fqsen": "\\utilities\\Reader",
+            "name": "Reader",
             "summary": "",
-            "url": "../namespaces/utilities-partlist.html"
+            "url": "../namespaces/utilities-reader.html"
         },                {
             "fqsen": "\\utilities",
             "name": "utilities",
