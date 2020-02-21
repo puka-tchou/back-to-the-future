@@ -42,7 +42,7 @@ class Route
     {
         $reader = new Reader;
         $documentation['query'] = $url;
-        $documentation = $reader->readCSVFile(__DIR__ . '/yaml/documentation.yaml');
+        $documentation = $reader->readYAMLFile(__DIR__ . '/../yaml/documentation.yaml');
         
         return json_encode($documentation);
     }

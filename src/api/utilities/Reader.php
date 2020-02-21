@@ -5,12 +5,12 @@
  */
 class Reader
 {
-    /** Reads a file input in YAML format and output an array containing the part numbers.
+    /** Reads a file input in CSV format.
      * @param string $path The path to the file.
      *
      * @return array
      */
-    public function readCSVFile(string $path)
+    public function readCSVFile(string $path): array
     {
         $content = array();
 
@@ -28,6 +28,20 @@ class Reader
         }
 
         return $content;
+    }
+
+    /** Reads a file input in YAML format.
+     * @param string $path
+     *
+     * @return array
+     */
+    public function readYAMLFile(string $path): array
+    {
+        if (!file_exists($path)) {
+            throw new \Exception("File '" . $path . "' does not seem to exist.", 1);
+        }
+
+        return yaml_parse_file($path);
     }
 
     /** Reads a YAML string and return an array.
