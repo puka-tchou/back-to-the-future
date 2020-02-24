@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="../../node_modules/spectre.css/dist/spectre.min.css"
-    />
+    <script src="./assets/js/main.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- Favicons -->
     <!-- Main color: #ff8a00 -->
@@ -34,8 +31,9 @@
     <title>Stock check</title>
   </head>
   <body>
+    <div id="debug"></div>
     <header class="navbar bg-gray">
-      <section class="navbar-section">
+      <div class="navbar-section">
         <a href="/" class="navbar-brand"
           ><img
             src="./assets/images/icon.color.48x.png"
@@ -43,20 +41,44 @@
             width="48"
             height="48"
         /></a>
-      </section>
-      <section class="navbar-section">
-        <a href="#" class="btn btn-link">Documentation</a>
+      </div>
+      <div class="navbar-section">
+        <a
+          href="http://docs.test/"
+          class="btn btn-link"
+          target="_blank"
+          rel="noreferrer noopener"
+          >Documentation</a
+        >
         <a href="mailto:gaspard.bariller@crouzet.com" class="btn btn-link"
           >Contact</a
         >
-      </section>
+      </div>
     </header>
     <section>
-      <h2>Parts selection</h2>
-      <form action="#">
-        <label for="file-upload">Select a set of parts to check:</label><br />
-        <input type="file" id="file-upload" accept=".txt,.xml" />
+      <form action="#" class="form-group" method="post">
+        <label for="file-upload" class="form-label"
+          >Select a set of parts to check:</label
+        >
+        <input
+          type="file"
+          id="file-upload"
+          accept=".txt,.csv"
+          class="form-input"
+        />
       </form>
+      <button class="btn" id="add-parts">Add parts to the database</button>
+      <button class="btn btn-success">Get stock history</button>
     </section>
+    <div class="columns">
+      <section class="column">
+        <h2>Parts</h2>
+        <ul id="partlist"></ul>
+      </section>
+      <section class="column">
+        <h2>Data</h2>
+        <div id="data-result"></div>
+      </section>
+    </div>
   </body>
 </html>

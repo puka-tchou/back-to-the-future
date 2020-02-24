@@ -9,6 +9,7 @@
     "stylefix": "prettier --write src/**/*.{js,html,css,md,xml,yaml}"
   },
   "dependencies": {
+    "json-formatter-js": "^2.3.3",
     "spectre.css": "^0.5.8"
   },
   "devDependencies": {

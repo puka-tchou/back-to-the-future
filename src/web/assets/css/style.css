@@ -2,3 +2,23 @@ h1,
 h2 {
   text-align: center;
 }
+ul#partlist {
+  background-color: lightgrey;
+  height: 65vh;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+div.action-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+#debug {
+  background-color: black;
+  opacity: 0.85;
+  z-index: 9;
+  color: white;
+  font-size: small;
+}
+pre {
+  font-size: 0.75em;
+}

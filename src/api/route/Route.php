@@ -6,7 +6,7 @@ use data\Stock\Stock;
 use tasks\UpdateStock\UpdateStock;
 use utilities\Reader\Reader;
 
-define('INPUT', 'parts_yaml');
+define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');
 
 /**
