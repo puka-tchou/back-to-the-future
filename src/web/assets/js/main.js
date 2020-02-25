@@ -2,19 +2,6 @@ import 'spectre.css';
 import JSONformatter from 'json-formatter-js';
 import XLSX from 'xlsx';
 
-const renderData = (data, target, type) => {
-  target = document.getElementById(target);
-  target.innerText = '';
-  if (typeof data === 'object') {
-    const renderer = new JSONformatter(data);
-    target.appendChild(renderer.render());
-  } else {
-    const child = document.createElement(type);
-    child.innerText = data;
-    target.appendChild(child);
-  }
-};
-
 const getDataFromAPI = fileInput => {
   const file = fileInput.files[0];
   const formData = new FormData();
@@ -28,13 +15,20 @@ const getDataFromAPI = fileInput => {
       return response.json();
     })
     .then(json => {
-      const renderer = new JSONformatter(json);
-      document.getElementById('data-result').appendChild(renderer.render());
       let aobj = [];
       for (const key in json) {
         if (json.hasOwnProperty(key)) {
           json[key]['part-number'] = key;
           aobj.push(json[key]);
+
+          const row = document.createElement('tr');
+          const partCell = row.insertCell();
+          const statusCell = row.insertCell();
+          const responseCell = row.insertCell();
+          partCell.innerText = key;
+          statusCell.innerText = json[key]['err'] ? 'Error' : 'OK';
+          responseCell.innerText = json[key]['response'];
+          document.getElementById('result-table').appendChild(row);
         }
       }
       const sheet = XLSX.utils.json_to_sheet(aobj);
@@ -58,22 +52,35 @@ const getStockFromFile = input => {
     data = reader.result.split('\r\n').filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
-    renderData(data, 'partlist', 'li');
+    data.forEach((line, index) => {
+      const row = document.createElement('tr');
+      const idCell = row.insertCell();
+      const contentCell = row.insertCell();
+      idCell.innerText = index;
+      contentCell.innerText = line;
+      document.getElementById('part-table').appendChild(row);
+    });
     getDataFromAPI(input);
   });
 };
 
 document.addEventListener('DOMContentLoaded', e => {
   const fileInput = document.getElementById('file-upload');
-  const addParts = document.getElementById('add-parts');
+  const getStock = document.getElementById('get-stock');
 
   fileInput.addEventListener('change', e => {
     e.preventDefault;
-    getStockFromFile(fileInput);
+    if (fileInput.files.length === 1) {
+      getStockFromFile(fileInput);
+    }
   });
 
-  addParts.addEventListener('click', e => {
+  getStock.addEventListener('click', e => {
     e.preventDefault;
-    console.log(e);
+    if (fileInput.files.length === 1) {
+      getStockFromFile(fileInput);
+    } else {
+      fileInput.click();
+    }
   });
 });
