@@ -46,7 +46,7 @@ class Stock
     {
         $partNumber = strtoupper($partNumber);
         $database = new Database;
-        $limit = ($limit === -1) ? ';' : ('LIMIT ' . $limit . ';');
+        $limit = ($limit == -1) ? ';' : ('LIMIT ' . $limit . ';');
         $res = array(
             'err' => true,
             'response' => 'Part-number ' . $partNumber . ' not found in the product database'
@@ -64,7 +64,11 @@ class Stock
             $res = $query->fetch(PDO::FETCH_ASSOC);
 
             if (!$res) {
-                $res = array('err' => true, 'response' => 'No stock records found for ' . $partNumber);
+                $res = array(
+                    'err' => true,
+                    'response' => 'No stock records found for ' . $partNumber,
+                    'SQL' => $query->errorInfo()
+                );
             }
         }
         return $res;
