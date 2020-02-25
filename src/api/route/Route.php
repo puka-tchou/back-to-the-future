@@ -5,6 +5,7 @@ use data\Product\Product;
 use data\Stock\Stock;
 use tasks\UpdateStock\UpdateStock;
 use utilities\Reader\Reader;
+use utilities\Reporter\Reporter;
 
 define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');
@@ -15,12 +16,13 @@ define('FILENAME', 'tmp_name');
 class Route
 {
     /** Add products to the database from a given CSV file.
-     * @return string
+     * @return void
      */
-    public function add(): string
+    public function add(): void
     {
         $product = new Product;
         $reader = new Reader;
+        $reporter = new Reporter;
         $parts = isset($_FILES[INPUT][FILENAME])
             ? $reader->readCSVFile($_FILES[INPUT][FILENAME])
             : false;
@@ -29,40 +31,44 @@ class Route
         foreach ($parts as $part => $manufacturer) {
             $response[$part] = $product->add($part, 7, $manufacturer);
         }
-            
-        return json_encode($response);
+
+        $reporter->send($response);
     }
 
     /** Read API documentation from a YAML file.
      * @param string $url The request made to the server.
      *
-     * @return string
+     * @return void
      */
-    public function documentation(string $url): string
+    public function documentation(string $url): void
     {
         $reader = new Reader;
+        $reporter = new Reporter;
         $documentation['query'] = $url;
         $documentation = $reader->readYAMLFile(__DIR__ . '/../yaml/documentation.yaml');
         
-        return json_encode($documentation);
+        $reporter->send($documentation, 'Well, there is the documentation.');
     }
 
     /** Get all products from the database.
      * @return void
      */
-    public function products() : string
+    public function products() : void
     {
         $database = new Database;
-        
-        return json_encode($database->getAllProducts());
+        $reporter = new Reporter;
+        $body = $database->getAllProducts();
+
+        $reporter->send($body);
     }
 
     /** Get stock information for a part-number.
-     * @return string
+     * @return void
      */
-    public function part(): string
+    public function part(): void
     {
         $stock = new Stock;
+        $reporter = new Reporter;
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
 
@@ -73,17 +79,20 @@ class Route
             $response['WEB'] = $stock->getFromDealers($id);
         }
 
-        return json_encode($response);
+        $reporter->send($response);
     }
 
     /** Get stock information for a set of parts in a CSV file.
      * @return string
      */
-    public function parts(): string
+    public function parts(): void
     {
         $database = new Database;
         $reader = new Reader;
         $stock = new Stock;
+        $reporter = new Reporter;
+        $code = 0;
+        $message = 'Everything went fine.';
         $parts = isset($_FILES[INPUT][FILENAME])
             ? $reader->readCSVFile($_FILES[INPUT][FILENAME])
             : false;
@@ -92,24 +101,30 @@ class Route
             if ($database->partNumberExists($part)) {
                 $stockByPart[$part] = $stock->get($part, -1);
             } else {
-                $stockByPart[$part] = array(
-                    'err' => true,
-                    'response' => 'Part-number not found in the database.'
+                $code = 1;
+                $message = 'Some part-numbers were not found in the database.';
+                $stockByPart[$part] = $reporter->format(
+                    '',
+                    'Part-number not found in the database.',
+                    4
                 );
             }
         }
 
-        return json_encode($stockByPart);
+        $reporter->send($stockByPart, $message, $code);
     }
 
     /** Update stock informations for a set of parts in a CSV file.
-     * @return string
+     * @return void
      */
-    public function update(): string
+    public function update(): void
     {
         $database = new Database;
         $reader = new Reader;
+        $reporter = new Reporter;
         $task = new UpdateStock;
+        $code = 0;
+        $message = 'Stock information successfully updated.';
         $parts = isset($_FILES[INPUT][FILENAME])
             ? $reader->readCSVFile($_FILES[INPUT][FILENAME])
             : false;
@@ -119,13 +134,16 @@ class Route
             if ($database->partNumberExists($part)) {
                 $status[$part] = $task->addRecord($part);
             } else {
-                $status[$part] = array(
-                    'err' => true,
-                    'response' => 'Part-number not found in the database.'
+                $code = 1;
+                $message = 'Some part-numbers were not found in the database.';
+                $status[$part] = $reporter->format(
+                    '',
+                    'Part-number not found in the database.',
+                    4
                 );
             }
         }
 
-        return json_encode($status);
+        $reporter->send($status, $message, $code);
     }
 }

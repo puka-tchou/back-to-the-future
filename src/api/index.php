@@ -28,26 +28,24 @@ function filterConnection()
  */
 function route()
 {
-    header('Content-Type: application/json');
-    
     $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
     $route = new Route;
     
     switch ($url) {
         case '/api/add':
-            echo $route->add();
+            $route->add();
             break;
         case '/api/part':
-            echo $route->part();
+            $route->part();
             break;
         case '/api/parts':
-            echo $route->parts();
+            $route->parts();
             break;
         case '/api/products':
-            echo $route->products();
+            $route->products();
             break;
         case '/api/update':
-            echo $route->update();
+            $route->update();
             break;
         case '/api/coffee':
             header("HTTP/1.1 418 I'm a teapot");
@@ -57,7 +55,7 @@ function route()
             ));
             break;
         default:
-            echo $route->documentation($url);
+            $route->documentation($url);
             break;
     }
 }
