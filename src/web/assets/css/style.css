@@ -2,16 +2,34 @@ h1,
 h2 {
   text-align: center;
 }
-ul#partlist {
-  background-color: lightgrey;
-  height: 65vh;
+body > div.container {
+  max-width: 1200px;
+}
+.main-input {
+  border: 2px dashed #5755d9;
+  border-radius: 0.1rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+div#partlist {
+  height: 60vh;
   overflow-y: scroll;
   overflow-x: auto;
+  border-radius: 0.1rem;
+}
+div.btn-group {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+div.btn-group button.btn {
+  flex: 0 0 auto;
 }
 div.action-btn {
   display: flex;
   justify-content: space-evenly;
 }
+/* Debug styles */
 #debug {
   background-color: black;
   opacity: 0.85;

@@ -55,33 +55,40 @@
         >
       </div>
     </header>
-    <section>
-      <form action="#" class="form-group" method="post">
-        <label for="file-upload" class="form-label"
-          >Select a set of parts to check:</label
-        >
-        <input
-          type="file"
-          id="file-upload"
-          accept=".txt,.csv"
-          class="form-input"
-        />
-      </form>
-      <button class="btn" id="add-parts">Add parts to the database</button>
-      <button class="btn">Get stock history</button>
-    </section>
-    <div class="columns">
-      <section class="column">
-        <h2>Parts</h2>
-        <ul id="partlist"></ul>
+    <div class="container columns p-centered">
+      <section class="column main-input">
+        <form action="#" class="form-group" method="post">
+          <label for="file-upload" class="form-label"
+            >Select a set of parts to check:</label
+          >
+          <input
+            type="file"
+            id="file-upload"
+            accept=".txt,.csv"
+            class="form-input"
+            required
+          />
+        </form>
+        <div class="btn-group">
+          <button class="btn disabled" id="add-parts">
+            Add parts to the database
+          </button>
+          <button class="btn">Get stock history</button>
+        </div>
       </section>
-      <section class="column">
-        <h2>Data</h2>
-        <button class="btn btn-success p-centered" id="download-button">
-          Download
-        </button>
-        <div id="data-result"></div>
-      </section>
+      <div class="column col-12 columns">
+        <section class="column">
+          <h2>Parts</h2>
+          <div id="partlist" class="bg-gray"></div>
+        </section>
+        <section class="column">
+          <h2>Data</h2>
+          <button class="btn btn-success p-centered" id="download-button">
+            Download
+          </button>
+          <div id="data-result"></div>
+        </section>
+      </div>
     </div>
   </body>
 </html>
