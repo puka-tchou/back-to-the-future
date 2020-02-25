@@ -14,8 +14,7 @@ class Reporter
      */
     public function send($body, string $message = 'Everything went fine.', int $code = 0): array
     {
-        if (
-            !is_string($message)||
+        if (!is_string($message)||
             !is_int($code)
             ) {
             $code = 5;
@@ -37,8 +36,7 @@ class Reporter
 
     public function format($body, string $message = 'Everything went fine.', int $code = 0): array
     {
-        if (
-            !is_string($message)||
+        if (!is_string($message)||
             !is_int($code)
             ) {
             $code = 5;

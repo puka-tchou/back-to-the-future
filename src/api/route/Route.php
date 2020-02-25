@@ -38,12 +38,12 @@ class Route
             foreach ($parts as $part => $manufacturer) {
                 $status = $product->add($part, 7, $manufacturer);
                 $partMessage = 'Part-number was successfully added to the database.';
-                if (!$status) {
+                if (!$status['code'] !== 0) {
                     $code = 1;
                     $message = 'Some part-numbers could not be added to the database.';
                     $partMessage = 'Could not add the part-number to the database.';
                 }
-                $body[$part] = $reporter->format('', $partMessage, 2);
+                $body[$part] = $reporter->format($status['body'], $partMessage, 2);
             }
         }
 
