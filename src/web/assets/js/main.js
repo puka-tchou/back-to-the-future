@@ -1,5 +1,6 @@
 import 'spectre.css';
 import JSONformatter from 'json-formatter-js';
+import XLSX from 'xlsx';
 
 const renderData = (data, target, type) => {
   target = document.getElementById(target);
@@ -27,8 +28,19 @@ const getDataFromAPI = fileInput => {
       return response.json();
     })
     .then(json => {
+      let aobj = [];
+      for (const key in json) {
+        if (json.hasOwnProperty(key)) {
+          json[key]['part-number'] = key;
+          aobj.push(json[key]);
+        }
+      }
       const renderer = new JSONformatter(json);
       document.getElementById('data-result').appendChild(renderer.render());
+      const sheet = XLSX.utils.json_to_sheet(aobj);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, sheet);
+      XLSX.writeFile(wb, 'out.xlsx');
     });
 };
 

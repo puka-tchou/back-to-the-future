@@ -9,8 +9,10 @@
     "stylefix": "prettier --write src/**/*.{js,html,css,md,xml,yaml}"
   },
   "dependencies": {
+    "exceljs": "^3.8.0",
     "json-formatter-js": "^2.3.3",
-    "spectre.css": "^0.5.8"
+    "spectre.css": "^0.5.8",
+    "xlsx": "^0.15.5"
   },
   "devDependencies": {
     "@cedx/gulp-php-minify": "^10.2.0",
