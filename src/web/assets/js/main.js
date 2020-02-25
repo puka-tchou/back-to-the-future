@@ -28,6 +28,8 @@ const getDataFromAPI = fileInput => {
       return response.json();
     })
     .then(json => {
+      const renderer = new JSONformatter(json);
+      document.getElementById('data-result').appendChild(renderer.render());
       let aobj = [];
       for (const key in json) {
         if (json.hasOwnProperty(key)) {
@@ -35,12 +37,14 @@ const getDataFromAPI = fileInput => {
           aobj.push(json[key]);
         }
       }
-      const renderer = new JSONformatter(json);
-      document.getElementById('data-result').appendChild(renderer.render());
       const sheet = XLSX.utils.json_to_sheet(aobj);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, sheet);
-      XLSX.writeFile(wb, 'out.xlsx');
+      document
+        .getElementById('download-button')
+        .addEventListener('click', e => {
+          XLSX.writeFile(wb, 'out.xlsx');
+        });
     });
 };
 
