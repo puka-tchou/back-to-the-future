@@ -11,7 +11,7 @@ define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');
 
 /**
- * Class Route
+ * This class represents the different API endpoints.
  */
 class Route
 {
@@ -23,16 +23,31 @@ class Route
         $product = new Product;
         $reader = new Reader;
         $reporter = new Reporter;
+        $code = 0;
+        $message = 'The part-numbers were successfully added to the database.';
+        $body = array();
         $parts = isset($_FILES[INPUT][FILENAME])
             ? $reader->readCSVFile($_FILES[INPUT][FILENAME])
             : false;
 
-        $response = array();
-        foreach ($parts as $part => $manufacturer) {
-            $response[$part] = $product->add($part, 7, $manufacturer);
+        if (!$parts) {
+            $code = 2;
+            $message = 'The CSV file was not found.';
+            $body[] = 'The CSV file containing the part-numbers was not found in your request. Please, make sure that you are sending a "multipart/form-data" request with a "parts" field containing the CSV file. The "parts" field should be of type "file".';
+        } else {
+            foreach ($parts as $part => $manufacturer) {
+                $status = $product->add($part, 7, $manufacturer);
+                $partMessage = 'Part-number was successfully added to the database.';
+                if (!$status) {
+                    $code = 1;
+                    $message = 'Some part-numbers could not be added to the database.';
+                    $partMessage = 'Could not add the part-number to the database.';
+                }
+                $body[$part] = $reporter->format('', $partMessage, 2);
+            }
         }
 
-        $reporter->send($response);
+        $reporter->send($body, $message, $code);
     }
 
     /** Read API documentation from a YAML file.
