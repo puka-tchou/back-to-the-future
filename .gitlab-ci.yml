@@ -1,7 +1,7 @@
 image: composer:latest
 
 variables:
-  SAST_EXCLUDED_PATHS: docs/,vendor/,node_modules/
+  SAST_EXCLUDED_PATHS: docs,vendor,node_modules
 
 cache:
   paths:
@@ -12,7 +12,7 @@ pages:
   script:
     - composer install
     - composer doc
-    - cp -r docs/api public/
+    - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
   artifacts:
     paths:
       - public
