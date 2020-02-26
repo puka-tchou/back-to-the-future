@@ -1,5 +1,8 @@
 image: composer:latest
 
+variables:
+  SAST_EXCLUDED_PATHS: docs/,vendor/,node_modules/
+
 cache:
   paths:
     - vendor/
