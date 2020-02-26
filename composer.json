@@ -10,9 +10,7 @@
     }
   ],
   "require": {
-    "catfan/medoo": "^1.7",
-    "phpoffice/phpspreadsheet": "^1.10",
-    "ext-yaml": "*"
+    "catfan/medoo": "^1.7"
   },
   "require-dev": {
     "atoum/atoum": "^3.4",

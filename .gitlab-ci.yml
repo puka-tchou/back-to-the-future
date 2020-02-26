@@ -4,12 +4,10 @@ cache:
   paths:
     - vendor/
 
-before_script:
-  - composer u
-
 pages:
   stage: deploy
   script:
+    - composer install
     - composer doc
     - cp -r docs/api public/
   artifacts:
