@@ -1,0 +1,23 @@
+image: php:7.4
+
+cache:
+  paths:
+    - vendor/
+
+before_script:
+  - composer u
+
+pages:
+  stage: deploy
+  script:
+    - composer doc
+    - cp -r docs/api public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+  - template: License-Scanning.gitlab-ci.yml
