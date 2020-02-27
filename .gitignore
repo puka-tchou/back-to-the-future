@@ -2,8 +2,7 @@
 vendor/
 node_modules/
 
-# IDE configuration and work folder
-.vscode/
+# Work folder
 .work/
 
 # SonarQube analysis files
