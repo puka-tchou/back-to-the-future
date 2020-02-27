@@ -1,5 +1,4 @@
 import 'spectre.css';
-import JSONformatter from 'json-formatter-js';
 import XLSX from 'xlsx';
 
 const getDataFromAPI = fileInput => {
@@ -73,19 +72,19 @@ const getStockFromFile = input => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', e => {
+document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
   const getStock = document.getElementById('get-stock');
 
   fileInput.addEventListener('change', e => {
-    e.preventDefault;
+    e.preventDefault();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
     }
   });
 
   getStock.addEventListener('click', e => {
-    e.preventDefault;
+    e.preventDefault();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
     } else {
