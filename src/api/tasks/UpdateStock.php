@@ -11,7 +11,7 @@ class UpdateStock
     /** Add a stock record for the given part-number.
      * @param string $partNumber The part-number.
      *
-     * @return bool|array `true` if the operation succeeded, an `array` containing
+     * @return string[]|bool[]|mixed[][]|bool[]|bool `true` if the operation succeeded, an `array` containing
      * informations about the error if the operation did not succeeded.
      */
     public function addRecord(string $partNumber)

@@ -4,13 +4,13 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use route\Route\Route;
 
-filterConnection();
+filter_connection();
 route();
 
 /** Filter connection method and `die();` if the method is not allowed.
  * @return void
  */
-function filterConnection()
+function filter_connection(): void
 {
     $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'INVALID';
 
@@ -26,7 +26,7 @@ function filterConnection()
 /** Routing.
  * @return void
  */
-function route()
+function route(): void
 {
     $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
     $route = new Route;

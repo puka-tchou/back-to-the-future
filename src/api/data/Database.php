@@ -7,6 +7,7 @@ use PDO;
  */
 class Database
 {
+    public PDO $connection;
     /** Construct a new connection to the database.
      * @todo Make this a singleton.
      * @return void
@@ -49,6 +50,7 @@ class Database
         $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM products WHERE part_number= ?)');
         
         $query->execute(array($partNumber));
+        
         $res = $query->fetch(PDO::FETCH_NUM);
 
         return ($res[0] == 1);

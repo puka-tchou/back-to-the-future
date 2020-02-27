@@ -10,7 +10,7 @@ class Reporter
      * @param string $message The message should complement the status code.
      * @param integer $code The code. `0` if everything is OK.
      *
-     * @return void
+     * @return mixed[]
      */
     public function send($body, string $message = 'Everything went fine.', int $code = 0): array
     {
@@ -34,6 +34,9 @@ class Reporter
         return $message;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function format($body, string $message = 'Everything went fine.', int $code = 0): array
     {
         if (!is_string($message)||

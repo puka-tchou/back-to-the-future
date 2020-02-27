@@ -1,5 +1,8 @@
 <?php namespace dealers\AlliedElec;
 
+use DOMDocument;
+use DOMXPath;
+use Exception;
 /**
  * AlliedElec distributor stock check.
  */
@@ -19,10 +22,11 @@ class AlliedElec
         // Temporarly mute warnings and errors caused by a malformed HTML
         // This should be safe because DOMXPath will still throw errors
         libxml_use_internal_errors(true);
-        $document = new \DOMDocument();
+        $document = new DOMDocument();
         $document->preserveWhiteSpace = false;
         $document->loadHTML($html);
-        $documentXpath = new \DOMXPath($document);
+        
+        $documentXpath = new DOMXPath($document);
         // This div contains the results of our query
         $details = $documentXpath->query('//div[@class="search-result-details"]');
         $regex = '/\bManufacturer #: '.$part_number.'\b/';
@@ -44,8 +48,9 @@ class AlliedElec
             );
         }
         $stocks = $xml->div[1][0]->div[0]->span;
+        $stocksCount = count($stocks);
         // We know the structure of the array, so we know that we can test only one element out of two.
-        for ($i=0; $i < count($stocks); $i = $i+2) {
+        for ($i=0; $i < $stocksCount; $i += 2) {
             switch ($stocks[$i]) {
                 case 'In Stock: ':
                     $parts_in_stock = (int)$stocks[$i+1];
@@ -57,8 +62,7 @@ class AlliedElec
                     $parts_min_order = (int)$stocks[$i+1];
                     break;
                 default:
-                    throw new \Exception('Stock values not found', 1);
-                    break;
+                    throw new Exception('Stock values not found', 1);
             }
         }
         return array(
