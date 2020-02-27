@@ -1,0 +1,7 @@
+parameters:
+  sets:
+    - 'code-quality'
+    - 'celebrity'
+    - 'php74'
+    - 'dead-code'
+    - 'type-declaration'
