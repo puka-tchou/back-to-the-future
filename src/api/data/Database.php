@@ -7,7 +7,11 @@ use PDO;
  */
 class Database
 {
+    /**
+     * @var PDO
+     */
     public PDO $connection;
+
     /** Construct a new connection to the database.
      * @todo Make this a singleton.
      * @return void

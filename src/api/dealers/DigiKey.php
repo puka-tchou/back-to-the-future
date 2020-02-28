@@ -1,14 +1,16 @@
 <?php namespace dealers\DigiKey;
 
-class DigiKey
+use dealers\iDealer\iDealer;
+
+class DigiKey implements iDealer
 {
     /** Get stock information from DigiKey.
      * @todo Implementation may need NodeJS because DigiKey dynamically generates its pages.
      *
-     * @return string
+     * @return string[]
      */
-    public function getStock(): string
+    public function getStock(string $part_number): array
     {
-        return 'Implementation may need NodeJS because DigiKey dynamically generates its pages.';
+        return array('Implementation may need NodeJS because DigiKey dynamically generates its pages.');
     }
 }

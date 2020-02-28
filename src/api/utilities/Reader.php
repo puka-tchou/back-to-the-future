@@ -1,11 +1,13 @@
 <?php namespace utilities\Reader;
 
 use Exception;
+
 /**
  * Construct a list of part numbers from a file.
  */
 class Reader
 {
+
     /** Reads a file input in CSV format.
      * @param string $path The path to the file.
      *

@@ -1,12 +1,14 @@
 <?php namespace dealers\AlliedElec;
 
+use dealers\iDealer\iDealer;
 use DOMDocument;
 use DOMXPath;
 use Exception;
+
 /**
  * AlliedElec distributor stock check.
  */
-class AlliedElec
+class AlliedElec implements iDealer
 {
     /** Check the stock of a given part number.
      * @param string $part_number The part number that you want to check.
