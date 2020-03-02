@@ -26,7 +26,7 @@ class Route
         $code = 0;
         $message = 'The part-numbers were successfully added to the database.';
         $body = array();
-        $parts = isset($_FILES[INPUT][FILENAME]) && $reader->readCSVFile($_FILES[INPUT][FILENAME]);
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
 
         if (!$parts) {
             $code = 2;
@@ -106,7 +106,7 @@ class Route
         $reporter = new Reporter;
         $code = 0;
         $message = 'Everything went fine.';
-        $parts = isset($_FILES[INPUT][FILENAME]) && $reader->readCSVFile($_FILES[INPUT][FILENAME]);
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
     
         foreach ($parts as $part) {
             if ($database->partNumberExists($part)) {
@@ -136,7 +136,7 @@ class Route
         $task = new UpdateStock;
         $code = 0;
         $message = 'Stock information successfully updated.';
-        $parts = isset($_FILES[INPUT][FILENAME]) && $reader->readCSVFile($_FILES[INPUT][FILENAME]);
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
         $status = array();
 
         foreach ($parts as $part) {

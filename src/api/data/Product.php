@@ -28,7 +28,7 @@ class Product
             $partNumber,
             $tracked_since,
             $updateInterval,
-            'PENDING',
+            0,
             $manufacturer
             ))
         )

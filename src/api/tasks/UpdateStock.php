@@ -27,11 +27,14 @@ class UpdateStock
             );
         }
 
-        $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, stock, supplier, state) VALUES (?, ?, ?, ?, ?);');
+        $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
         
         $stockValues = $stock->getFromDealers($partNumber)['stock'];
+        $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
+        $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
+        $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
         $date = date('Y-m-d');
-        $state = 'OK';
+        $state = 0;
         $flag = true;
 
         if (isset($stockValues['err'])) {
@@ -39,12 +42,11 @@ class UpdateStock
                 'err' => true,
                 'response' => $stockValues['response']
             );
-            $state = 'ERROR';
+            $state = 1;
             $flag = false;
         }
 
-        $stockValues = json_encode($stockValues);
-        $res = $query->execute(array($partNumber, $date, $stockValues, 'alliedelec', $state));
+        $res = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $state));
         
         if (!$res) {
             return array(
