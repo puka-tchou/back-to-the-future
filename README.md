@@ -1,6 +1,6 @@
 # Stock and pricing history
 
-![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/gaspacchio/back-to-the-future?logo=gitlab)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/gaspacchio/back-to-the-future?logo=gitlab)](https://gitlab.com/gaspacchio/back-to-the-future/pipelines/latest)
 
 ## Table of contents
 
