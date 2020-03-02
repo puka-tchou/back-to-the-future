@@ -5,3 +5,7 @@
 - How to use the API
 
   - [API quickstart](api/)
+
+- Server-side documentation
+
+  - [Classes and methods](server/)

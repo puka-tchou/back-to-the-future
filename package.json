@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel watch src/web/index.html -d dist/web --public-url .",
-    "stylefix": "prettier --write src/**/*.{js,html,css,md,xml,yaml}"
+    "stylefix": "prettier --write {src,public}/**/*.{js,html,css,md,xml,yaml,yml}",
+    "doc": "node ../../toolset/moxygen/bin/moxygen.js --output public/server/README.md .temp/doc/xml"
   },
   "dependencies": {
     "docsify": "^4.10.2",
@@ -28,6 +29,7 @@
     "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "gulp-replace": "^1.0.0",
+    "moxygen": "^0.8.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-markdown": "^0.4.2",
     "prettier": "^1.19.1"

@@ -3,9 +3,7 @@
   Reference file from:
   https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
-<ruleset
-  name="Crouzet PHP Standard"
->
+<ruleset name="Crouzet PHP Standard">
   <description>The PSR1 and 2 coding standard.</description>
   <!-- CLI args -->
   <arg name="report" value="summary" />
