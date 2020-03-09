@@ -754,7 +754,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@cedx/gulp-php-minify@^10.2.0":
+"@cedx/gulp-php-minify@10.2.0":
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/@cedx/gulp-php-minify/-/gulp-php-minify-10.2.0.tgz#eae10dfb7534f017666cdddd1459c6b0e9da11b5"
   integrity sha512-oP9UbUVtHgJhW3YJ7CReqdvw5rXJy3wu7HEa3kWyBK/82CBUUEXLUVGe+YadqsB8LpiLqAUXos6lq+pT9o95cA==
@@ -830,7 +830,7 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@prettier/plugin-xml@^0.7.2":
+"@prettier/plugin-xml@0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-0.7.2.tgz#f4b6e7c45a9e36663d403828e380e8a4c6a12106"
   integrity sha512-c6i6OQ2y9kvWeUTrfkwHy+jdJXI3bpO8TT9EoVjJIEAApj5gLtJ/O2D9qthxWXh5zbipngueDEC2CT6tBZzBdA==
@@ -2479,7 +2479,7 @@ docsify-changelog-plugin@^0.7.0:
   resolved "https://registry.yarnpkg.com/docsify-changelog-plugin/-/docsify-changelog-plugin-0.7.0.tgz#1644dfd8e1575757bbc48f0003fbd7ca3a7228e2"
   integrity sha512-fy+aqLYAqmJfrQ/+Prgb1/jlTuzMwaw20xJ/3k4NxL559jrNbA521sNzgyEPx125kKEV4c3akDrO1o8jWySFWw==
 
-docsify-cli@^4.4.0:
+docsify-cli@4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/docsify-cli/-/docsify-cli-4.4.0.tgz#ca68b4941207f7d1ceffb4bc9f01043657077e0a"
   integrity sha512-Ve3aUIGbjPpcjRtb3QHJQ9wI0fETMve1bBdTIztWfPnAJ2tOAYO7XUDHe9864RheGOli5s8iI3BviY6CS1ZImA==
@@ -2833,7 +2833,7 @@ escodegen@~1.9.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-esm@^3.2.25:
+esm@3.2.25:
   version "3.2.25"
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
   integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
@@ -3475,7 +3475,7 @@ gulp-cli@^2.2.0:
     v8flags "^3.0.1"
     yargs "^7.1.0"
 
-gulp-replace@^1.0.0:
+gulp-replace@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gulp-replace/-/gulp-replace-1.0.0.tgz#b32bd61654d97b8d78430a67b3e8ce067b7c9143"
   integrity sha512-lgdmrFSI1SdhNMXZQbrC75MOl1UjYWlOWNbNRnz+F/KHmgxt3l6XstBoAYIdadwETFyG/6i+vWUSCawdC3pqOw==
@@ -3484,7 +3484,7 @@ gulp-replace@^1.0.0:
     readable-stream "^2.0.1"
     replacestream "^4.0.0"
 
-gulp@^4.0.2:
+gulp@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-4.0.2.tgz#543651070fd0f6ab0a0650c6a3e6ff5a7cb09caa"
   integrity sha512-dvEs27SCZt2ibF29xYgmnwwCYZxdxhQ/+LFWlbAW8y7jt68L/65402Lz3+CKy0Ov4rOs+NERmDq7YlZaDqUIfA==
@@ -4786,7 +4786,7 @@ module-not-found-error@^1.0.1:
   resolved "https://registry.yarnpkg.com/module-not-found-error/-/module-not-found-error-1.0.1.tgz#cf8b4ff4f29640674d6cdd02b0e3bc523c2bbdc0"
   integrity sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
 
-moxygen@^0.8.0:
+moxygen@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/moxygen/-/moxygen-0.8.0.tgz#9632715b1d8cefbb00a95235c093672f2c2ef33a"
   integrity sha512-648PiF5SDqT3kQERtBxlGFV5MS53fESO2rS+ez+NaxmW/WQH2Xm5qUClZFMAkYnpCssnMQgPcZunSrFCF1cPFA==
@@ -5244,7 +5244,7 @@ pako@~1.0.2, pako@~1.0.5:
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
 
-parcel-bundler@^1.12.4, parcel-bundler@^1.8.1:
+parcel-bundler@1.12.4, parcel-bundler@^1.8.1:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/parcel-bundler/-/parcel-bundler-1.12.4.tgz#31223f4ab4d00323a109fce28d5e46775409a9ee"
   integrity sha512-G+iZGGiPEXcRzw0fiRxWYCKxdt/F7l9a0xkiU4XbcVRJCSlBnioWEwJMutOCCpoQmaQtjB4RBHDGIHN85AIhLQ==
@@ -5309,7 +5309,7 @@ parcel-bundler@^1.12.4, parcel-bundler@^1.8.1:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-markdown@^0.4.2:
+parcel-plugin-markdown@0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/parcel-plugin-markdown/-/parcel-plugin-markdown-0.4.2.tgz#a9e579f8db577d7ca985ca1f676d6f35b03aa78d"
   integrity sha512-H+lHeSDB72fwuCDpHLFz+hpPJOGzaRD9/3EzNJUBEmexEqQEiuazOa4tauyGO3woPtytbobNOqfXFw1dQBot6g==
@@ -5870,7 +5870,7 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier@>=1.10, prettier@^1.19.1:
+prettier@1.19.1, prettier@>=1.10:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==

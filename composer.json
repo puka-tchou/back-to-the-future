@@ -12,13 +12,13 @@
   "require": {
   },
   "require-dev": {
-    "atoum/atoum": "^3.4",
-    "atoum/stubs": "^2.6",
-    "friendsofphp/php-cs-fixer": "^2.16",
-    "kint-php/kint": "^3.3",
+    "atoum/atoum": "3.4.2",
+    "atoum/stubs": "2.6.0",
+    "friendsofphp/php-cs-fixer": "2.16.1",
+    "kint-php/kint": "3.3.0",
     "phpdocumentor/phpdocumentor": "^3",
-    "rector/rector": "^0.7.1",
-    "squizlabs/php_codesniffer": "^3.5"
+    "rector/rector": "0.7.3",
+    "squizlabs/php_codesniffer": "3.5.4"
   },
   "scripts": {
     "doc": "phpdoc -d ./src/api -t ./public/server",

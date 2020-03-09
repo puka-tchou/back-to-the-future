@@ -23,15 +23,15 @@
     "xlsx": "^0.15.5"
   },
   "devDependencies": {
-    "@cedx/gulp-php-minify": "^10.2.0",
-    "@prettier/plugin-xml": "^0.7.2",
-    "docsify-cli": "^4.4.0",
-    "esm": "^3.2.25",
-    "gulp": "^4.0.2",
-    "gulp-replace": "^1.0.0",
-    "moxygen": "^0.8.0",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-markdown": "^0.4.2",
-    "prettier": "^1.19.1"
+    "@cedx/gulp-php-minify": "10.2.0",
+    "@prettier/plugin-xml": "0.7.2",
+    "docsify-cli": "4.4.0",
+    "esm": "3.2.25",
+    "gulp": "4.0.2",
+    "gulp-replace": "1.0.0",
+    "moxygen": "0.8.0",
+    "parcel-bundler": "1.12.4",
+    "parcel-plugin-markdown": "0.4.2",
+    "prettier": "1.19.1"
   }
 }
