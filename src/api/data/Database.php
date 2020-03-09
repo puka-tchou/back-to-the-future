@@ -1,6 +1,7 @@
 <?php namespace data\Database;
 
 use PDO;
+use utilities\Reporter\Reporter;
 
 /**
  * Interact with the database.
@@ -30,16 +31,29 @@ class Database
     }
 
     /** Get all products stored in the database.
+     *
+     * @param integer $page
      * @return array The products in the database.
      */
-    public function getAllProducts(): array
+    public function getAllProducts(int $page = 0): array
     {
         $database = new Database;
-        $query = $database->connection->prepare('SELECT * from products;');
+        $reporter = new Reporter;
+        $code = 0;
+        $message = '';
+        $query = $database->connection->prepare('SELECT * FROM products LIMIT ' . $page * 100 . ' ,100;');
         
         $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $message = 'There are ' . count($result) . ' products in the database (showing ' . ($page * 100) . ' to ' . (($page * 100) + 99) . ').';
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        if ($query->errorInfo()[1] !== null) {
+            $result = $query->errorInfo();
+            $message = 'There was an SQL error while trying to get the products';
+            $code = 5;
+        }
+
+        return $reporter->format($code, $message, $result);
     }
 
     /** Check if a given part number is present in the database.

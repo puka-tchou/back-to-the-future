@@ -61,16 +61,20 @@ class Route
         $reporter->send($documentation, 'Well, there is the documentation.');
     }
 
-    /** Get all products from the database.
+    /** This route echoes all the products stored in the database.
+     * The result is limited to 100 products and is paginated. You can access more
+     * pages as necessary by providing the `page` query parameter (index starts at 0)
+     * eg: `/api/products?page=2` (you will get products at index `200` to `299`).
+     *
      * @return void
      */
     public function products() : void
     {
         $database = new Database;
         $reporter = new Reporter;
-        $body = $database->getAllProducts();
+        $result = $database->getAllProducts();
 
-        $reporter->send($body);
+        $reporter->send($result['code'], $result['message'], $result['body']);
     }
 
     /** Get stock information for a part-number.

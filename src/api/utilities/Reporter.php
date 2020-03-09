@@ -100,7 +100,7 @@ class Reporter
 
         header(
             $answer['code'] === 5
-            ? 'HTTP/1.1 500 Server error: ' . $answer['shortMessage']
+            ? 'HTTP/1.1 500 Server error: ' . $answer['message']
             : 'HTTP/1.1 200 OK'
         );
         header('Content-Type: application/json');
