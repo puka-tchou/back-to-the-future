@@ -32,7 +32,7 @@ class Product
             $manufacturer
             ))
         )
-        ? ($reporter->format('Part-number successfully added.'))
-        : ($reporter->format($query->errorInfo(), 'SQL error.', 2));
+        ? ($reporter->format(0, 'Part-number successfully added.', ''))
+        : ($reporter->format(2, 'SQL error.', $query->errorInfo()));
     }
 }

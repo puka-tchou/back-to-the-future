@@ -15,7 +15,7 @@ define('FILENAME', 'tmp_name');
  */
 class Route
 {
-    /** Add products to the database from a given CSV file.
+    /** This route adds the part-numbers to the products database.
      * @return void
      */
     public function add(): void
@@ -24,28 +24,26 @@ class Route
         $reader = new Reader;
         $reporter = new Reporter;
         $code = 0;
-        $message = 'The part-numbers were successfully added to the database.';
+        $shortMessage = 'The part-numbers were successfully added to the database.';
         $body = array();
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
-
+        
         if (!$parts) {
             $code = 2;
-            $message = 'The CSV file was not found.';
-            $body[] = 'The CSV file containing the part-numbers was not found in your request. Please, make sure that you are sending a "multipart/form-data" request with a "parts" field containing the CSV file. The "parts" field should be of type "file".';
+            $shortMessage = 'The CSV file was not found.';
+            $body[] =  'The CSV file containing the part-numbers was not found in your request. Please, make sure that you are sending a "multipart/form-data" request with a "parts" field containing the CSV file. The "parts" field should be of type "file".';
         } else {
             foreach ($parts as $part => $manufacturer) {
                 $status = $product->add($part, 7, $manufacturer);
-                $partMessage = 'Part-number was successfully added to the database.';
-                if (!$status['code'] !== 0) {
+                if ($status['code'] !== 0) {
                     $code = 1;
-                    $message = 'Some part-numbers could not be added to the database.';
-                    $partMessage = 'Could not add the part-number to the database.';
+                    $shortMessage = 'Some part-numbers could not be added to the database.';
                 }
-                $body[$part] = $reporter->format($status['body'], $partMessage, 2);
+                $body[$part] = $reporter->format($status['code'], $status['message'], $status['body']);
             }
         }
 
-        $reporter->send($body, $message, $code);
+        $reporter->send($code, $shortMessage, $body);
     }
 
     /** Read API documentation from a YAML file.
