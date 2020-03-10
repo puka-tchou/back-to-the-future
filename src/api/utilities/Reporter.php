@@ -132,9 +132,9 @@ class Reporter
         $body = $body === null ? $this->body : $body;
 
         if (!is_string($shortMessage)|| !is_int($code)) {
-            $code(5);
-            $shortMessage('The arguments given to the Reporter are not of the right type. The `code` must an `integer` and the `shortMessage` must be a `string`.');
-            $body(array(
+            $this->setCode(5);
+            $this->setShortMessage('The arguments given to the Reporter are not of the right type. The `code` must an `integer` and the `shortMessage` must be a `string`.');
+            $this->setBody(array(
                 'shortMessage' => $this->shortMessage,
                 'code'=> $this->code
             ));

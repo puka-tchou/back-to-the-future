@@ -2,11 +2,7 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use dealers\NetComponents\NetComponents;
 use route\Route\Route;
-
-// $test = new NetComponents;
-// $test->getStock('CWD4850');
 
 filter_connection();
 route();

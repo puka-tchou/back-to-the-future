@@ -1,30 +1,30 @@
 ---
-'/api/products':
+/:
+  description: Prints this documentation.
+  howto: Make a request to the endpoint.
   method: GET
-  description: Get all the products in the database
-  parameters: NONE
-  body: NONE
-'/api/part':
+add:
+  description: Add the part-numbers to the database.
+  howto: Post a form input to this endpoint. It must have a field named 'parts' and it should be a CSV file. Make sure that you the 'Content-Type' header to 'multipart/form-data'.
+  method: POST
+part:
+  description: Get the stock history for a given part number.
+  howto:
+    query parameters:
+      id: '[*] - The part-number.'
+      source: '[DB, WEB, BOTH] (optional) - Choose the data source.'
   method: GET
-  description: Get the stock of a given part number
-  parameters:
-    id: The part-number to check
-    source:
-      '(DB, WEB, BOTH) Get data from the database, the web or both. Defaults
-      to BOTH'
-  body: NONE
-'/api/parts':
+parts:
+  description: Get the stock history for a given set of parts.
+  howto: Post a form input to this endpoint. It must have a field named 'parts' and it should be a CSV file. Make sure that you the 'Content-Type' header to 'multipart/form-data'.
   method: POST
-  description: Get the stock history for a given set of parts
-  parameters: NONE
-  body: Form data containing a YAML file
-'/api/update':
+products:
+  description: Get all the part-numbers in the database.
+  howto:
+    query parameters:
+      page: '[0-9] (optional) - The page number. This endpoint is paginated and will only return 100 parts. If you need to get the parts 100 to 199, set the page to 1.'
+  method: GET
+update:
+  description: Request a manual update of the stock data for a set of part-numbers.
+  howto: Post a form input to this endpoint. It must have a field named 'parts' and it should be a CSV file. Make sure that you the 'Content-Type' header to 'multipart/form-data'.
   method: POST
-  description: Request a manual update of the stock data for a set of part
-  parameters: NONE
-  body: Form data containing a YAML file
-'/api/add':
-  method: POST
-  description: Add parts to the database and start tracking stock
-  parameters: NONE
-  body: Form data containing a YAML file

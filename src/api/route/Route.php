@@ -58,7 +58,7 @@ class Route
         $documentation['query'] = $url;
         $documentation = $reader->readYAMLFile(__DIR__ . '/../yaml/documentation.yaml');
         
-        $reporter->send($documentation, 'Well, there is the documentation.');
+        $reporter->send(0, 'Well, here is the documentation.', $documentation);
     }
 
     /** This route echoes all the products stored in the database.
