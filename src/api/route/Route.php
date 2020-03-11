@@ -132,7 +132,6 @@ class Route
      */
     public function update(): void
     {
-        $database = new Database;
         $reader = new Reader;
         $reporter = new Reporter;
         $task = new UpdateStock;
@@ -144,19 +143,16 @@ class Route
         if ($parts !== false) {
             $code = 0;
             $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers';
-            $partsNotUpdated = 0;
             foreach ($parts as $part) {
-                if ($database->partNumberExists($part)) {
-                    $body[$part] = $task->addRecord($part);
-                } else {
-                    $code = 1;
-                    $partsNotUpdated++;
-                    $message = $partsNotUpdated . '/' . count($parts) . ' part-numbers were not found in the database.';
-                    $body[$part] = 'Part-number not found in the database.';
-                }
+                $res = $task->addRecord($part);
+                $body[$part] = $res['message'];
+                $code += $res['code'];
+            }
+            if ($code !== 0) {
+                $code = 1;
+                $message = 'There were errors or warnings.';
             }
         }
-
 
         $reporter->send($code, $message, $body);
     }

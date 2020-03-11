@@ -2,6 +2,7 @@
 
 use data\Database\Database;
 use data\Stock\Stock;
+use utilities\Reporter\Reporter;
 
 /**
  * Update stock data.
@@ -18,48 +19,37 @@ class UpdateStock
     {
         $database = new Database;
         $stock = new Stock;
+        $reporter = new Reporter;
         $partNumber = strtoupper($partNumber);
+        $code = 4;
+        $message = 'Part-number not found.';
+        $body = array();
 
-        if (!$database->partNumberExists($partNumber)) {
-            return array(
-                'err' => true,
-                'response' => 'Part-number ' . $partNumber . ' not found in the database.'
-            );
-        }
-
-        $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
+        if ($database->partNumberExists($partNumber)) {
+            $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
         
-        $stockValues = $stock->getFromDealers($partNumber)['stock'];
-        $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
-        $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
-        $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
-        $date = date('Y-m-d');
-        $state = 0;
-        $flag = true;
+            $stockValues = $stock->getFromDealers($partNumber)['stock'];
+            $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
+            $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
+            $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
+            $date = date('Y-m-d');
+            $code = 0;
+            $message = 'Updated.';
 
-        if (isset($stockValues['err'])) {
-            $res['err'] = array(
-                'err' => true,
-                'response' => $stockValues['response']
-            );
-            $state = 1;
-            $flag = false;
-        }
+            if (isset($stockValues['err'])) {
+                $code = 1;
+                $message = 'Stock information not found.';
+            }
 
-        $res = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $state));
+            $res = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
         
-        if (!$res) {
-            return array(
-                'err' => true,
-                'response' => array(
-                    'queryString' => $query->queryString,
-                    'errorCode' => $query->errorCode(),
-                    'errorInfo' => $query->errorInfo()
-                    )
-                );
+            if (!$res) {
+                $code = 5;
+                $message = 'SQL error.';
+                $body = $res->errorInfo();
+            }
         }
             
-        // If there was an error while getting the stock values, set the result to false.
-        return $res && $flag;
+        return $reporter->format($code, $message, $body);
     }
 }
