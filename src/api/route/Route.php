@@ -136,25 +136,28 @@ class Route
         $reader = new Reader;
         $reporter = new Reporter;
         $task = new UpdateStock;
-        $code = 0;
-        $message = 'Stock information successfully updated.';
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
-        $status = array();
+        $code = 2;
+        $message = 'The CSV file was not found.';
+        $body = array();
 
-        foreach ($parts as $part) {
-            if ($database->partNumberExists($part)) {
-                $status[$part] = $task->addRecord($part);
-            } else {
-                $code = 1;
-                $message = 'Some part-numbers were not found in the database.';
-                $status[$part] = $reporter->format(
-                    '',
-                    'Part-number not found in the database.',
-                    4
-                );
+        if ($parts !== false) {
+            $code = 0;
+            $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers';
+            $partsNotUpdated = 0;
+            foreach ($parts as $part) {
+                if ($database->partNumberExists($part)) {
+                    $body[$part] = $task->addRecord($part);
+                } else {
+                    $code = 1;
+                    $partsNotUpdated++;
+                    $message = $partsNotUpdated . '/' . count($parts) . ' part-numbers were not found in the database.';
+                    $body[$part] = 'Part-number not found in the database.';
+                }
             }
         }
 
-        $reporter->send($status, $message, $code);
+
+        $reporter->send($code, $message, $body);
     }
 }
