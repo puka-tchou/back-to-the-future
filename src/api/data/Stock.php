@@ -3,6 +3,7 @@
 use data\Database\Database;
 use dealers\AlliedElec\AlliedElec;
 use PDO;
+use utilities\Reporter\Reporter;
 
 /**
  * Manipulate stock data, get data from online stores.
@@ -29,10 +30,10 @@ class Stock
         return $stockByPart;
     }
 
-    /** Get the last recorded stock for a given part number.
+    /** Get the stock history for part-number.
      * @param string $partNumber The part-number to check.
-     * @param float $limit The number of records to fetch. If set to `-1`, get all records.
-     * @return array The last record.
+     * @param float $limit The number of records to fetch. If set to `-1`, get all the records.
+     * @return array The stock history.
      * ```php
      * // The array structure
      * array(
@@ -44,13 +45,13 @@ class Stock
      */
     public function get(string $partNumber, float $limit): array
     {
-        $partNumber = strtoupper($partNumber);
         $database = new Database;
+        $reporter = new Reporter;
+        $code = 4;
+        $message = 'Part-number not found.';
+        $body = array();
+        $partNumber = strtoupper($partNumber);
         $limit = ($limit == -1) ? ';' : ('LIMIT ' . $limit . ';');
-        $res = array(
-            'err' => true,
-            'response' => 'Part-number ' . $partNumber . ' not found in the product database'
-        );
 
         if ($database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare(
@@ -60,17 +61,19 @@ class Stock
                 ORDER BY id DESC '
                 . $limit
             );
-            $query->execute(array($partNumber));
-            $res = $query->fetch(PDO::FETCH_ASSOC);
-
+            
+            $res = $query->execute(array($partNumber));
+            $code = 0;
+            $message = 'Stock history found';
+            $body = $query->fetch(PDO::FETCH_ASSOC);
+            
             if (!$res) {
-                $res = array(
-                    'err' => true,
-                    'response' => 'No stock records found for ' . $partNumber,
-                    'SQL' => $query->errorInfo()
-                );
+                $code = 5;
+                $message = 'SQL error';
+                $body = $query->errorInfo();
             }
         }
-        return $res;
+
+        return $reporter->format($code, $message, $body);
     }
 }

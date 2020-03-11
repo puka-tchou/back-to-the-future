@@ -95,9 +95,15 @@ class Route
             $message = 'Stock information found for part-number ' . $id;
             if ($source === 'DB' || $source === 'BOTH') {
                 $body['DB'] = $stock->get($id, -1);
+                $code += $body['DB']['code'];
             }
             if ($source === 'WEB' || $source === 'BOTH') {
                 $body['WEB'] = $stock->getFromDealers($id);
+            }
+
+            if ($code !== 0) {
+                $code = 1;
+                $message = 'There was errors.';
             }
         }
 

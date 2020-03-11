@@ -46,7 +46,7 @@ class UpdateStock
             if (!$res) {
                 $code = 5;
                 $message = 'SQL error.';
-                $body = $res->errorInfo();
+                $body = $query->errorInfo();
             }
         }
             
