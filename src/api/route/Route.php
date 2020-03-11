@@ -103,7 +103,7 @@ class Route
 
             if ($code !== 0) {
                 $code = 1;
-                $message = 'There was errors.';
+                $message = 'There were errors.';
             }
         }
 

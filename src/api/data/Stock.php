@@ -19,15 +19,18 @@ class Stock
     {
         $part = strtoupper($part);
         $alliedelec = new AlliedElec;
-        $stockByPart = array(
+        $reporter = new Reporter;
+        $code = 0;
+        $message = 'Stock information found.';
+        $body = array(
             'part_number' => $part,
             'date_checked' => date('Y-m-d'),
         );
         
-        $stockByPart['stock'] = $alliedelec->getStock($part);
-        $stockByPart['supplier'] = 'alliedelec';
+        $body['stock'] = $alliedelec->getStock($part);
+        $body['supplier'] = array('alliedelec');
 
-        return $stockByPart;
+        return $reporter->format($code, $message, $body);
     }
 
     /** Get the stock history for part-number.
@@ -55,7 +58,7 @@ class Stock
 
         if ($database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare(
-                'SELECT part_number, date_checked, stock, supplier
+                'SELECT *
                 FROM stock_history
                 WHERE part_number = ?
                 ORDER BY id DESC '
@@ -64,8 +67,8 @@ class Stock
             
             $res = $query->execute(array($partNumber));
             $code = 0;
-            $message = 'Stock history found';
-            $body = $query->fetch(PDO::FETCH_ASSOC);
+            $body = $query->fetchAll(PDO::FETCH_ASSOC);
+            $message = count($body) . ' stock records found.';
             
             if (!$res) {
                 $code = 5;
