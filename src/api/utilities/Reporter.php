@@ -51,7 +51,7 @@ class Reporter
     public function setCode(int $code): void
     {
         $this->code = $code;
-        if (preg_match('/[0-9]/m', $code) === 0) {
+        if (preg_match('#\d#m', $code) === 0) {
             $this->code = 5;
         }
     }
@@ -62,7 +62,7 @@ class Reporter
      *
      * @return void
      */
-    public function setShortMessage(string $shortMessage)
+    public function setShortMessage(string $shortMessage): void
     {
         $this->shortMessage = $shortMessage;
     }
@@ -73,7 +73,7 @@ class Reporter
      *
      * @return void
      */
-    public function setBody($body)
+    public function setBody($body): void
     {
         $this->body = $body;
     }
@@ -94,7 +94,7 @@ class Reporter
      *
      * @return void
      */
-    public function send($code = null, $shortMessage = null, $body = null): void
+    public function send(?int $code = null, ?string $shortMessage = null, $body = null): void
     {
         $answer = $this->format($code, $shortMessage, $body);
 
@@ -124,7 +124,7 @@ class Reporter
      *
      * @return array
      */
-    public function format($code, $shortMessage, $body): array
+    public function format(?int $code, ?string $shortMessage, $body): array
     {
         // These lines are used to get default values
         $code = $code === null ? $this->code : $code;

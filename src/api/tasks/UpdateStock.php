@@ -12,10 +12,10 @@ class UpdateStock
     /** Add a stock record for the given part-number.
      * @param string $partNumber The part-number.
      *
-     * @return string[]|bool[]|mixed[][]|bool[]|bool `true` if the operation succeeded, an `array` containing
+     * @return mixed[] `true` if the operation succeeded, an `array` containing
      * informations about the error if the operation did not succeeded.
      */
-    public function addRecord(string $partNumber)
+    public function addRecord(string $partNumber): array
     {
         $database = new Database;
         $stock = new Stock;

@@ -7,7 +7,7 @@ class NetComponents
     /**
      * @return mixed[]
      */
-    public function getStock(): array
+    public function getStock(): void
     {
         define('BASE_URL', 'https://api.netcomponents.com/api/DILP/v3');
         define('DEFAULT_AUTH', 'Authorization: Basic ' . base64_encode('crouzet:33abd2799589'));

@@ -40,10 +40,10 @@ class Database
         $database = new Database;
         $reporter = new Reporter;
         $code = 0;
-        $message = '';
         $query = $database->connection->prepare('SELECT * FROM products LIMIT ' . $page * 100 . ' ,100;');
-        
+
         $query->execute();
+
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $message = 'There are ' . count($result) . ' products in the database (showing ' . ($page * 100) . ' to ' . (($page * 100) + 99) . ').';
 
