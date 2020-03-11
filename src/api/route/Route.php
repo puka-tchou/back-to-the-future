@@ -86,15 +86,22 @@ class Route
         $reporter = new Reporter;
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
+        $code = 2;
+        $message = 'You must provide an id.';
+        $body = array();
 
-        if ($source == 'DB' || $source == 'BOTH') {
-            $response['DB'] = $stock->get($id, -1);
-        }
-        if ($source == 'WEB' || $source == 'BOTH') {
-            $response['WEB'] = $stock->getFromDealers($id);
+        if ($id !== null) {
+            $code = 0;
+            $message = 'Stock information found for part-number ' . $id;
+            if ($source === 'DB' || $source === 'BOTH') {
+                $body['DB'] = $stock->get($id, -1);
+            }
+            if ($source === 'WEB' || $source === 'BOTH') {
+                $body['WEB'] = $stock->getFromDealers($id);
+            }
         }
 
-        $reporter->send($response);
+        $reporter->send($code, $message, $body);
     }
 
     /** Get stock information for a set of parts in a CSV file.
@@ -135,12 +142,12 @@ class Route
         $reader = new Reader;
         $reporter = new Reporter;
         $task = new UpdateStock;
-        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
         $code = 2;
         $message = 'The CSV file was not found.';
         $body = array();
 
-        if ($parts !== false) {
+        if ($parts !== null) {
             $code = 0;
             $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers';
             foreach ($parts as $part) {
