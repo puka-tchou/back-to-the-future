@@ -111,33 +111,34 @@ class Route
     }
 
     /** Get stock information for a set of parts in a CSV file.
-     * @return string
+     * @return void
      */
     public function parts(): void
     {
-        $database = new Database;
         $reader = new Reader;
         $stock = new Stock;
         $reporter = new Reporter;
-        $code = 0;
-        $message = 'Everything went fine.';
-        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
-    
-        foreach ($parts as $part) {
-            if ($database->partNumberExists($part)) {
-                $stockByPart[$part] = $stock->get($part, -1);
-            } else {
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
+        $code = 2;
+        $message = 'CSV file not found.';
+        $body = array();
+
+        if ($parts !== null) {
+            $code = 0;
+            $message = 'Found stock history for ' . count($parts) . ' part-numbers.';
+            foreach ($parts as $part) {
+                $res = $stock->get($part, -1);
+                $body[$part] = $res;
+                $code += $res['code'];
+            }
+            
+            if ($code !== 0) {
                 $code = 1;
-                $message = 'Some part-numbers were not found in the database.';
-                $stockByPart[$part] = $reporter->format(
-                    '',
-                    'Part-number not found in the database.',
-                    4
-                );
+                $message = 'There were errors.';
             }
         }
 
-        $reporter->send($stockByPart, $message, $code);
+        $reporter->send($code, $message, $body);
     }
 
     /** Update stock informations for a set of parts in a CSV file.
