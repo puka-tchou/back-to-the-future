@@ -1,0 +1,14 @@
+{
+  "plugins": {
+    "stylelint": {},
+    "postcss-reporter": {},
+    "postcss-import": {},
+    "autoprefixer": {},
+    "postcss-preset-env": {},
+    "cssnano": {
+      "preset": [
+        "advanced"
+      ]
+    }
+  }
+}

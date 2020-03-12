@@ -1,24 +1,31 @@
 ---
-image: composer:latest
-
 variables:
-  SAST_EXCLUDED_PATHS: docs,vendor,node_modules
+  SAST_EXCLUDED_PATHS: public,vendor,node_modules
 
 cache:
   paths:
     - vendor/
+    - node_modules/
 
-pages:
-  stage: deploy
+stages:
+  - build
+  - test
+  - deploy
+
+test:
+  stage: test
+  script: echo "Testing..."
+
+build:
+  stage: build
+  image: node:latest
   script:
-    - composer install
-    - composer doc
-    - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
+    - yarn install
+    - gulp build
+
+deploy:
+  stage: deploy
+  script: echo "Deploying..."
 
 include:
   - template: Dependency-Scanning.gitlab-ci.yml

@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added ()
+### Added
 
 - `/` route to get the documentation.
 - `/add` route to add part-numbers to the database.

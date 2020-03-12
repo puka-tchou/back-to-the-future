@@ -1,3 +1,5 @@
+@import 'spectre.css';
+
 h1,
 h2 {
   text-align: center;
@@ -38,7 +40,8 @@ div.action-btn {
 button#download-button {
   margin: 0.5rem auto;
 }
-/* Debug styles */
+
+/* For debugging purposes */
 #debug {
   background-color: black;
   opacity: 0.85;

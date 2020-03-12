@@ -13,6 +13,7 @@ node_modules/
 .cache/
 .phpdoc/
 .temp/
+dev/
 
 # Distribution
 dist/

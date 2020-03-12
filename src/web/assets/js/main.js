@@ -1,4 +1,3 @@
-import 'spectre.css';
 import XLSX from 'xlsx';
 
 const getDataFromAPI = fileInput => {
@@ -33,6 +32,7 @@ const getDataFromAPI = fileInput => {
             statusCell.innerText = 'Error';
             responseCell.innerText = stock['response'];
           } else {
+            console.log('test');
           }
           target.appendChild(row);
         }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+  <project
+    name="Pricing and stock history"
+    source="${basedir}/src/api"
+    workdir="${basedir}/.temp/api/xml"
+  >
+    <collector backend="parser" />
+    <generator output="${basedir}/public/server">
+      <build engine="html" output="html" />
+    </generator>
+  </project>
+</phpdox>

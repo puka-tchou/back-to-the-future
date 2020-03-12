@@ -1,2 +1,1 @@
 - [Home](/)
-- [Server documentation](//public.test/server/index.html)

@@ -5,28 +5,40 @@
   "author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel watch src/web/index.html -d dist/web --public-url .",
-    "stylefix": "prettier --write {src,public}/**/*.{js,html,css,md,xml,yaml,yml}",
-    "doc": "node ../../toolset/moxygen/bin/moxygen.js --output public/server/README.md .temp/doc/xml"
+    "start": "parcel watch src/web/index.html -d dev/",
+    "stylefix": "prettier --write {src,public}/**/*.{js,html,xhtml,css,md,xml,yaml,yml}"
   },
   "dependencies": {
+    "core-js": "3",
     "docsify": "^4.10.2",
     "docsify-changelog-plugin": "^0.7.0",
     "docsify-copy-code": "^2.1.0",
     "docsify-dark-mode": "^0.6.1",
-    "dot": "^1.1.3",
     "spectre.css": "^0.5.8",
     "xlsx": "^0.15.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@prettier/plugin-xml": "0.7.2",
-    "docsify-cli": "4.4.0",
-    "esm": "3.2.25",
+    "autoprefixer": "^9.7.4",
+    "babel-preset-minify": "^0.5.1",
+    "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
     "gulp": "4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^8.0.0",
     "gulp-replace": "1.0.0",
-    "moxygen": "0.8.0",
-    "parcel-bundler": "1.12.4",
-    "parcel-plugin-markdown": "0.4.2",
-    "prettier": "1.19.1"
+    "moxygen": "https://github.com/sourcey/moxygen",
+    "parcel-bundler": "^1.12.4",
+    "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-reporter": "^6.0.1",
+    "prettier": "1.19.1",
+    "stylelint": "^13.2.1",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2"
   }
 }
