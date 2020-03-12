@@ -28,7 +28,7 @@ class UpdateStock
         if ($database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
         
-            $stockValues = $stock->getFromDealers($partNumber)['stock'];
+            $stockValues = $stock->getFromDealers($partNumber)['body']['stock'];
             $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
             $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
             $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
