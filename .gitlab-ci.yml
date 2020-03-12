@@ -16,9 +16,14 @@ build:
   stage: build
   image: node:latest
   script:
+    - apt-get install -y libjpeg libpng
     - yarn install
     - yarn global add gulp
     - gulp build
+  artifacts:
+    paths:
+      - dist/
+    untracked: true
 
 test:
   stage: test
@@ -26,6 +31,8 @@ test:
 
 deploy:
   stage: deploy
+  dependencies:
+    - build
   script: echo "Deploying..."
 
 include:
