@@ -27,18 +27,23 @@ class UpdateStock
 
         if ($database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
-        
-            $stockValues = $stock->getFromDealers($partNumber)['body']['stock'];
+
+            $res = $stock->getFromDealers($partNumber);
+            var_dump($res);
+            $stockValues = $res['body']['stock'];
             $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
             $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
             $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
             $date = date('Y-m-d');
-            $code = 0;
-            $message = 'Updated.';
 
-            if (isset($stockValues['err'])) {
+            $code = $res['code'];
+            $message = $res['message'];
+
+            if ($partsInStock === -1
+                && $partsOnOrder === -1
+                && $minOrder === -1
+            ) {
                 $code = 1;
-                $message = 'Stock information not found.';
             }
 
             $res = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
