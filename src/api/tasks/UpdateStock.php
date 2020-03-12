@@ -29,8 +29,7 @@ class UpdateStock
             $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
 
             $res = $stock->getFromDealers($partNumber);
-            var_dump($res);
-            $stockValues = $res['body']['stock'];
+            $stockValues = $res['body']['alliedelec'];
             $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
             $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
             $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
@@ -39,16 +38,9 @@ class UpdateStock
             $code = $res['code'];
             $message = $res['message'];
 
-            if ($partsInStock === -1
-                && $partsOnOrder === -1
-                && $minOrder === -1
-            ) {
-                $code = 1;
-            }
-
-            $res = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
+            $SQLres = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
         
-            if (!$res) {
+            if (!$SQLres) {
                 $code = 5;
                 $message = 'SQL error.';
                 $body = $query->errorInfo();

@@ -4,6 +4,7 @@ use dealers\iDealer\iDealer;
 use DOMDocument;
 use DOMXPath;
 use Exception;
+use utilities\Reporter\Reporter;
 
 /**
  * AlliedElec distributor stock check.
@@ -17,6 +18,9 @@ class AlliedElec implements iDealer
      */
     public function getStock(string $part_number): array
     {
+        $reporter = new Reporter;
+        $code = 1;
+        $message = 'Exact part-number not found.';
         $ch = curl_init('https://www.alliedelec.com/view/search?keyword='.$part_number);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $html = str_replace('&', '$&amp;', curl_exec($ch));
@@ -24,6 +28,7 @@ class AlliedElec implements iDealer
         // Temporarly mute warnings and errors caused by a malformed HTML
         // This should be safe because DOMXPath will still throw errors
         libxml_use_internal_errors(true);
+
         $document = new DOMDocument();
         $document->preserveWhiteSpace = false;
         $document->loadHTML($html);
@@ -40,37 +45,42 @@ class AlliedElec implements iDealer
         foreach ($details as $detail) {
             if (preg_match($regex, $detail->nodeValue)) {
                 $xml = simplexml_import_dom($detail);
+                $code = 0;
+                $message = 'Part-number found.';
                 break;
             }
         }
-        if (!isset($xml)) {
-            return array(
-                'err' => true,
-                'response' => 'Exact part number not found ' . $part_number
-            );
-        }
-        $stocks = $xml->div[1][0]->div[0]->span;
-        $stocksCount = count($stocks);
-        // We know the structure of the array, so we know that we can test only one element out of two.
-        for ($i=0; $i < $stocksCount; $i += 2) {
-            switch ($stocks[$i]) {
-                case 'In Stock: ':
-                    $parts_in_stock = (int)$stocks[$i+1];
-                    break;
-                case 'On Order: ':
-                    $parts_on_order = (int)$stocks[$i+1];
-                    break;
-                case 'Min Qty: ':
-                    $parts_min_order = (int)$stocks[$i+1];
-                    break;
-                default:
-                    throw new Exception('Stock values not found', 1);
+
+        if (isset($xml)) {
+            $stocks = $xml->div[1][0]->div[0]->span;
+            $stocksCount = count($stocks);
+            // We know the structure of the array, so we know that we can test only one element out of two.
+            for ($i=0; $i < $stocksCount; $i += 2) {
+                switch ($stocks[$i]) {
+                    case 'In Stock: ':
+                        $parts_in_stock = (int)$stocks[$i+1];
+                        break;
+                    case 'On Order: ':
+                        $parts_on_order = (int)$stocks[$i+1];
+                        break;
+                    case 'Min Qty: ':
+                        $parts_min_order = (int)$stocks[$i+1];
+                        break;
+                    default:
+                        $code = 1;
+                        $message = 'Stock values not found';
+                }
             }
         }
-        return array(
+
+        return $reporter->format(
+            $code,
+            $message,
+            array(
             'parts_in_stock' => $parts_in_stock,
             'parts_on_order'=>$parts_on_order,
             'parts_min_order'=>$parts_min_order
+            )
         );
     }
 }

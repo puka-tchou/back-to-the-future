@@ -20,15 +20,16 @@ class Stock
         $part = strtoupper($part);
         $alliedelec = new AlliedElec;
         $reporter = new Reporter;
-        $code = 0;
-        $message = 'Stock information found.';
+
+        $res = $alliedelec->getStock($part);
+
+        $code = $res['code'];
+        $message = $res['message'];
         $body = array(
             'part_number' => $part,
             'date_checked' => date('Y-m-d'),
+            'alliedelec' => $res['body']
         );
-        
-        $body['stock'] = $alliedelec->getStock($part);
-        $body['supplier'] = array('alliedelec');
 
         return $reporter->format($code, $message, $body);
     }
