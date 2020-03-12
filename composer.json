@@ -26,7 +26,8 @@
     "stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "optimize-autoloader": true
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
