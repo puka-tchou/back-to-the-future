@@ -1,6 +1,6 @@
 # Stock and pricing history
 
-[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/gaspacchio/back-to-the-future?logo=gitlab)](https://gitlab.com/gaspacchio/back-to-the-future/pipelines/latest) [![MIT license](https://img.shields.io/badge/license-MIT-informational)](https://gitlab.com/gaspacchio/back-to-the-future/-/blob/master/LICENSE)
+[![Repository](https://badgen.net/badge/repository/gitlab/orange?icon=gitlab)](https://gitlab.com/gaspacchio/back-to-the-future) [![MIT license](https://badgen.net/badge/license/MIT/blue)](https://gitlab.com/gaspacchio/back-to-the-future/-/blob/master/LICENSE) [![Gitlab pipeline status](https://gitlab.com/gaspacchio/back-to-the-future/badges/master/pipeline.svg)](https://gitlab.com/gaspacchio/back-to-the-future/-/commits/master)
 
 ## Table of contents
 
