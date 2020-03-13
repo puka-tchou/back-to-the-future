@@ -13,27 +13,26 @@ const getDataFromAPI = fileInput => {
       return response.json();
     })
     .then(json => {
+      console.debug({ json });
+      const body = json['body'];
       let aobj = [];
       const target = document.getElementById('result-table');
       target.innerText = '';
-      for (const key in json) {
-        if (json.hasOwnProperty(key)) {
-          json[key]['part-number'] = key;
-          aobj.push(json[key]);
+      for (const key in body) {
+        if (body.hasOwnProperty(key)) {
+          aobj.push(body[key]);
+
           const row = document.createElement('tr');
           const partCell = row.insertCell();
           const statusCell = row.insertCell();
           const responseCell = row.insertCell();
+          const stock = body[key]['body'];
+
+          console.debug(body[key]);
 
           partCell.innerText = key;
-          const stock = JSON.parse(json[key]['stock']);
-          console.log(stock);
-          if (stock['err']) {
-            statusCell.innerText = 'Error';
-            responseCell.innerText = stock['response'];
-          } else {
-            console.log('test');
-          }
+          statusCell.innerText = body[key]['message'];
+          responseCell.innerText = JSON.stringify(stock, null, 2);
           target.appendChild(row);
         }
       }
