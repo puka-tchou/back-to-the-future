@@ -156,15 +156,15 @@ class Route
 
         if ($parts !== null) {
             $code = 0;
-            $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers';
+            $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers.';
             foreach ($parts as $part) {
                 $res = $task->addRecord($part);
-                $body[$part] = $res['message'];
+                $body[$part] = $res;
                 $code += $res['code'];
             }
             if ($code !== 0) {
                 $code = 1;
-                $message = 'There were errors or warnings.';
+                $message .= ' There were errors or warnings.';
             }
         }
 

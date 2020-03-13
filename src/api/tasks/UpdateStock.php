@@ -37,6 +37,7 @@ class UpdateStock
 
             $code = $res['code'];
             $message = $res['message'];
+            $body = $stockValues;
 
             $SQLres = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
         
