@@ -47,28 +47,32 @@ const getDataFromAPI = parts => {
       for (const key in body) {
         if (body.hasOwnProperty(key)) {
           const label = new Set();
-          aobj.push(body[key]);
-
           const row = document.createElement('tr');
           const partCell = row.insertCell();
           const statusCell = row.insertCell();
           const responseCell = row.insertCell();
           const stock = body[key]['body'];
-
-          partCell.innerText = key;
-          statusCell.innerText = body[key]['message'];
-          responseCell.innerText = JSON.stringify(stock, null, 2);
-          target.appendChild(row);
-
           const data = [];
+          let i = 0;
 
-          body[key]['body'].forEach(record => {
-            if (record['state'] === '0') {
+          aobj.push(body[key]);
+
+          stock.forEach(record => {
+            if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
+              i++;
+              console.log(record);
               dates.add(record['date_checked']);
               data.push(record['parts_in_stock']);
               label.add(record['part_number']);
+              partCell.innerText = record['part_number'];
+              statusCell.innerText =
+                record['state'] === '0' ? i + ' records found.' : '';
+              responseCell.innerText += record['parts_in_stock'];
+              responseCell.innerText += ', ';
+              target.appendChild(row);
             }
           });
+
           if (data.length > 0) {
             console.log(data);
             datasets.push({
@@ -85,15 +89,6 @@ const getDataFromAPI = parts => {
       console.log(datasets);
       console.log([...dates]);
 
-      // [
-      //   {
-      //     label: setLabel,
-      //     data: data,
-      //     borderColor: '#FFC000',
-      //     pointBackgroundColor: '#4240d4',
-      //     pointBorderColor: '#4240d4'
-      //   }
-      // ];
       drawChart([...dates], datasets);
 
       const sheet = XLSX.utils.json_to_sheet(aobj);
