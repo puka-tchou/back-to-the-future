@@ -1,29 +1,41 @@
 @import 'spectre.css';
 
+body {
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+}
 h1,
 h2 {
   text-align: center;
 }
-body > div.container {
-  max-width: 1200px;
+header.navbar {
+  height: 8vh;
+}
+.container {
+  max-height: 92vh;
+}
+.column {
+  padding: 0.5rem;
 }
 .main-input {
-  border: 2px dashed #5755d9;
+  border-right: 2px solid #5755d9;
   border-radius: 0.1rem;
   padding: 0.5rem;
-  margin: 0.5rem;
+  height: 90vh;
+  overflow-y: auto;
+}
+section.data-container {
+  height: 92vh;
+  overflow-y: auto;
+}
+.chart-container {
+  position: relative;
+  height: 50vh;
+  width: 100%;
 }
 .data-view {
-  overflow-y: scroll;
-  overflow-x: auto;
-  border-radius: 0.1rem;
   word-wrap: break-word;
-}
-div#partlist {
-  height: 60vh;
-}
-div#data-result {
-  height: 54vh;
 }
 div.btn-group {
   display: flex;
@@ -39,16 +51,4 @@ div.action-btn {
 }
 button#download-button {
   margin: 0.5rem auto;
-}
-
-/* For debugging purposes */
-#debug {
-  background-color: black;
-  opacity: 0.85;
-  z-index: 9;
-  color: white;
-  font-size: small;
-}
-pre {
-  font-size: 0.75em;
 }

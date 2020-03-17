@@ -1,9 +1,32 @@
 import XLSX from 'xlsx';
+import Chart from 'chart.js';
 
-const getDataFromAPI = fileInput => {
-  const file = fileInput.files[0];
+const drawChart = (labels, datasets) => {
+  var canvas = document.getElementById('data-chart');
+  var stockChart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: datasets
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        ]
+      }
+    }
+  });
+};
+
+const getDataFromAPI = parts => {
+  const target = document.getElementById('result-table');
   const formData = new FormData();
-  formData.append('parts', file);
+  formData.append('parts', parts.files[0]);
 
   fetch('http://src.test/api/parts', {
     method: 'POST',
@@ -13,13 +36,17 @@ const getDataFromAPI = fileInput => {
       return response.json();
     })
     .then(json => {
-      console.debug({ json });
+      console.debug(json);
       const body = json['body'];
-      let aobj = [];
-      const target = document.getElementById('result-table');
+      const aobj = [];
+      const datasets = [];
+      const dates = new Set();
+
       target.innerText = '';
+
       for (const key in body) {
         if (body.hasOwnProperty(key)) {
+          const label = new Set();
           aobj.push(body[key]);
 
           const row = document.createElement('tr');
@@ -28,14 +55,47 @@ const getDataFromAPI = fileInput => {
           const responseCell = row.insertCell();
           const stock = body[key]['body'];
 
-          console.debug(body[key]);
-
           partCell.innerText = key;
           statusCell.innerText = body[key]['message'];
           responseCell.innerText = JSON.stringify(stock, null, 2);
           target.appendChild(row);
+
+          const data = [];
+
+          body[key]['body'].forEach(record => {
+            if (record['state'] === '0') {
+              dates.add(record['date_checked']);
+              data.push(record['parts_in_stock']);
+              label.add(record['part_number']);
+            }
+          });
+          if (data.length > 0) {
+            console.log(data);
+            datasets.push({
+              label: [...label][0],
+              data: data,
+              borderColor: '#FFC000',
+              pointBackgroundColor: '#4240d4',
+              pointBorderColor: '#4240d4',
+              fill: false
+            });
+          }
         }
       }
+      console.log(datasets);
+      console.log([...dates]);
+
+      // [
+      //   {
+      //     label: setLabel,
+      //     data: data,
+      //     borderColor: '#FFC000',
+      //     pointBackgroundColor: '#4240d4',
+      //     pointBorderColor: '#4240d4'
+      //   }
+      // ];
+      drawChart([...dates], datasets);
+
       const sheet = XLSX.utils.json_to_sheet(aobj);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, sheet);
@@ -50,15 +110,15 @@ const getDataFromAPI = fileInput => {
 const getStockFromFile = input => {
   const CSVFile = input.files[0];
   const reader = new FileReader();
+  const target = document.getElementById('part-table');
   let data;
 
+  target.innerText = '';
   reader.readAsText(CSVFile);
   reader.addEventListener('loadend', () => {
     data = reader.result.split('\r\n').filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
-    const target = document.getElementById('part-table');
-    target.innerText = '';
     data.forEach((line, index) => {
       const row = document.createElement('tr');
       const idCell = row.insertCell();
@@ -74,6 +134,8 @@ const getStockFromFile = input => {
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
   const getStock = document.getElementById('get-stock');
+
+  drawChart();
 
   fileInput.addEventListener('change', e => {
     e.preventDefault();

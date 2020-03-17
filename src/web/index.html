@@ -28,10 +28,10 @@
     <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ff8a00" />
     <meta name="msapplication-TileColor" content="#ff8a00" />
     <meta name="theme-color" content="#ffffff" />
+    <!-- End of favicons-->
     <title>Stock check</title>
   </head>
   <body>
-    <div id="debug"></div>
     <header class="navbar bg-gray">
       <div class="navbar-section">
         <a href="/" class="navbar-brand"
@@ -44,7 +44,7 @@
       </div>
       <div class="navbar-section">
         <a
-          href="http://docs.test/"
+          href="https://gaspacchio.gitlab.io/back-to-the-future"
           class="btn btn-link"
           target="_blank"
           rel="noreferrer noopener"
@@ -55,8 +55,9 @@
         >
       </div>
     </header>
-    <div class="container columns p-centered">
-      <section class="column main-input">
+    <div class="container columns">
+      <section class="column main-input col-3">
+        <h2>Parts</h2>
         <form action="#" class="form-group" method="post">
           <label for="file-upload" class="form-label"
             >Select a set of parts to check:</label
@@ -70,51 +71,49 @@
           />
         </form>
         <div class="btn-group">
-          <button class="btn btn-primary" id="get-stock">
+          <button class="btn btn-primary p-centered" id="get-stock">
             Get stock history
           </button>
         </div>
+        <div id="partlist" class="data-view">
+          <table class="table table-striped table-hover">
+            <caption>
+              The list of the parts
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Part number</th>
+              </tr>
+            </thead>
+            <tbody id="part-table"></tbody>
+          </table>
+        </div>
       </section>
-      <div class="column col-12 columns">
-        <section class="column col-6">
-          <h2>Parts</h2>
-          <div id="partlist" class="data-view">
-            <table class="table table-striped table-hover">
-              <caption>
-                The list of the parts
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Part number</th>
-                </tr>
-              </thead>
-              <tbody id="part-table"></tbody>
-            </table>
-          </div>
-        </section>
-        <section class="column col-6">
-          <h2>Data</h2>
-          <div id="data-result" class="data-view">
-            <table class="table table-striped table-hover">
-              <caption>
-                The results
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Part number</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Response</th>
-                </tr>
-              </thead>
-              <tbody id="result-table"></tbody>
-            </table>
-          </div>
-          <button class="btn btn-success p-centered" id="download-button">
-            Download
-          </button>
-        </section>
-      </div>
+      <section class="column col-9 data-container">
+        <h2>Data</h2>
+        <div class="chart-container">
+          <canvas id="data-chart"></canvas>
+        </div>
+        <div id="data-result" class="data-view">
+          <table class="table table-striped table-hover">
+            <caption>
+              The results
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Part number</th>
+                <th scope="col">Status</th>
+                <th scope="col">Response</th>
+              </tr>
+            </thead>
+            <tbody id="result-table"></tbody>
+          </table>
+        </div>
+        <button class="btn btn-success p-centered" id="download-button">
+          Download
+        </button>
+      </section>
     </div>
   </body>
 </html>

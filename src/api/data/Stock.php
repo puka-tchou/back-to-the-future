@@ -62,7 +62,7 @@ class Stock
                 'SELECT *
                 FROM stock_history
                 WHERE part_number = ?
-                ORDER BY id DESC '
+                ORDER BY id ASC '
                 . $limit
             );
             
