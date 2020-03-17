@@ -34,13 +34,13 @@
   <body>
     <header class="navbar bg-gray">
       <div class="navbar-section">
-        <a href="/" class="navbar-brand"
-          ><img
-            src="./assets/images/icon.color.48x.png"
-            alt="The logo: the letter 'g' in a circle."
-            width="48"
-            height="48"
-        /></a>
+        <img
+          src="./assets/images/icon.color.48x.png"
+          alt="The logo: the letter 'g' in a circle."
+          width="48"
+          height="48"
+          class="navbar-brand"
+        />
       </div>
       <div class="navbar-section">
         <a
@@ -90,7 +90,35 @@
           </table>
         </div>
       </section>
-      <section class="column col-9 data-container">
+      <section id="data-container" class="column col-9 data-container">
+        <div id="status-info">
+          <div>
+            <h3 class="text-center">
+              No stock records found with this set of parts.
+            </h3>
+            <p class="text-center">
+              You could try to use a different file or maybe you want to
+              <em>add the parts</em> to start recording the stock history?
+            </p>
+            <h4>What can I do?</h4>
+            <p>
+              Yous should check that the CSV file looks like the sample CSV
+              file:
+            </p>
+            <pre class="code" data-lang="parts.csv">
+              <code>
+                TFS-01-SP00-40C
+                TFS-01-SP00-WC
+                83169802
+                83169803
+                831698CR.5
+                831698CC.5
+                V15W11-DZ200-AW1
+                V15W11-EZ015B03-KAW1
+              </code>
+            </pre>
+          </div>
+        </div>
         <h2>Data</h2>
         <div class="chart-container">
           <canvas id="data-chart"></canvas>

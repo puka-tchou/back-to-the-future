@@ -9,6 +9,30 @@ h1,
 h2 {
   text-align: center;
 }
+#status-info {
+  display: none;
+}
+#status-info.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(87, 85, 217, 0.9);
+  z-index: 9;
+  color: #fff;
+}
+#status-info.active > div {
+  max-width: 80%;
+}
+#status-info.active > div > pre {
+  white-space: pre-line;
+}
 header.navbar {
   height: 8vh;
 }
@@ -27,7 +51,8 @@ header.navbar {
 }
 section.data-container {
   height: 92vh;
-  overflow-y: auto;
+  overflow-y: scroll;
+  position: relative;
 }
 .chart-container {
   position: relative;
@@ -36,6 +61,7 @@ section.data-container {
 }
 .data-view {
   word-wrap: break-word;
+  margin-top: 3rem;
 }
 div.btn-group {
   display: flex;

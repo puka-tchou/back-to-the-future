@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 
 const drawChart = (labels, datasets) => {
   var canvas = document.getElementById('data-chart');
+  canvas.innerText = '';
   var stockChart = new Chart(canvas, {
     type: 'line',
     data: {
@@ -36,7 +37,7 @@ const getDataFromAPI = parts => {
       return response.json();
     })
     .then(json => {
-      console.debug(json);
+      console.log({ json });
       const body = json['body'];
       const aobj = [];
       const datasets = [];
@@ -60,7 +61,7 @@ const getDataFromAPI = parts => {
           stock.forEach(record => {
             if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
               i++;
-              console.log(record);
+              console.log({ record });
               dates.add(record['date_checked']);
               data.push(record['parts_in_stock']);
               label.add(record['part_number']);
@@ -74,7 +75,7 @@ const getDataFromAPI = parts => {
           });
 
           if (data.length > 0) {
-            console.log(data);
+            console.log({ data });
             datasets.push({
               label: [...label][0],
               data: data,
@@ -86,8 +87,8 @@ const getDataFromAPI = parts => {
           }
         }
       }
-      console.log(datasets);
-      console.log([...dates]);
+      console.log({ datasets });
+      console.log({ dates });
 
       drawChart([...dates], datasets);
 
@@ -99,6 +100,12 @@ const getDataFromAPI = parts => {
         .addEventListener('click', e => {
           XLSX.writeFile(wb, 'out.xlsx');
         });
+
+      const statusInfo = document.getElementById('status-info');
+      statusInfo.classList.remove('active');
+      if (datasets.length === 0) {
+        statusInfo.classList.add('active');
+      }
     });
 };
 
