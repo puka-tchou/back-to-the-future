@@ -29,7 +29,7 @@ build:
     untracked: true
 
 sonarcloud-check:
-  stage: sonarcloud-check
+  stage: test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: ['']
