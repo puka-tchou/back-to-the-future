@@ -1,4 +1,5 @@
 {
+  "parser": "postcss-scss",
   "plugins": {
     "stylelint": {},
     "postcss-reporter": {},

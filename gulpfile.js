@@ -9,9 +9,9 @@ function api() {
 }
 
 function css() {
-  return src('src/web/assets/css/*.css')
+  return src('src/web/assets/scss/*.scss')
     .pipe(postcss())
-    .pipe(dest('dist/web/assets/css/'));
+    .pipe(dest('dist/web/assets/scss/'));
 }
 
 function html() {
