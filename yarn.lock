@@ -5636,7 +5636,7 @@ parcel-bundler@1.12.4, parcel-bundler@^1.10.3:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-imagemin@^4.0.1:
+parcel-plugin-imagemin@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/parcel-plugin-imagemin/-/parcel-plugin-imagemin-4.0.1.tgz#fc939324dab7ec6ade667fbbbd0690b728fe3af1"
   integrity sha512-kYGeOZ7/uy+osRAmI3z9VQiXiG1//5WRy56rsKYfJg2s9Fm6SHT3JIt/hFHBttB7VRFdrkDM8hWkXsGKOdwLRw==

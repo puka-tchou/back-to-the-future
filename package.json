@@ -24,7 +24,7 @@
     "cssnano-preset-advanced": "4.0.7",
     "moxygen": "https://github.com/sourcey/moxygen",
     "parcel-bundler": "1.12.4",
-    "parcel-plugin-imagemin": "^4.0.1",
+    "parcel-plugin-imagemin": "4.0.1",
     "postcss-import": "12.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-reporter": "6.0.1",
