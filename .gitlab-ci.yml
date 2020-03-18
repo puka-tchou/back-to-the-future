@@ -19,10 +19,8 @@ build:
   stage: build
   image: node:latest
   script:
-    - apt-get install -y libjpeg-dev libpng-dev
     - yarn install
-    - yarn global add gulp
-    - gulp build
+    - yarn build
   artifacts:
     paths:
       - dist/

@@ -6,15 +6,11 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel watch src/web/index.html -d dev/",
-    "stylefix": "prettier --write {src,public}/**/*.{js,html,xhtml,css,md,xml,yaml,yml}"
+    "stylefix": "prettier --write {src,public}/**/*.{js,html,xhtml,css,md,xml,yaml,yml}",
+    "build": "parcel build src/web/index.html -d dist/web/ --public-url ."
   },
   "dependencies": {
     "chart.js": "^2.9.3",
-    "core-js": "3",
-    "docsify": "^4.10.2",
-    "docsify-changelog-plugin": "^0.7.0",
-    "docsify-copy-code": "^2.1.0",
-    "docsify-dark-mode": "^0.6.1",
     "spectre.css": "^0.5.8",
     "xlsx": "^0.15.5"
   },
@@ -26,13 +22,9 @@
     "babel-preset-minify": "0.5.1",
     "cssnano": "4.1.10",
     "cssnano-preset-advanced": "4.0.7",
-    "gulp": "4.0.2",
-    "gulp-babel": "8.0.0",
-    "gulp-htmlmin": "5.0.1",
-    "gulp-image": "6.1.0",
-    "gulp-postcss": "8.0.0",
     "moxygen": "https://github.com/sourcey/moxygen",
     "parcel-bundler": "1.12.4",
+    "parcel-plugin-imagemin": "^4.0.1",
     "postcss-import": "12.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-reporter": "6.0.1",
