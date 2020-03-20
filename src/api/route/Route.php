@@ -26,9 +26,9 @@ class Route
         $code = 0;
         $shortMessage = 'The part-numbers were successfully added to the database.';
         $body = array();
-        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : false;
+        $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
         
-        if (!$parts) {
+        if ($parts === null) {
             $code = 2;
             $shortMessage = 'The CSV file was not found.';
             $body[] =  'The CSV file containing the part-numbers was not found in your request. Please, make sure that you are sending a "multipart/form-data" request with a "parts" field containing the CSV file. The "parts" field should be of type "file".';
