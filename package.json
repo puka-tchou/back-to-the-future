@@ -15,8 +15,8 @@
     "xlsx": "^0.15.5"
   },
   "devDependencies": {
-    "@babel/core": "7.8.7",
-    "@babel/preset-env": "7.8.7",
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.0",
     "@prettier/plugin-xml": "0.7.2",
     "autoprefixer": "9.7.4",
     "babel-preset-minify": "0.5.1",
