@@ -2,9 +2,9 @@ import XLSX from 'xlsx';
 import Chart from 'chart.js';
 
 const drawChart = (labels, datasets) => {
-  var canvas = document.getElementById('data-chart');
+  const canvas = document.getElementById('data-chart');
   canvas.innerText = '';
-  var stockChart = new Chart(canvas, {
+  const stockChart = new Chart(canvas, {
     type: 'line',
     data: {
       labels: labels,
@@ -133,9 +133,51 @@ const getStockFromFile = input => {
   });
 };
 
+const addPartsFromFile = input => {
+  const formData = new FormData();
+  const status = document.getElementById('add-parts-info');
+  const statusMessage = document.getElementById('add-parts-message');
+  const result = document.getElementById('add-parts-table');
+
+  result.innerText = '';
+  statusMessage.classList.remove('active');
+  formData.append('parts', input.files[0]);
+
+  fetch('http://src.test/api/add', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      console.log(json);
+      statusMessage.innerText = json.message;
+      for (const key in json['body']) {
+        if (json['body'].hasOwnProperty(key)) {
+          const element = json['body'][key];
+          const row = document.createElement('tr');
+          const partCell = row.insertCell();
+          const statusCell = row.insertCell();
+          let statusText = element['message'];
+
+          partCell.innerText = key;
+          if (element['body']['2'] !== null) {
+            statusText += ' ' + element['body']['2'];
+          }
+          statusCell.innerText = statusText;
+          result.appendChild(row);
+        }
+      }
+
+      status.classList.add('active');
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
   const getStock = document.getElementById('get-stock');
+  const addParts = document.getElementById('add-parts');
 
   drawChart();
 
@@ -152,6 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
       getStockFromFile(fileInput);
     } else {
       fileInput.click();
+    }
+  });
+
+  addParts.addEventListener('click', e => {
+    e.preventDefault();
+    if (fileInput.files.length === 1) {
+      console.log('Adding parts');
+      addPartsFromFile(fileInput);
     }
   });
 });

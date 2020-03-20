@@ -71,8 +71,11 @@
           />
         </form>
         <div class="btn-group">
-          <button class="btn btn-primary p-centered" id="get-stock">
+          <button class="btn btn-primary" id="get-stock">
             Get stock history
+          </button>
+          <button class="btn" id="add-parts">
+            Add the parts
           </button>
         </div>
         <div id="partlist" class="data-view">
@@ -117,6 +120,24 @@
                 V15W11-EZ015B03-KAW1
               </code>
             </pre>
+            Or you could try to add the part-numbers to the database.
+          </div>
+        </div>
+        <div id="add-parts-info">
+          <div>
+            <h3 id="add-parts-message" class="text-center"></h3>
+            <table class="table">
+              <caption>
+                Results of the operation
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Part-number</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="add-parts-table"></tbody>
+            </table>
           </div>
         </div>
         <h2>Data</h2>
