@@ -22,18 +22,18 @@ const plugin = (hook, vm) => {
     dark: {
       background: '#1c2022',
       toggleBtnBg: '#4d29b0',
-      textColor: '#b4b4b4'
+      textColor: '#b4b4b4',
     },
     light: {
       background: 'white',
       toggleBtnBg: '#3f9ef7',
-      textColor: 'var(--theme-color)'
-    }
+      textColor: 'var(--theme-color)',
+    },
   };
 
   theme = { ...defaultConfig, ...vm.config.darkMode };
 
-  hook.afterEach(function(html, next) {
+  hook.afterEach(function (html, next) {
     var darkEl = ` <div id="dark_mode">
              <input class="container_toggle" type="checkbox" id="switch" name="mode" />
              <label for="switch">Toggle</label>
@@ -42,7 +42,7 @@ const plugin = (hook, vm) => {
     next(html);
   });
 
-  hook.doneEach(function() {
+  hook.doneEach(function () {
     var currColor;
     if (localStorage.getItem('DOCSIFY_DARK_MODE')) {
       currColor = localStorage.getItem('DOCSIFY_DARK_MODE');
@@ -54,7 +54,7 @@ const plugin = (hook, vm) => {
 
     var checkbox = document.querySelector('input[name=mode]');
 
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
       // dark
       if (currColor === 'light') {
         trans();

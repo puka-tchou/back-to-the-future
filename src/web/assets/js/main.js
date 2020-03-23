@@ -8,35 +8,35 @@ const drawChart = (labels, datasets) => {
     type: 'line',
     data: {
       labels: labels,
-      datasets: datasets
+      datasets: datasets,
     },
     options: {
       scales: {
         yAxes: [
           {
             ticks: {
-              beginAtZero: true
-            }
-          }
-        ]
-      }
-    }
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   });
 };
 
-const getDataFromAPI = parts => {
+const getDataFromAPI = (parts) => {
   const target = document.getElementById('result-table');
   const formData = new FormData();
   formData.append('parts', parts.files[0]);
 
   fetch('http://src.test/api/parts', {
     method: 'POST',
-    body: formData
+    body: formData,
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
-    .then(json => {
+    .then((json) => {
       console.log({ json });
       const body = json['body'];
       const aobj = [];
@@ -58,7 +58,7 @@ const getDataFromAPI = parts => {
 
           aobj.push(body[key]);
 
-          stock.forEach(record => {
+          stock.forEach((record) => {
             if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
               i++;
               console.log({ record });
@@ -82,7 +82,7 @@ const getDataFromAPI = parts => {
               borderColor: '#FFC000',
               pointBackgroundColor: '#4240d4',
               pointBorderColor: '#4240d4',
-              fill: false
+              fill: false,
             });
           }
         }
@@ -97,7 +97,7 @@ const getDataFromAPI = parts => {
       XLSX.utils.book_append_sheet(wb, sheet);
       document
         .getElementById('download-button')
-        .addEventListener('click', e => {
+        .addEventListener('click', (e) => {
           XLSX.writeFile(wb, 'out.xlsx');
         });
 
@@ -109,7 +109,7 @@ const getDataFromAPI = parts => {
     });
 };
 
-const getStockFromFile = input => {
+const getStockFromFile = (input) => {
   const CSVFile = input.files[0];
   const reader = new FileReader();
   const target = document.getElementById('part-table');
@@ -133,7 +133,7 @@ const getStockFromFile = input => {
   });
 };
 
-const addPartsFromFile = input => {
+const addPartsFromFile = (input) => {
   const formData = new FormData();
   const status = document.getElementById('add-parts-info');
   const statusMessage = document.getElementById('add-parts-message');
@@ -145,12 +145,12 @@ const addPartsFromFile = input => {
 
   fetch('http://src.test/api/add', {
     method: 'POST',
-    body: formData
+    body: formData,
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
-    .then(json => {
+    .then((json) => {
       console.log(json);
       statusMessage.innerText = json.message;
       for (const key in json['body']) {
@@ -181,14 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   drawChart();
 
-  fileInput.addEventListener('change', e => {
+  fileInput.addEventListener('change', (e) => {
     e.preventDefault();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
     }
   });
 
-  getStock.addEventListener('click', e => {
+  getStock.addEventListener('click', (e) => {
     e.preventDefault();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  addParts.addEventListener('click', e => {
+  addParts.addEventListener('click', (e) => {
     e.preventDefault();
     if (fileInput.files.length === 1) {
       console.log('Adding parts');
