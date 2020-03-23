@@ -8,6 +8,10 @@ body {
   overflow: hidden;
 }
 
+header.navbar {
+  height: 8vh;
+}
+
 h1,
 h2 {
   text-align: center;
@@ -43,6 +47,10 @@ h2 {
 #add-parts-info {
   display: none;
 
+  > div {
+    max-width: 80%;
+  }
+
   &.active {
     display: flex;
     justify-content: center;
@@ -57,14 +65,6 @@ h2 {
     z-index: 9;
     color: #fff;
   }
-
-  > div {
-    max-width: 80%;
-  }
-}
-
-header.navbar {
-  height: 8vh;
 }
 
 .container {
@@ -91,7 +91,6 @@ section.data-container {
 
 .chart-container {
   position: relative;
-  height: 50vh;
   width: 100%;
 }
 
