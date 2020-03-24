@@ -102,7 +102,6 @@ const getDataFromAPI = (parts) => {
         });
 
       const statusInfo = document.getElementById('status-info');
-      statusInfo.classList.remove('active');
       if (datasets.length === 0) {
         statusInfo.classList.add('active');
       }
@@ -140,7 +139,6 @@ const addPartsFromFile = (input) => {
   const result = document.getElementById('add-parts-table');
 
   result.innerText = '';
-  statusMessage.classList.remove('active');
   formData.append('parts', input.files[0]);
 
   fetch('http://src.test/api/add', {
@@ -162,7 +160,7 @@ const addPartsFromFile = (input) => {
           let statusText = element['message'];
 
           partCell.innerText = key;
-          if (element['body']['2'] !== null) {
+          if (element['body']['2'] !== undefined) {
             statusText += ' ' + element['body']['2'];
           }
           statusCell.innerText = statusText;
@@ -174,6 +172,16 @@ const addPartsFromFile = (input) => {
     });
 };
 
+const clearActiveState = () => {
+  const statusMessage = document.getElementById('add-parts-message');
+  const statusInfo = document.getElementById('status-info');
+  const partsInfo = document.getElementById('add-parts-info');
+
+  statusMessage.classList.remove('active');
+  statusInfo.classList.remove('active');
+  partsInfo.classList.remove('active');
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
   const getStock = document.getElementById('get-stock');
@@ -183,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fileInput.addEventListener('change', (e) => {
     e.preventDefault();
+    clearActiveState();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
     }
@@ -190,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getStock.addEventListener('click', (e) => {
     e.preventDefault();
+    clearActiveState();
     if (fileInput.files.length === 1) {
       getStockFromFile(fileInput);
     } else {
@@ -199,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addParts.addEventListener('click', (e) => {
     e.preventDefault();
+    clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('Adding parts');
       addPartsFromFile(fileInput);
