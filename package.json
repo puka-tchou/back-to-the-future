@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel watch src/web/index.html -d dev/",
-    "stylefix": "prettier --write {src,public}/**/*.{js,html,xhtml,css,md,xml,yaml,yml}",
+    "style": "prettier --write **/*.{js,html,xhtml,css,md,xml,yaml,yml,json,svg}",
     "build": "parcel build src/web/index.html -d dist/web/ --public-url ."
   },
   "dependencies": {
