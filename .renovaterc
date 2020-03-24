@@ -1,15 +1,19 @@
 {
-  "extends": [
-    "config:base",
-    ":githubComToken(0PEoBlmUnVfmnMq+bbNNR4D3yfMOhG477h0AW8gSYat0hFXMZCsoaNFKY1wctgvMuBZwQ0dW0tFtrzf5QRXYjkHZxOo+A10xXRrud8JclA/wCIu/v1/A7WcIFqx/pEBLKmNUOQxJYdv8H2p/c0tfxOmAHCpZtpxtn/icH9EJXRROo5USpJLRshUx9J6WBYimudVG+zruICrPV0wDknwqtZ4mQjWklJJjrySqm/kVkIANy8JxXoNhcDQy2dsMBXtGdDR3c4atws6PNh/nOQYMUEXzfIRxQM1dAqitfrqMzLnzrLk0iRf8D1/+RnyyRO3v9IUSSILDN+3HsuMp6SM3rQ==)"
-  ],
-  "rebaseStalePrs": true,
-  "labels": [
-    "deps"
-  ],
   "assignees": [
     "gaspacchio"
   ],
+  "extends": [
+    ":githubComToken(0PEoBlmUnVfmnMq+bbNNR4D3yfMOhG477h0AW8gSYat0hFXMZCsoaNFKY1wctgvMuBZwQ0dW0tFtrzf5QRXYjkHZxOo+A10xXRrud8JclA/wCIu/v1/A7WcIFqx/pEBLKmNUOQxJYdv8H2p/c0tfxOmAHCpZtpxtn/icH9EJXRROo5USpJLRshUx9J6WBYimudVG+zruICrPV0wDknwqtZ4mQjWklJJjrySqm/kVkIANy8JxXoNhcDQy2dsMBXtGdDR3c4atws6PNh/nOQYMUEXzfIRxQM1dAqitfrqMzLnzrLk0iRf8D1/+RnyyRO3v9IUSSILDN+3HsuMp6SM3rQ==)",
+    "config:base"
+  ],
+  "labels": [
+    "deps"
+  ],
+  "masterIssue": true,
+  "prCreation": "not-pending",
+  "rebaseStalePrs": true,
+  "rebaseWhen": "behind-base-branch",
+  "unicodeEmoji": true,
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": [
