@@ -28,7 +28,7 @@ class Product
             $partNumber,
             $tracked_since,
             $updateInterval,
-            0,
+            -1,
             $manufacturer
             ))
         )
