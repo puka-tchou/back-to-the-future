@@ -1,44 +1,72 @@
 <?php namespace dealers\NetComponents;
 
 use dealers\iDealer\iDealer;
+use utilities\Reporter\Reporter;
 
-class NetComponents
+class NetComponents implements iDealer
 {
+    
     /**
      * @return mixed[]
      */
-    public function getStock(): void
+    public function getStock(string $part): array
     {
+        $reporter = new Reporter;
+        $code = 0;
+        $message = 'Found stock records';
+        $body = [];
+        $login = parse_ini_file(__DIR__ . '/../netcomponents.ini');
         define('BASE_URL', 'https://api.netcomponents.com/api/DILP/v3');
-        define('DEFAULT_AUTH', 'Authorization: Basic ' . base64_encode('crouzet:33abd2799589'));
+        define('DEFAULT_AUTH', 'Authorization: Basic ' . base64_encode($login['password']));
         define('DEFAULT_CONTENT', 'Content-Type:application/json');
         define('LOGIN', 'OAuth');
-        if (!isset($_SESSION[LOGIN])) {
-            $this->do_api_login();
-        }
-        die();
-    }
 
-    private function do_api_login(): void
-    {
-        $response = $this->get_api_response('/Login', DEFAULT_AUTH, 'POST', array(DEFAULT_CONTENT), array(), false);
-        $login_info = json_decode($response, true);
-        $_SESSION[LOGIN] = 'Authorization: '.$login_info['AuthToken'];
-        var_dump($response);
+        $login_response = $this->getApiResponse(BASE_URL.'/Login', DEFAULT_AUTH, 'POST', array(DEFAULT_CONTENT), array());
+        $token = 'Authorization: ' . json_decode($login_response, true)['AuthToken'];
+        $search_response = json_decode(
+            $this->getApiResponse(
+                BASE_URL.'/Search',
+                $token,
+                'GET',
+                array(),
+                array(
+                    'pn1' => $part,
+                    'SearchType' => 'EQUALS',
+                    'ClientIP' => $_SERVER['SERVER_ADDR']
+                    )
+            )
+        );
+
+        $filteredResponse = $search_response->SearchedParts[0]->Parts;
+        foreach ($filteredResponse as $value) {
+            $body[$value->Distributor->Name] = $value->Quantity;
+        }
+
+        return $reporter->format(
+            $code,
+            $message,
+            $body
+        );
     }
 
     /**
      * @return mixed|string
      */
-    private function get_api_response($url, $auth, $method, $headers = array(DEFAULT_CONTENT), $postData = array(), $retryOnFailure = true)
+    private function getApiResponse($url, $auth, $method, $headers, $postData): string
     {
-        $process = curl_init(BASE_URL.$url);
+        if (count($postData)>0) {
+            $url .= '?';
+            foreach ($postData as $key => $value) {
+                $url .= $key.'='.$value.'&';
+            }
+        }
+
+        $process = curl_init($url);
         $hdrs    = $headers;
         $hdrs[]  = $auth;
 
         curl_setopt($process, CURLOPT_HTTPHEADER, $hdrs);
         curl_setopt($process, CURLOPT_TIMEOUT, 30);
-    
         curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($process, CURLOPT_VERBOSE, 1);
         curl_setopt($process, CURLOPT_HEADER, 1);
@@ -51,24 +79,10 @@ class NetComponents
         }
 
         $response = curl_exec($process);
-
-        $http_status = curl_getinfo($process, CURLINFO_HTTP_CODE);
-        $error = curl_error($process);
         $header_size = curl_getinfo($process, CURLINFO_HEADER_SIZE);
-        $header = substr($response, 0, $header_size);
         $body = substr($response, $header_size);
 
         curl_close($process);
-
-        // if doesn't return OK header, login and retry
-        if ($http_status != 200) {
-            if ($http_status == 401 && $retryOnFailure) {
-                do_api_login();
-                return get_api_response($url, $method, $headers, $_SESSION[LOGIN], $postData, false);
-            } else {
-                die($header . '<br />' . $error);
-            }
-        }
 
         return $body;
     }
