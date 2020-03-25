@@ -37,7 +37,8 @@ const getDataFromAPI = (parts) => {
       return response.json();
     })
     .then((json) => {
-      console.log({ json });
+      console.log('📋 JSON result below');
+      console.log(json);
       const body = json['body'];
       const aobj = [];
       const datasets = [];
@@ -88,7 +89,8 @@ const getDataFromAPI = (parts) => {
         }
       }
       console.log({ datasets });
-      console.log({ dates });
+      console.log('📆 dates below');
+      console.log(dates);
 
       drawChart([...dates], datasets);
 
@@ -187,12 +189,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const getStock = document.getElementById('get-stock');
   const addParts = document.getElementById('add-parts');
 
+  console.log("🔥 let's go, I'm ready to rock!");
+
   drawChart();
 
   fileInput.addEventListener('change', (e) => {
     e.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
+      console.log('⏳ getting stock records...');
       getStockFromFile(fileInput);
     }
   });
@@ -201,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
+      console.log('⏳ getting stock records...');
       getStockFromFile(fileInput);
     } else {
       fileInput.click();
@@ -211,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
-      console.log('Adding parts');
+      console.log('⏳ adding parts');
       addPartsFromFile(fileInput);
     }
   });
