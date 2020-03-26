@@ -5,9 +5,12 @@ export const getStockFromFile = (input) => {
   const reader = new FileReader();
   const target = document.getElementById('part-table');
   const invalidDataInfo = document.getElementById('invalid-data-info');
+  const partsNumberInfo = document.getElementById('parts-number-info');
   let isValidData = true;
   let data;
+
   target.innerText = '';
+
   reader.readAsText(CSVFile);
   reader.addEventListener('loadend', () => {
     data = reader.result.split('\r\n').filter((value, index, self) => {
@@ -30,6 +33,7 @@ export const getStockFromFile = (input) => {
       target.appendChild(row);
     }
     if (isValidData) {
+      partsNumberInfo.innerText = `${data.length} part-numbers in this set.`;
       getDataFromAPI(input);
     }
   });
