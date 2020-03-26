@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log("🔥 let's go, I'm ready to rock!");
 
-  // drawChart();
+  drawChart();
 
   fileInput.addEventListener('change', (e) => {
     e.preventDefault();

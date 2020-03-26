@@ -5,6 +5,7 @@ export const addPartsFromFile = (input) => {
   const status = document.getElementById('add-parts-info');
   const statusMessage = document.getElementById('add-parts-message');
   const result = document.getElementById('add-parts-table');
+
   result.innerText = '';
   formData.append('parts', input.files[0]);
   fetch('http://src.test/api/add', {

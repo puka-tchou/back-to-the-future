@@ -1,5 +1,6 @@
 import XLSX from 'xlsx';
 import { clearActiveState } from './clearActiveState';
+import { drawChart } from './drawChart';
 
 export const getDataFromAPI = (parts) => {
   const target = document.getElementById('result-table');
@@ -62,7 +63,7 @@ export const getDataFromAPI = (parts) => {
       console.log(datasets);
       console.log('📆 dates below');
       console.log(dates);
-      // drawChart([...dates], datasets);
+      drawChart([...dates], datasets);
       const sheet = XLSX.utils.json_to_sheet(aobj);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, sheet);
