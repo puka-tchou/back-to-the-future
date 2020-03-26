@@ -10,41 +10,38 @@ use utilities\Reporter\Reporter;
 class UpdateStock
 {
     /** Add a stock record for the given part-number.
-     * @param string $partNumber The part-number.
+     * @param string $part The part-number.
      *
      * @return mixed[] `true` if the operation succeeded, an `array` containing
      * informations about the error if the operation did not succeeded.
      */
-    public function addRecord(string $partNumber): array
+    public function addRecord(string $part): array
     {
         $database = new Database;
         $stock = new Stock;
         $reporter = new Reporter;
-        $partNumber = strtoupper($partNumber);
+        $part = strtoupper($part);
         $code = 4;
-        $message = 'Part-number not found.';
+        $message = 'Part-number ' . $part . ' not found in the database.';
         $body = array();
 
-        if ($database->partNumberExists($partNumber)) {
+        if ($database->partNumberExists($part)) {
             $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
-
-            $res = $stock->getFromDealers($partNumber);
-            $stockValues = $res['body']['alliedelec'];
-            $partsInStock = isset($stockValues['parts_in_stock']) ? $stockValues['parts_in_stock'] : -1;
-            $partsOnOrder = isset($stockValues['parts_on_order']) ? $stockValues['parts_on_order'] : -1;
-            $minOrder = isset($stockValues['parts_min_order']) ? $stockValues['parts_min_order'] : -1;
+            
+            $res = $stock->getFromDilp($part);
             $date = date('Y-m-d');
-
             $code = $res['code'];
             $message = $res['message'];
-            $body = $stockValues;
+            $body = $res['body'];
 
-            $SQLres = $query->execute(array($partNumber, $date, $partsInStock, $partsOnOrder, $minOrder, 'alliedelec', $code));
+            foreach ($body['stock'] as $dealer => $stock) {
+                $SQLres = $query->execute(array($part, $date, $stock, -1, -1, $dealer, $code));
         
-            if (!$SQLres) {
-                $code = 5;
-                $message = 'SQL error.';
-                $body = $query->errorInfo();
+                if (!$SQLres) {
+                    $code = 5;
+                    $message = 'SQL error.';
+                    $body = $query->errorInfo();
+                }
             }
         }
             

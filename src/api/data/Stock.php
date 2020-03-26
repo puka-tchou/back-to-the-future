@@ -38,7 +38,25 @@ class Stock
     /** Retrieve stock informations for a given part number from the netComponents API.
      * @param string $part The part-number. It must be one of Crouzet's part-number.
      *
-     * @return array
+     * @return array A `Reporter` formatted array with the stock information in the body.
+     * ```json
+     * {
+     *  'code': 0,
+     *    'message': 'Found stock for 10 dealers.',
+     *    'body': {
+     *      'Mouser Electronics Inc.': 36,
+     *      'Allied Electronics': 50,
+     *      'Digi-Key Electronics': 97,
+     *      'Distrelec Group AG': 73,
+     *      'Electro Sonic Group, Inc.': 8,
+     *      'Galco Industrial Electronics': 23,
+     *      'Master Electronics': 6,
+     *      'Newark, An Avnet Company': 16,
+     *      'Sentronic AG': 9,
+     *      'OEM Automatic UK': 17
+     *     }
+     * }
+     * ```
      */
     public function getFromDilp(string $part): array
     {
@@ -48,10 +66,8 @@ class Stock
 
         $res = $netcomponents->getStock($part);
 
-        var_dump($res);
-
         $code = $res['code'];
-        $message = $res['message'];
+        $message = $part . ': ' . $res['message'];
         $body = array(
             'part_number' => $part,
             'date_checked' => date('Y-m-d'),
