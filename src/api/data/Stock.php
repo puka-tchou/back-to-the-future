@@ -2,6 +2,7 @@
 
 use data\Database\Database;
 use dealers\AlliedElec\AlliedElec;
+use dealers\NetComponents\NetComponents;
 use PDO;
 use utilities\Reporter\Reporter;
 
@@ -11,7 +12,7 @@ use utilities\Reporter\Reporter;
 class Stock
 {
     /** Retrieve stock informations for a given part number from online stores.
-     * @param string $part The part number to test.
+     * @param string $part The part number.
      *
      * @return array
      */
@@ -29,6 +30,32 @@ class Stock
             'part_number' => $part,
             'date_checked' => date('Y-m-d'),
             'alliedelec' => $res['body']
+        );
+
+        return $reporter->format($code, $message, $body);
+    }
+
+    /** Retrieve stock informations for a given part number from the netComponents API.
+     * @param string $part The part-number. It must be one of Crouzet's part-number.
+     *
+     * @return array
+     */
+    public function getFromDilp(string $part): array
+    {
+        $part = strtoupper($part);
+        $netcomponents = new NetComponents;
+        $reporter = new Reporter;
+
+        $res = $netcomponents->getStock($part);
+
+        var_dump($res);
+
+        $code = $res['code'];
+        $message = $res['message'];
+        $body = array(
+            'part_number' => $part,
+            'date_checked' => date('Y-m-d'),
+            'stock' => $res['body']
         );
 
         return $reporter->format($code, $message, $body);
