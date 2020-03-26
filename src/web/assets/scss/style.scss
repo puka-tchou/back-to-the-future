@@ -17,38 +17,15 @@ h2 {
   text-align: center;
 }
 
-#status-info {
-  display: none;
-
-  &.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(87, 85, 217, 0.9);
-    z-index: 9;
-    color: #fff;
-
-    > div {
-      max-width: 80%;
-
-      > pre {
-        white-space: pre-line;
-      }
-    }
-  }
-}
-
-#add-parts-info {
+.info-display {
   display: none;
 
   > div {
     max-width: 80%;
+
+    > pre {
+      white-space: pre-line;
+    }
   }
 
   &.active {
