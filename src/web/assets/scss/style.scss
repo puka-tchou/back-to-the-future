@@ -96,3 +96,10 @@ div {
 button#download-button {
   margin: 0.5rem auto;
 }
+
+.loading {
+  display: none;
+  &.active {
+    display: block;
+  }
+}

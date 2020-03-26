@@ -37,6 +37,7 @@ const getDataFromAPI = (parts) => {
       return response.json();
     })
     .then((json) => {
+      clearActiveState();
       console.log('📋 JSON result below');
       console.log(json);
       const body = json['body'];
@@ -62,7 +63,6 @@ const getDataFromAPI = (parts) => {
           stock.forEach((record) => {
             if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
               i++;
-              console.log({ record });
               dates.add(record['date_checked']);
               data.push(record['parts_in_stock']);
               label.add(record['part_number']);
@@ -76,7 +76,6 @@ const getDataFromAPI = (parts) => {
           });
 
           if (data.length > 0) {
-            console.log({ data });
             datasets.push({
               label: [...label][0],
               data: data,
@@ -88,7 +87,8 @@ const getDataFromAPI = (parts) => {
           }
         }
       }
-      console.log({ datasets });
+      console.log('💽 dataset below');
+      console.log(datasets);
       console.log('📆 dates below');
       console.log(dates);
 
@@ -166,6 +166,7 @@ const addPartsFromFile = (input) => {
     })
     .then((json) => {
       console.log(json);
+      clearActiveState();
       statusMessage.innerText = json.message;
       for (const key in json['body']) {
         if (json['body'].hasOwnProperty(key)) {
@@ -193,17 +194,20 @@ const clearActiveState = () => {
   const statusInfo = document.getElementById('status-info');
   const partsInfo = document.getElementById('add-parts-info');
   const invalidDataInfo = document.getElementById('invalid-data-info');
+  const loadingInfo = document.getElementById('loading-info');
 
   statusMessage.classList.remove('active');
   statusInfo.classList.remove('active');
   partsInfo.classList.remove('active');
   invalidDataInfo.classList.remove('active');
+  loadingInfo.classList.remove('active');
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
   const getStock = document.getElementById('get-stock');
   const addParts = document.getElementById('add-parts');
+  const loadingInfo = document.getElementById('loading-info');
 
   console.log("🔥 let's go, I'm ready to rock!");
 
@@ -214,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ getting stock records...');
+      loadingInfo.classList.add('active');
       getStockFromFile(fileInput);
     }
   });
@@ -223,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ getting stock records...');
+      loadingInfo.classList.add('active');
       getStockFromFile(fileInput);
     } else {
       fileInput.click();
@@ -234,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ adding parts');
+      loadingInfo.classList.add('active');
       addPartsFromFile(fileInput);
     }
   });
