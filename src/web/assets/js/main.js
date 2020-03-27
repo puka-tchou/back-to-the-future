@@ -2,6 +2,7 @@ import { addPartsFromFile } from './addPartsFromFile';
 import { clearActiveState } from './clearActiveState';
 import { drawChart } from './drawChart';
 import { getStockFromFile } from './getStockFromFile';
+import 'spectre.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-upload');
