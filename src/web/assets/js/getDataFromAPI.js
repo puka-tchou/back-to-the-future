@@ -1,9 +1,12 @@
 import XLSX from 'xlsx';
 import { clearActiveState } from './clearActiveState';
+import { drawChart } from './drawChart';
 
 export const getDataFromAPI = (parts) => {
   const resultTable = document.getElementById('result-table');
   const formData = new FormData();
+
+  console.time('api');
 
   formData.append('parts', parts.files[0]);
   fetch('http://src.test/api/parts', {
@@ -17,7 +20,11 @@ export const getDataFromAPI = (parts) => {
       const statusInfo = document.getElementById('status-info');
       const body = json['body'];
       const aobj = [];
+      let i = 0;
 
+      console.log(`🚅 API returned a response: ${json['message']}`);
+      console.timeEnd('api');
+      console.time('data-processing');
       console.log('📋 JSON result below');
       console.log(json);
       resultTable.innerText = '';
@@ -29,7 +36,6 @@ export const getDataFromAPI = (parts) => {
           const statusCell = row.insertCell();
           const responseCell = row.insertCell();
           const stock = body[part]['body'];
-          let i = 0;
 
           aobj.push(body[part]);
 
@@ -47,11 +53,17 @@ export const getDataFromAPI = (parts) => {
         }
       }
 
+      console.log('⏳ table creation ended');
+      console.timeLog('data-processing');
       clearActiveState();
 
       if (i === 0) {
         statusInfo.classList.add('active');
       }
+
+      drawChart(body);
+      console.log('⌛ data processing has ended');
+      console.timeEnd('data-processing');
 
       const sheet = XLSX.utils.json_to_sheet(aobj);
       const wb = XLSX.utils.book_new();
