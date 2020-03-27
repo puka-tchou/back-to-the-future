@@ -12,7 +12,6 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "spectre.css": "^0.5.8",
-    "tabler-icons": "^1.2.1",
     "xlsx": "^0.15.5"
   },
   "devDependencies": {
