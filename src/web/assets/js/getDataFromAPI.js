@@ -1,4 +1,3 @@
-import XLSX from 'xlsx';
 import { clearActiveState } from './clearActiveState';
 import { drawChart } from './drawChart';
 
@@ -6,7 +5,7 @@ export const getDataFromAPI = (parts) => {
   const resultTable = document.getElementById('result-table');
   const formData = new FormData();
 
-  console.time('api');
+  performance.mark('start');
 
   formData.append('parts', parts.files[0]);
   fetch('http://src.test/api/parts', {
@@ -23,10 +22,11 @@ export const getDataFromAPI = (parts) => {
       let i = 0;
 
       console.log(`🚅 API returned a response: ${json['message']}`);
-      console.timeEnd('api');
-      console.time('data-processing');
       console.log('📋 JSON result below');
       console.log(json);
+      performance.mark('api-end');
+      performance.mark('table-start');
+
       resultTable.innerText = '';
 
       for (const part in body) {
@@ -53,25 +53,33 @@ export const getDataFromAPI = (parts) => {
         }
       }
 
-      console.log('⏳ table creation ended');
-      console.timeLog('data-processing');
       clearActiveState();
+      console.log('⏳ table creation ended');
+      performance.mark('table-end');
 
       if (i === 0) {
         statusInfo.classList.add('active');
       }
 
       drawChart(body);
-      console.log('⌛ data processing has ended');
-      console.timeEnd('data-processing');
 
-      const sheet = XLSX.utils.json_to_sheet(aobj);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, sheet);
-      document
-        .getElementById('download-button')
-        .addEventListener('click', () => {
-          XLSX.writeFile(wb, 'out.xlsx');
-        });
+      // const sheet = XLSX.utils.json_to_sheet(aobj);
+      // const wb = XLSX.utils.book_new();
+      // XLSX.utils.book_append_sheet(wb, sheet);
+      // document
+      //   .getElementById('download-button')
+      //   .addEventListener('click', () => {
+      //     XLSX.writeFile(wb, 'out.xlsx');
+      //   });
+
+      // Performance measurements calls
+      console.log('⌛ data processing has ended');
+      performance.mark('end');
+      performance.measure('api', 'start', 'api-end');
+      performance.measure('table', 'table-start', 'table-end');
+      performance.measure('total', 'start', 'end');
+      console.log(performance.getEntriesByType('measure'));
+      performance.clearMarks();
+      performance.clearMeasures();
     });
 };
