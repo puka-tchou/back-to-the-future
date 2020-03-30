@@ -10,7 +10,7 @@
     "deps"
   ],
   "masterIssue": true,
-  "prCreation": "not-pending",
+  "prCreation": "immediate",
   "rebaseStalePrs": true,
   "rebaseWhen": "behind-base-branch",
   "unicodeEmoji": true,
