@@ -3,11 +3,13 @@ import { drawChart } from './drawChart';
 
 export const getDataFromAPI = (parts) => {
   const resultTable = document.getElementById('result-table');
+  const fragment = document.createDocumentFragment();
   const formData = new FormData();
 
   performance.mark('start');
 
   formData.append('parts', parts.files[0]);
+  console.log('👋 querying API...');
   fetch('http://src.test/api/parts', {
     method: 'POST',
     body: formData,
@@ -18,7 +20,6 @@ export const getDataFromAPI = (parts) => {
     .then((json) => {
       const statusInfo = document.getElementById('status-info');
       const body = json['body'];
-      const aobj = [];
       let i = 0;
 
       console.log(`🚅 API returned a response: ${json['message']}`);
@@ -29,6 +30,7 @@ export const getDataFromAPI = (parts) => {
 
       resultTable.innerText = '';
 
+      console.log('📋 table creation has started.');
       for (const part in body) {
         if (body.hasOwnProperty(part)) {
           const row = document.createElement('tr');
@@ -36,8 +38,6 @@ export const getDataFromAPI = (parts) => {
           const statusCell = row.insertCell();
           const responseCell = row.insertCell();
           const stock = body[part]['body'];
-
-          aobj.push(body[part]);
 
           stock.forEach((record) => {
             if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
@@ -47,14 +47,16 @@ export const getDataFromAPI = (parts) => {
                 record['state'] === '0' ? i + ' records found.' : '';
               responseCell.innerText += record['parts_in_stock'];
               responseCell.innerText += ', ';
-              resultTable.appendChild(row);
+              fragment.appendChild(row);
             }
           });
         }
       }
 
+      resultTable.appendChild(fragment);
+
       clearActiveState();
-      console.log('⏳ table creation ended');
+      console.log('⭕ table creation ended');
       performance.mark('table-end');
 
       if (i === 0) {
@@ -62,15 +64,6 @@ export const getDataFromAPI = (parts) => {
       }
 
       drawChart(body);
-
-      // const sheet = XLSX.utils.json_to_sheet(aobj);
-      // const wb = XLSX.utils.book_new();
-      // XLSX.utils.book_append_sheet(wb, sheet);
-      // document
-      //   .getElementById('download-button')
-      //   .addEventListener('click', () => {
-      //     XLSX.writeFile(wb, 'out.xlsx');
-      //   });
 
       // Performance measurements calls
       console.log('⌛ data processing has ended');
