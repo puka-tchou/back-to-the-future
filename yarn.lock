@@ -5995,7 +5995,7 @@ parcel-plugin-imagemin@4.0.1:
     imagemin-webp "^5.1.0"
     parcel-bundler "^1.10.3"
 
-parcel-plugin-purifycss@^1.0.5:
+parcel-plugin-purifycss@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/parcel-plugin-purifycss/-/parcel-plugin-purifycss-1.0.5.tgz#3798d76df9326d3b1edffdb87f0909f30b8bc4bf"
   integrity sha512-U9OsoC7e++9px23g9//RrTF/oCaoeeTCBuQ8oSxoQefz9R2JdcikcqsTga6sP8Re8pm8bEox/mVOu+35AEPCdA==
