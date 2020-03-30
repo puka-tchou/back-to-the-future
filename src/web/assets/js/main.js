@@ -1,6 +1,5 @@
 import { addPartsFromFile } from './addPartsFromFile';
 import { clearActiveState } from './clearActiveState';
-import { drawChart } from './drawChart';
 import { getStockFromFile } from './getStockFromFile';
 import 'spectre.css';
 
@@ -11,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadingInfo = document.getElementById('loading-info');
 
   console.log("🔥 let's go, I'm ready to rock!");
-
-  drawChart();
 
   fileInput.addEventListener('change', (e) => {
     e.preventDefault();

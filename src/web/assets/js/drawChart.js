@@ -4,8 +4,28 @@ export const drawChart = (data) => {
   const canvas = document.getElementById('data-chart');
   const select = document.getElementById('part-number-select');
   const dates = new Set();
-  const datasets = [];
-  const stock = {};
+  let stock = {};
+  let datasets = [];
+  let labels = [];
+
+  const chart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: datasets,
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
 
   canvas.innerText = '';
   select.innnerText = '';
@@ -21,9 +41,11 @@ export const drawChart = (data) => {
     }
 
     select.addEventListener('change', (e) => {
-      e.preventDefault();
-      canvas.innerText = '';
-      console.log(select.value);
+      datasets = [];
+      labels = [];
+      stock = {};
+
+      console.log(`⛏️ part_number selected is ${select.value}`);
 
       data[select.value]['body'].forEach((record) => {
         const supplier = record['supplier'];
@@ -35,7 +57,7 @@ export const drawChart = (data) => {
         dates.add(record['date_checked']);
       });
 
-      const labels = [...dates];
+      labels = [...dates];
 
       for (const label in stock) {
         if (stock.hasOwnProperty(label)) {
@@ -59,24 +81,9 @@ export const drawChart = (data) => {
       console.log(labels);
       console.log(datasets);
 
-      new Chart(canvas, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: datasets,
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
-        },
-      });
+      chart.data.labels = labels;
+      chart.data.datasets = datasets;
+      chart.update();
     });
   }
 };
