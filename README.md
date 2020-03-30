@@ -10,6 +10,8 @@
   - [Documentation](#documentation)
   - [Contributing](#contributing)
 
+![Demo GIF](public/_media/demo.1.1.0.gif)
+
 ## The purpose
 
 This tool is intended to capture the stock history for a set of part-numbers on various online retailers. Here is a full list of the supported online store as of v1.0.0:
