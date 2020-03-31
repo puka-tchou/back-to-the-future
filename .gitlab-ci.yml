@@ -51,6 +51,14 @@ lhci:
     - yarn global add @lhci/cli@0.3.x
     - lhci autorun --upload.target=temporary-public-storage --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
 
+lint:
+  stage: test
+  image: node:latest
+  script:
+    - yarn install
+    - yarn run lint
+  allow_failure: true
+
 deploy:
   stage: deploy
   dependencies:
