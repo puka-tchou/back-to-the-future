@@ -42,6 +42,15 @@ sonarcloud-check:
     - master
     - develop
 
+lhci:
+  stage: test
+  image: cypress/browsers:node10.16.0-chrome77
+  script:
+    - yarn install
+    - yarn run build
+    - yarn global add @lhci/cli@0.3.x
+    - lhci autorun --upload.target=temporary-public-storage --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
+
 deploy:
   stage: deploy
   dependencies:
