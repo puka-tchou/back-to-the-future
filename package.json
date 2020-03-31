@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel watch src/web/index.html -d dev/",
+    "ci": "parcel src/web/index.html -d dev/ci/",
     "style": "prettier --write **/*.{js,html,xhtml,css,md,xml,yaml,yml,json,svg}",
     "build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
   },
