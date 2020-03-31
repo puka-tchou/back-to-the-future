@@ -1,11 +1,12 @@
 const plugin = (hook, vm) => {
-  var trans = () => {
+  const trans = () => {
     document.documentElement.classList.add('transition');
     window.setTimeout(() => {
       document.documentElement.classList.remove('transition');
     }, 800);
   };
-  var setColor = ({ background, toggleBtnBg, textColor }) => {
+
+  const setColor = ({ background, toggleBtnBg, textColor }) => {
     document.documentElement.style.setProperty(
       '--docsify_dark_mode_bg',
       background
@@ -17,8 +18,8 @@ const plugin = (hook, vm) => {
     document.documentElement.style.setProperty('--text_color', textColor);
   };
 
-  var theme = { dark: {}, light: {} };
-  var defaultConfig = {
+  let theme = { dark: {}, light: {} };
+  const defaultConfig = {
     dark: {
       background: '#1c2022',
       toggleBtnBg: '#4d29b0',
@@ -34,16 +35,16 @@ const plugin = (hook, vm) => {
   theme = { ...defaultConfig, ...vm.config.darkMode };
 
   hook.afterEach(function (html, next) {
-    var darkEl = ` <div id="dark_mode">
+    const darkElement = ` <div id="dark_mode">
              <input class="container_toggle" type="checkbox" id="switch" name="mode" />
              <label for="switch">Toggle</label>
            </div>`;
-    html = `${darkEl}${html}`;
+    html = `${darkElement}${html}`;
     next(html);
   });
 
   hook.doneEach(function () {
-    var currColor;
+    let currColor;
     if (localStorage.getItem('DOCSIFY_DARK_MODE')) {
       currColor = localStorage.getItem('DOCSIFY_DARK_MODE');
       setColor(theme[`${currColor}`]);
@@ -52,10 +53,10 @@ const plugin = (hook, vm) => {
       setColor(theme.light);
     }
 
-    var checkbox = document.querySelector('input[name=mode]');
+    const checkbox = document.querySelector('input[name=mode]');
 
     checkbox.addEventListener('change', function () {
-      // dark
+      // Dark
       if (currColor === 'light') {
         trans();
         setColor(theme.dark);

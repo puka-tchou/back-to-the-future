@@ -4,18 +4,18 @@ import { getStockFromFile } from './getStockFromFile';
 import 'spectre.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const fileInput = document.getElementById('file-upload');
-  const getStock = document.getElementById('get-stock');
-  const addParts = document.getElementById('add-parts');
-  const loadingInfo = document.getElementById('loading-info');
+  const fileInput = document.querySelector('#file-upload');
+  const getStock = document.querySelector('#get-stock');
+  const addParts = document.querySelector('#add-parts');
+  const loadingInfo = document.querySelector('#loading-info');
 
-  console.log("🔥 let's go, I'm ready to rock!");
+  console.log('🔥 let’s go, I’m ready to rock!');
 
   fileInput.addEventListener('change', (e) => {
     e.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
-      console.log('⏳ getting stock records...');
+      console.log('⏳ getting stock records…');
       loadingInfo.classList.add('active');
       getStockFromFile(fileInput);
     }
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
-      console.log('⏳ getting stock records...');
+      console.log('⏳ getting stock records…');
       loadingInfo.classList.add('active');
       getStockFromFile(fileInput);
     } else {

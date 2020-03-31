@@ -3,13 +3,13 @@ import { getDataFromAPI } from './getDataFromAPI';
 export const getStockFromFile = (input) => {
   const CSVFile = input.files[0];
   const reader = new FileReader();
-  const target = document.getElementById('part-table');
-  const invalidDataInfo = document.getElementById('invalid-data-info');
-  const partsNumberInfo = document.getElementById('parts-number-info');
+  const target = document.querySelector('#part-table');
+  const invalidDataInfo = document.querySelector('#invalid-data-info');
+  const partsNumberInfo = document.querySelector('#parts-number-info');
   let isValidData = true;
   let data;
 
-  target.innerText = '';
+  target.textContent = '';
 
   reader.readAsText(CSVFile);
   reader.addEventListener('loadend', () => {
@@ -25,15 +25,17 @@ export const getStockFromFile = (input) => {
         invalidDataInfo.classList.add('active');
         break;
       }
+
       const row = document.createElement('tr');
       const idCell = row.insertCell();
       const contentCell = row.insertCell();
-      idCell.innerText = index;
-      contentCell.innerText = line;
-      target.appendChild(row);
+      idCell.textContent = index;
+      contentCell.textContent = line;
+      target.append(row);
     }
+
     if (isValidData) {
-      partsNumberInfo.innerText = `${data.length} part-numbers in this set.`;
+      partsNumberInfo.textContent = `${data.length} part-numbers in this set.`;
       getDataFromAPI(input);
     }
   });

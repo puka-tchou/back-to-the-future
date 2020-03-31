@@ -1,9 +1,9 @@
 export const clearActiveState = () => {
-  const statusMessage = document.getElementById('add-parts-message');
-  const statusInfo = document.getElementById('status-info');
-  const partsInfo = document.getElementById('add-parts-info');
-  const invalidDataInfo = document.getElementById('invalid-data-info');
-  const loadingInfo = document.getElementById('loading-info');
+  const statusMessage = document.querySelector('#add-parts-message');
+  const statusInfo = document.querySelector('#status-info');
+  const partsInfo = document.querySelector('#add-parts-info');
+  const invalidDataInfo = document.querySelector('#invalid-data-info');
+  const loadingInfo = document.querySelector('#loading-info');
 
   statusMessage.classList.remove('active');
   statusInfo.classList.remove('active');

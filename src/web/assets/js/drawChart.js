@@ -1,8 +1,8 @@
 import Chart from 'chart.js';
 
 export const drawChart = (data) => {
-  const canvas = document.getElementById('data-chart');
-  const select = document.getElementById('part-number-select');
+  const canvas = document.querySelector('#data-chart');
+  const select = document.querySelector('#part-number-select');
   const dates = new Set();
   let stock = {};
   let datasets = [];
@@ -11,8 +11,8 @@ export const drawChart = (data) => {
   const chart = new Chart(canvas, {
     type: 'line',
     data: {
-      labels: labels,
-      datasets: datasets,
+      labels,
+      datasets,
     },
     options: {
       scales: {
@@ -27,16 +27,16 @@ export const drawChart = (data) => {
     },
   });
 
-  canvas.innerText = '';
+  canvas.textContent = '';
   select.innnerText = '';
 
   if (data !== undefined) {
     for (const partNumber in data) {
       if (data.hasOwnProperty(partNumber)) {
         const option = document.createElement('option');
-        option.innerText = partNumber;
+        option.textContent = partNumber;
         option.value = partNumber;
-        select.appendChild(option);
+        select.append(option);
       }
     }
 
@@ -47,14 +47,14 @@ export const drawChart = (data) => {
 
       console.log(`⛏️ part_number selected is ${select.value}`);
 
-      data[select.value]['body'].forEach((record) => {
-        const supplier = record['supplier'];
+      data[select.value].body.forEach((record) => {
+        const supplier = record.supplier;
         if (stock[supplier] == undefined) {
           stock[supplier] = [];
         }
 
-        stock[supplier].push(record['parts_in_stock']);
-        dates.add(record['date_checked']);
+        stock[supplier].push(record.parts_in_stock);
+        dates.add(record.date_checked);
       });
 
       labels = [...dates];
@@ -67,10 +67,11 @@ export const drawChart = (data) => {
           for (let i = 0; i < label.length; i++) {
             sum += label.charCodeAt(i);
           }
+
           const color = `#${sum.toString(16)}`;
 
           datasets.push({
-            label: label,
+            label,
             data: stock[label],
             fill: false,
             borderColor: color,

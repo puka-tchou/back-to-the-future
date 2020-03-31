@@ -2,14 +2,14 @@ import { clearActiveState } from './clearActiveState';
 import { drawChart } from './drawChart';
 
 export const getDataFromAPI = (parts) => {
-  const resultTable = document.getElementById('result-table');
+  const resultTable = document.querySelector('#result-table');
   const fragment = document.createDocumentFragment();
   const formData = new FormData();
 
   performance.mark('start');
 
   formData.append('parts', parts.files[0]);
-  console.log('👋 querying API...');
+  console.log('👋 querying API…');
   fetch('http://src.test/api/parts', {
     method: 'POST',
     body: formData,
@@ -18,15 +18,15 @@ export const getDataFromAPI = (parts) => {
       return response.json();
     })
     .then((json) => {
-      const statusInfo = document.getElementById('status-info');
-      const body = json['body'];
+      const statusInfo = document.querySelector('#status-info');
+      const body = json.body;
       let i = 0;
 
       console.log(`🚅 API returned a response: ${json}`);
       performance.mark('api-end');
       performance.mark('table-start');
 
-      resultTable.innerText = '';
+      resultTable.textContent = '';
 
       console.log('📋 table creation has started.');
       for (const part in body) {
@@ -35,23 +35,23 @@ export const getDataFromAPI = (parts) => {
           const partCell = row.insertCell();
           const statusCell = row.insertCell();
           const responseCell = row.insertCell();
-          const stock = body[part]['body'];
+          const stock = body[part].body;
 
           stock.forEach((record) => {
-            if (record['state'] === '0' && record['parts_in_stock'] !== '-1') {
+            if (record.state === '0' && record.parts_in_stock !== '-1') {
               i++;
-              partCell.innerText = record['part_number'];
-              statusCell.innerText =
-                record['state'] === '0' ? i + ' records found.' : '';
-              responseCell.innerText += record['parts_in_stock'];
-              responseCell.innerText += ', ';
-              fragment.appendChild(row);
+              partCell.textContent = record.part_number;
+              statusCell.textContent =
+                record.state === '0' ? i + ' records found.' : '';
+              responseCell.textContent += record.parts_in_stock;
+              responseCell.textContent += ', ';
+              fragment.append(row);
             }
           });
         }
       }
 
-      resultTable.appendChild(fragment);
+      resultTable.append(fragment);
 
       clearActiveState();
       console.log('⭕ table creation ended');
