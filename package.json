@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "chart.js": "@3.0.0-alpha",
-    "excel4node": "^1.7.2",
-    "spectre.css": "^0.5.8"
+    "excel4node": "1.7.2",
+    "spectre.css": "0.5.8"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
@@ -23,7 +23,7 @@
     "babel-preset-minify": "0.5.1",
     "cssnano": "4.1.10",
     "cssnano-preset-advanced": "4.0.7",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-prettier": "3.1.2",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-imagemin": "4.0.1",
     "parcel-plugin-purifycss": "1.0.5",
@@ -37,6 +37,6 @@
     "stylelint-config-prettier": "8.0.1",
     "stylelint-config-standard": "20.0.0",
     "stylelint-prettier": "1.1.2",
-    "xo": "^0.28.1"
+    "xo": "0.28.1"
   }
 }
