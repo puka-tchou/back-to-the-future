@@ -22,9 +22,7 @@ export const getDataFromAPI = (parts) => {
       const body = json['body'];
       let i = 0;
 
-      console.log(`🚅 API returned a response: ${json['message']}`);
-      console.log('📋 JSON result below');
-      console.log(json);
+      console.log(`🚅 API returned a response: ${json}`);
       performance.mark('api-end');
       performance.mark('table-start');
 
