@@ -40,7 +40,7 @@ export const drawChart = (data) => {
       }
     }
 
-    select.addEventListener('change', (e) => {
+    select.addEventListener('change', () => {
       datasets = [];
       labels = [];
       stock = {};
@@ -49,7 +49,7 @@ export const drawChart = (data) => {
 
       data[select.value].body.forEach((record) => {
         const supplier = record.supplier;
-        if (stock[supplier] == undefined) {
+        if (stock[supplier] === undefined) {
           stock[supplier] = [];
         }
 

@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('🔥 let’s go, I’m ready to rock!');
 
-  fileInput.addEventListener('change', (e) => {
-    e.preventDefault();
+  fileInput.addEventListener('change', (event) => {
+    event.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ getting stock records…');
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  getStock.addEventListener('click', (e) => {
-    e.preventDefault();
+  getStock.addEventListener('click', (event) => {
+    event.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ getting stock records…');
@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  addParts.addEventListener('click', (e) => {
-    e.preventDefault();
+  addParts.addEventListener('click', (event) => {
+    event.preventDefault();
     clearActiveState();
     if (fileInput.files.length === 1) {
       console.log('⏳ adding parts');

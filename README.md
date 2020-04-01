@@ -1,6 +1,6 @@
 # Stock and pricing history
 
-[![Repository](https://badgen.net/badge/repository/gitlab/orange?icon=gitlab)](https://gitlab.com/gaspacchio/back-to-the-future) [![MIT license](https://badgen.net/badge/license/MIT/blue)](https://gitlab.com/gaspacchio/back-to-the-future/-/blob/master/LICENSE) [![Gitlab pipeline status](https://gitlab.com/gaspacchio/back-to-the-future/badges/master/pipeline.svg)](https://gitlab.com/gaspacchio/back-to-the-future/-/commits/master) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=gaspacchio_back-to-the-future&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=gaspacchio_back-to-the-future)
+[![Repository](https://badgen.net/badge/repository/gitlab/orange?icon=gitlab)](https://gitlab.com/gaspacchio/back-to-the-future) [![MIT license](https://badgen.net/badge/license/MIT/blue)](https://gitlab.com/gaspacchio/back-to-the-future/-/blob/master/LICENSE) [![Gitlab pipeline status](https://gitlab.com/gaspacchio/back-to-the-future/badges/master/pipeline.svg)](https://gitlab.com/gaspacchio/back-to-the-future/-/commits/master) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=gaspacchio_back-to-the-future&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=gaspacchio_back-to-the-future) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
 ## Table of contents
 
