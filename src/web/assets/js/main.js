@@ -1,6 +1,6 @@
-import { addPartsFromFile } from './addPartsFromFile';
-import { clearActiveState } from './clearActiveState';
-import { getStockFromFile } from './getStockFromFile';
+import { addPartsFromFile } from './add-parts-from-file';
+import { clearActiveState } from './clear-active-state';
+import { getStockFromFile } from './get-stock-from-file';
 import 'spectre.css';
 
 document.addEventListener('DOMContentLoaded', () => {

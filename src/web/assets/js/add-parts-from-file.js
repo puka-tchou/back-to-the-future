@@ -1,4 +1,4 @@
-import { clearActiveState } from './clearActiveState';
+import { clearActiveState } from './clear-active-state';
 
 export const addPartsFromFile = (input) => {
   const formData = new FormData();

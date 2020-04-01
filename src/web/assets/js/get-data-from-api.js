@@ -1,5 +1,5 @@
-import { clearActiveState } from './clearActiveState';
-import { drawChart } from './drawChart';
+import { clearActiveState } from './clear-active-state';
+import { drawChart } from './draw-chart';
 
 export const getDataFromAPI = (parts) => {
   const resultTable = document.querySelector('#result-table');

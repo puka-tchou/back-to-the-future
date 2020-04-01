@@ -1,4 +1,4 @@
-import { getDataFromAPI } from './getDataFromAPI';
+import { getDataFromAPI } from './get-data-from-api';
 
 export const getStockFromFile = (input) => {
   const CSVFile = input.files[0];
