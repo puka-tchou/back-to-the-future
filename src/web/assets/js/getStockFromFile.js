@@ -3,6 +3,7 @@ import { getDataFromAPI } from './getDataFromAPI';
 export const getStockFromFile = (input) => {
   const CSVFile = input.files[0];
   const reader = new FileReader();
+  const fragment = new DocumentFragment();
   const target = document.querySelector('#part-table');
   const invalidDataInfo = document.querySelector('#invalid-data-info');
   const partsNumberInfo = document.querySelector('#parts-number-info');
@@ -11,11 +12,17 @@ export const getStockFromFile = (input) => {
 
   target.textContent = '';
 
+  performance.mark('start-file');
+
   reader.readAsText(CSVFile);
   reader.addEventListener('loadend', () => {
+    performance.mark('end-file');
     data = reader.result.split('\r\n').filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
+
+    performance.mark('table-start');
+
     for (let index = 0; index < data.length; index++) {
       const line = data[index];
       if (line.includes(';')) {
@@ -31,8 +38,20 @@ export const getStockFromFile = (input) => {
       const contentCell = row.insertCell();
       idCell.textContent = index;
       contentCell.textContent = line;
-      target.append(row);
+      fragment.append(row);
     }
+
+    target.append(fragment);
+
+    // Performance measurements calls
+    console.log('🕵️ file reading has ended');
+    performance.mark('table-end');
+    performance.mark('end');
+    performance.measure('file-reading', 'start-file', 'end-file');
+    performance.measure('table', 'table-start', 'table-end');
+    console.log(performance.getEntriesByType('measure'));
+    performance.clearMarks();
+    performance.clearMeasures();
 
     if (isValidData) {
       partsNumberInfo.textContent = `${data.length} part-numbers in this set.`;
