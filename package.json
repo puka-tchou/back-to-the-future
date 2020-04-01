@@ -7,7 +7,7 @@
     "start": "parcel watch src/web/index.html -d dev/",
     "ci": "parcel src/web/index.html -d dev/ci/",
     "style": "prettier --write **/*.{js,html,xhtml,css,md,xml,yaml,yml,json,svg}",
-    "lint": "xo {src,public}/**/*.js --fix --env=browser",
+    "lint": "xo **/*.js --fix --env=browser --env=node",
     "build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
   },
   "dependencies": {
