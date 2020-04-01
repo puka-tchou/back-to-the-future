@@ -5,18 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Listen for XDebug",
-      "type": "php",
+      "type": "firefox",
       "request": "launch",
-      "port": 9000
-    },
-    {
-      "name": "Launch currently open script",
-      "type": "php",
-      "request": "launch",
-      "program": "${file}",
-      "cwd": "${fileDirname}",
-      "port": 9000
+      "reAttach": true,
+      "name": "Launch localhost",
+      "url": "http://dev.test",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
