@@ -3,7 +3,6 @@ ci:
   collect:
     numberOfRuns: 3
     staticDistDir: ./dist/web/
-    chromeFlags: --no-sandbox
   assert:
     preset: lighthouse:recommended
   upload:

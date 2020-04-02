@@ -49,7 +49,7 @@ lhci:
     - yarn install
     - yarn run build
     - yarn global add @lhci/cli@0.3.x
-    - lhci autorun || echo "LHCI failed!"
+    - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
 
 lint:
   stage: test
