@@ -28,7 +28,7 @@ export const drawChart = (data) => {
   });
 
   canvas.textContent = '';
-  select.innnerText = '';
+  select.textContent = '';
 
   if (data !== undefined) {
     for (const partNumber in data) {
@@ -46,6 +46,7 @@ export const drawChart = (data) => {
       stock = {};
 
       console.log(`⛏️ part_number selected is ${select.value}`);
+      performance.mark('chart-start');
 
       data[select.value].body.forEach((record) => {
         const supplier = record.supplier;
@@ -79,12 +80,21 @@ export const drawChart = (data) => {
         }
       }
 
-      console.log(labels);
-      console.log(datasets);
+      console.log(
+        `📅 dates of the stock history are:\n${JSON.stringify(labels, '', ' ')}`
+      );
+      console.log('👇 datasets for the chart are below.');
+      console.table(datasets);
 
       chart.data.labels = labels;
       chart.data.datasets = datasets;
       chart.update();
+
+      // Performance measures
+      performance.measure('chart-update', 'chart-start');
+      console.table(performance.getEntriesByType('measure'));
+      performance.clearMarks();
+      performance.clearMeasures();
     });
   }
 };

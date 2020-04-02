@@ -49,7 +49,7 @@ export const getStockFromFile = (input) => {
     performance.mark('end');
     performance.measure('file-reading', 'start-file', 'end-file');
     performance.measure('table', 'table-start', 'table-end');
-    console.log(performance.getEntriesByType('measure'));
+    console.table(performance.getEntriesByType('measure'));
     performance.clearMarks();
     performance.clearMeasures();
 

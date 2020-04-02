@@ -3,6 +3,7 @@ import { drawChart } from './draw-chart';
 
 export const getDataFromAPI = (parts) => {
   const resultTable = document.querySelector('#result-table');
+  const resultInfo = document.querySelector('#result-table-info');
   const fragment = document.createDocumentFragment();
   const formData = new FormData();
 
@@ -15,14 +16,20 @@ export const getDataFromAPI = (parts) => {
     body: formData,
   })
     .then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+
+      console.log(response.status);
     })
     .then((json) => {
       const statusInfo = document.querySelector('#status-info');
       const body = json.body;
       let i = 0;
 
-      console.log(`🚅 API returned a response: ${json}`);
+      console.log(
+        `🚅 API returned a response:\n${JSON.stringify(json, '', '  ')}`
+      );
       performance.mark('api-end');
       performance.mark('table-start');
 
@@ -52,9 +59,10 @@ export const getDataFromAPI = (parts) => {
       }
 
       resultTable.append(fragment);
+      resultInfo.textContent = `${i} stock records found.`;
 
       clearActiveState();
-      console.log('⭕ table creation ended');
+      console.log(`⭕ table creation ended. ${i} stock records found.`);
       performance.mark('table-end');
 
       if (i === 0) {
@@ -69,8 +77,11 @@ export const getDataFromAPI = (parts) => {
       performance.measure('api', 'start', 'api-end');
       performance.measure('table', 'table-start', 'table-end');
       performance.measure('total', 'start', 'end');
-      console.log(performance.getEntriesByType('measure'));
+      console.table(performance.getEntriesByType('measure'));
       performance.clearMarks();
       performance.clearMeasures();
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
