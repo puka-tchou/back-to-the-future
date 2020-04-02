@@ -2702,7 +2702,7 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@^3.0.0-alpha:
+chart.js@3.0.0-alpha:
   version "3.0.0-alpha"
   resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.0.0-alpha.tgz#d82e3f7c882b8e321ad05bc1833f983b2b0b630b"
   integrity sha512-9jbL1IsG9+1oq01GMKbeJ/257O46nVjQuYWEanpo0MuCr18cXMfkrzBTwdbl0VTOkIvWLJJcU5Cmhdc546k2bA==
