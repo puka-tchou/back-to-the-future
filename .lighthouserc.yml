@@ -2,9 +2,7 @@
 ci:
   collect:
     numberOfRuns: 3
-    startServerCommand: yarn run ci
-    url:
-      - http://localhost:1234/
+    staticDistDir: ./dist/web/
   assert:
     preset: lighthouse:recommended
   upload:
