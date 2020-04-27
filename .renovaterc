@@ -20,5 +20,6 @@
       "bug",
       "deps"
     ]
-  }
+  },
+  "recreateClosed": true
 }
