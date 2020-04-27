@@ -7,7 +7,7 @@
     "start": "parcel watch src/web/index.html -d dev/",
     "style": "prettier --write **/*.{js,html,xhtml,css,md,xml,yaml,yml,json,svg}",
     "lint": "xo **/*.js --fix --env=browser --env=node",
-    "build": "cross-env NODE_ENV=production parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
+    "build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
   },
   "dependencies": {
     "chart.js": "3.0.0-alpha",
@@ -20,7 +20,6 @@
     "@prettier/plugin-xml": "0.7.2",
     "autoprefixer": "9.7.6",
     "babel-preset-minify": "0.5.1",
-    "cross-env": "^7.0.2",
     "cssnano": "4.1.10",
     "cssnano-preset-advanced": "4.0.7",
     "eslint-plugin-prettier": "3.1.3",
