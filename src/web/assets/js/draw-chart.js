@@ -76,6 +76,8 @@ export const drawChart = (data) => {
             data: stock[label],
             fill: false,
             borderColor: color,
+            backgroundColor: color,
+            lineTension: 0,
           });
         }
       }
