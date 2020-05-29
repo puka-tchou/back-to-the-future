@@ -35,7 +35,7 @@
     "postcss-reporter": "6.0.1",
     "postcss-scss": "2.1.1",
     "prettier": "2.0.5",
-    "sass": "1.26.5",
+    "sass": "1.26.7",
     "stylelint": "13.5.0",
     "stylelint-config-prettier": "8.0.1",
     "stylelint-config-standard": "20.0.0",
