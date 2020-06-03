@@ -15,25 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('🔥 let’s go, I’m ready to rock!');
 
   fileInput.addEventListener('change', (event) => {
-    event.preventDefault();
-    clearActiveState();
-    if (fileInput.files.length === 1) {
-      console.log('⏳ getting stock records…');
-      loadingInfo.classList.add('active');
-      getStockFromFile(fileInput).then((response) => console.log(response));
-    }
+    uploadFile(event, fileInput, loadingInfo);
   });
 
   getStock.addEventListener('click', (event) => {
-    event.preventDefault();
-    clearActiveState();
-    if (fileInput.files.length === 1) {
-      console.log('⏳ getting stock records…');
-      loadingInfo.classList.add('active');
-      getStockFromFile(fileInput).then((response) => console.log(response));
-    } else {
-      fileInput.click();
-    }
+    uploadFile(event, fileInput, loadingInfo);
   });
 
   addParts.addEventListener('click', (event) => {
@@ -52,3 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
     createExcelFile(JSONresult);
   });
 });
+
+const uploadFile = (event, fileInput, loadingInfo) => {
+  event.preventDefault();
+  clearActiveState();
+  if (fileInput.files.length === 1) {
+    console.log('⏳ getting stock records…');
+    loadingInfo.classList.add('active');
+    getStockFromFile(fileInput).then((response) => console.log(response));
+  } else {
+    fileInput.click();
+  }
+};
