@@ -2,7 +2,7 @@
   "name": "pricing",
   "version": "1.2.0",
   "engines": {
-    "node": "<=v12.18.0"
+    "node": ">=8.0.0"
   },
   "author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
   "license": "MIT",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "chart.js": "3.0.0-alpha",
-    "excel4node": "1.7.2",
-    "spectre.css": "0.5.8"
+    "spectre.css": "0.5.8",
+    "zipcelx": "1.6.2"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
