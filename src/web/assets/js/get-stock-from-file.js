@@ -14,10 +14,9 @@ export const getStockFromFile = (input) => {
 
   performance.mark('start-file');
 
-  reader.readAsText(CSVFile);
-  reader.addEventListener('loadend', () => {
+  return CSVFile.text().then((text) => {
     performance.mark('end-file');
-    data = reader.result.split('\r\n').filter((value, index, self) => {
+    data = text.split('\r\n').filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
 
@@ -55,7 +54,7 @@ export const getStockFromFile = (input) => {
 
     if (isValidData) {
       partsNumberInfo.textContent = `${data.length} part-numbers in this set.`;
-      getDataFromAPI(input);
+      return getDataFromAPI(input).then((response) => response);
     }
   });
 };

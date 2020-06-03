@@ -11,7 +11,7 @@ export const getDataFromAPI = (parts) => {
 
   formData.append('parts', parts.files[0]);
   console.log('👋 querying API…');
-  fetch('http://src.test/api/parts', {
+  return fetch('http://src.test/api/parts', {
     method: 'POST',
     body: formData,
   })
@@ -80,6 +80,8 @@ export const getDataFromAPI = (parts) => {
       console.table(performance.getEntriesByType('measure'));
       performance.clearMarks();
       performance.clearMeasures();
+
+      return json;
     })
     .catch((error) => {
       console.log(error);
