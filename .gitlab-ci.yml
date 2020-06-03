@@ -17,7 +17,7 @@ stages:
 
 build:
   stage: build
-  image: node:12.16.3
+  image: node:12.18.0
   script:
     - yarn install
     - yarn build
@@ -53,7 +53,7 @@ lhci:
 
 lint:
   stage: test
-  image: node:12.16.3
+  image: node:12.18.0
   script:
     - yarn install
     - yarn run lint
