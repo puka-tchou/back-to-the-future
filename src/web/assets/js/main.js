@@ -15,11 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('🔥 let’s go, I’m ready to rock!');
 
   fileInput.addEventListener('change', (event) => {
-    uploadFile(event, fileInput, loadingInfo);
+    uploadFile(event, fileInput, loadingInfo).then(
+      (response) => (JSONresult = response)
+    );
   });
 
   getStock.addEventListener('click', (event) => {
-    uploadFile(event, fileInput, loadingInfo);
+    uploadFile(event, fileInput, loadingInfo).then(
+      (response) => (JSONresult = response)
+    );
   });
 
   addParts.addEventListener('click', (event) => {
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   downloadTable.addEventListener('click', (event) => {
     event.preventDefault();
     console.log('📥 downloading data as an excel file…');
-    createExcelFile(JSONresult);
+    createExcelFile(JSONresult['body']);
   });
 });
 
@@ -45,7 +49,7 @@ const uploadFile = (event, fileInput, loadingInfo) => {
   if (fileInput.files.length === 1) {
     console.log('⏳ getting stock records…');
     loadingInfo.classList.add('active');
-    getStockFromFile(fileInput).then((response) => console.log(response));
+    return getStockFromFile(fileInput).then((response) => response);
   } else {
     fileInput.click();
   }
