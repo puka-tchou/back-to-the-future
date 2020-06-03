@@ -2,7 +2,6 @@ import { getDataFromAPI } from './get-data-from-api';
 
 export const getStockFromFile = (input) => {
   const CSVFile = input.files[0];
-  const reader = new FileReader();
   const fragment = new DocumentFragment();
   const target = document.querySelector('#part-table');
   const invalidDataInfo = document.querySelector('#invalid-data-info');

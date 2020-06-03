@@ -24,12 +24,11 @@ export const getDataFromAPI = (parts) => {
     })
     .then((json) => {
       const statusInfo = document.querySelector('#status-info');
-      const body = json.body;
+      const { body } = json;
       let i = 0;
 
-      console.log(
-        `🚅 API returned a response:\n${JSON.stringify(json, '', '  ')}`
-      );
+      console.log(`🚅 API returned a response:`);
+      console.log(json);
       performance.mark('api-end');
       performance.mark('table-start');
 

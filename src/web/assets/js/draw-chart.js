@@ -49,7 +49,7 @@ export const drawChart = (data) => {
       performance.mark('chart-start');
 
       data[select.value].body.forEach((record) => {
-        const supplier = record.supplier;
+        const { supplier } = record;
         if (stock[supplier] === undefined) {
           stock[supplier] = [];
         }
