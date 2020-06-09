@@ -38,10 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadTable.addEventListener('click', (event) => {
     event.preventDefault();
-    if (JSONresult !== undefined && JSONresult['body'].length === 0) {
+    if (typeof JSONresult !== 'undefined' && JSONresult.body.length !== 0) {
       console.log('📥 downloading data as an excel file…');
-      return createExcelFile(JSONresult['body']);
+      return createExcelFile(JSONresult.body);
     }
+
     console.log('☣️ there is no data to download');
   });
 });
