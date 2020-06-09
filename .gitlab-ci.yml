@@ -48,25 +48,11 @@ lhci:
   script:
     - yarn install
     - yarn run build
-    - yarn global add @lhci/cli@0.3.x
+    - yarn global add @lhci/cli@0.4.x
     - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
-
-lint:
-  stage: test
-  image: node:12.18.0
-  script:
-    - yarn install
-    - yarn run lint
-  allow_failure: true
 
 deploy:
   stage: deploy
   dependencies:
     - build
   script: echo "Deploying..."
-
-include:
-  - template: Dependency-Scanning.gitlab-ci.yml
-  - template: License-Scanning.gitlab-ci.yml
-  - template: Code-Quality.gitlab-ci.yml
-  - template: SAST.gitlab-ci.yml
