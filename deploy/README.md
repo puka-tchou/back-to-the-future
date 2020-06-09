@@ -53,6 +53,9 @@ To check the current MySQL version, you first need to login to the MySQL server 
 
 ```sh
 mysql --host=localhost --user=myname --password mydb
+```
+
+```sql
 SELECT VERSION();
 ```
 
@@ -60,7 +63,7 @@ SELECT VERSION();
 
 In the `MySQL/` folder, you'll find the database dump ([dump-crouzet_pricing-202006091544.sql](./MySQL/dump-crouzet_pricing-202006091544.sql)). This dump is holding the table structure, the relations and the triggers necessary to ensure smooth operation of the server API.
 
-All you need to do to set the database is to import these dumps using your favorite method. For the sake of this document we'll describe importing with MySLQ CLI.
+All you need to do to set the database is to import these dumps using your favorite method. For the sake of this document we'll describe importing with MySLQ CLI. First, login to MySQL.
 
 ```bash
 mysql --host=localhost --user=myname --password
@@ -82,7 +85,7 @@ once you're logged-in, start by creating a new database
 
 ```sql
 CREATE DATABASE new_db_name CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-# Query OK, 1 row affected (0.00 sec)
+/* Query OK, 1 row affected (0.00 sec) */
 ```
 
 exit the MySQL client (`exit;`), then run
@@ -96,17 +99,17 @@ if everything went fine, there should be no output. To check that the import wor
 
 ```sql
 USE new_db_name;
-# Database changed
+/* Database changed */
 SHOW TABLES;
-# +---------------------------+
-# | Tables_new_db_name        |
-# +---------------------------+
-# | prices_history            |
-# | product_match             |
-# | products                  |
-# | stock_history             |
-# +---------------------------+
-# 4 rows in set (0.00 sec)
+/*+---------------------------+
+* | Tables_new_db_name        |
+* +---------------------------+
+* | prices_history            |
+* | product_match             |
+* | products                  |
+* | stock_history             |
+* +---------------------------+
+* 4 rows in set (0.00 sec) */
 ```
 
 🎉 MySQL is ready to rock.
