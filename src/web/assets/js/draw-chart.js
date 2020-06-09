@@ -32,7 +32,7 @@ export const drawChart = (data) => {
 
   if (data !== undefined) {
     for (const partNumber in data) {
-      if (data.hasOwnProperty(partNumber)) {
+      if (Object.prototype.hasOwnProperty.call(data, partNumber)) {
         const option = document.createElement('option');
         option.textContent = partNumber;
         option.value = partNumber;
@@ -61,7 +61,7 @@ export const drawChart = (data) => {
       labels = [...dates];
 
       for (const label in stock) {
-        if (stock.hasOwnProperty(label)) {
+        if (Object.prototype.hasOwnProperty.call(stock, label)) {
           // The lines below are used to generate a unique color based on the
           // label.
           let sum = 0;

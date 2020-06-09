@@ -20,7 +20,7 @@ export const addPartsFromFile = (input) => {
       clearActiveState();
       statusMessage.textContent = json.message;
       for (const key in json.body) {
-        if (json.body.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(json.body, key)) {
           const element = json.body[key];
           const row = document.createElement('tr');
           const partCell = row.insertCell();

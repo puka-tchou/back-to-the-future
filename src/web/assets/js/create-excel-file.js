@@ -20,7 +20,7 @@ export const createExcelFile = (stock) => {
 
   // First iterate over the part-numbers
   for (const partNumber in stock) {
-    if (stock.hasOwnProperty(partNumber)) {
+    if (Object.prototype.hasOwnProperty.call(stock, partNumber)) {
       const records = stock[partNumber].body;
 
       // Isolate each supplier so we can assignate

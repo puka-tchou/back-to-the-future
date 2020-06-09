@@ -2,7 +2,7 @@
   "name": "pricing",
   "version": "1.2.0",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
   "license": "MIT",

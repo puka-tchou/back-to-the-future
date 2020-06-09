@@ -36,7 +36,7 @@ export const getDataFromAPI = (parts) => {
 
       console.log('📋 table creation has started.');
       for (const part in body) {
-        if (body.hasOwnProperty(part)) {
+        if (Object.prototype.hasOwnProperty.call(body, part)) {
           const row = document.createElement('tr');
           const partCell = row.insertCell();
           const statusCell = row.insertCell();

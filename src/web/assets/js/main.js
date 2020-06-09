@@ -1,6 +1,7 @@
 import { addPartsFromFile } from './add-parts-from-file';
 import { clearActiveState } from './clear-active-state';
 import { getStockFromFile } from './get-stock-from-file';
+// eslint-disable-next-line import/no-unassigned-import
 import 'spectre.css';
 import { createExcelFile } from './create-excel-file';
 
@@ -15,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('🔥 let’s go, I’m ready to rock!');
 
   fileInput.addEventListener('change', (event) => {
-    uploadFile(event, fileInput, loadingInfo).then(
-      (response) => (JSONresult = response)
-    );
+    uploadFile(event, fileInput, loadingInfo).then((response) => {
+      JSONresult = response;
+    });
   });
 
   getStock.addEventListener('click', (event) => {
-    uploadFile(event, fileInput, loadingInfo).then(
-      (response) => (JSONresult = response)
-    );
+    uploadFile(event, fileInput, loadingInfo).then((response) => {
+      JSONresult = response;
+    });
   });
 
   addParts.addEventListener('click', (event) => {
