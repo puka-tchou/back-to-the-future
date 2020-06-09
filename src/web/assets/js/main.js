@@ -38,8 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadTable.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log('📥 downloading data as an excel file…');
-    createExcelFile(JSONresult['body']);
+    if (JSONresult !== undefined && JSONresult['body'].length === 0) {
+      console.log('📥 downloading data as an excel file…');
+      return createExcelFile(JSONresult['body']);
+    }
+    console.log('☣️ there is no data to download');
   });
 });
 
@@ -50,7 +53,7 @@ const uploadFile = (event, fileInput, loadingInfo) => {
     console.log('⏳ getting stock records…');
     loadingInfo.classList.add('active');
     return getStockFromFile(fileInput).then((response) => response);
-  } else {
-    fileInput.click();
   }
+
+  fileInput.click();
 };
