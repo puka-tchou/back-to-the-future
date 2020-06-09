@@ -21,24 +21,25 @@ export const createExcelFile = (stock) => {
   // First iterate over the part-numbers
   for (const partNumber in stock) {
     if (stock.hasOwnProperty(partNumber)) {
-      const records = stock[partNumber]['body'];
+      const records = stock[partNumber].body;
 
       // Isolate each supplier so we can assignate
       // each stock value to the correct line
       const suppliers = new Set();
       records.forEach((record) => {
-        suppliers.add(record['supplier']);
-        dates.add(record['date_checked']);
+        suppliers.add(record.supplier);
+        dates.add(record.date_checked);
       });
 
-      const suppliersArray = Array.from(suppliers);
+      const suppliersArray = [...suppliers];
       records.forEach((record) => {
         // Index 0 is for the dates
-        const line = suppliersArray.indexOf(record['supplier']) + 1 + offset;
+        const line = suppliersArray.indexOf(record.supplier) + 1 + offset;
         if (data[line] === undefined) {
           data.push([]);
         }
-        data[line].push({ value: record['parts_in_stock'], type: 'number' });
+
+        data[line].push({ value: record.parts_in_stock, type: 'number' });
       });
 
       // Finally, add the suppliers and the part-number
