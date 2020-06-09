@@ -1,17 +1,19 @@
 import { clearActiveState } from './clear-active-state';
 import { drawChart } from './draw-chart';
+import DBConfig from '../../dbconfig.json';
 
 export const getDataFromAPI = (parts) => {
   const resultTable = document.querySelector('#result-table');
   const resultInfo = document.querySelector('#result-table-info');
   const fragment = document.createDocumentFragment();
   const formData = new FormData();
+  const DBAdress = DBConfig.db_address;
 
   performance.mark('start');
 
   formData.append('parts', parts.files[0]);
   console.log('👋 querying API…');
-  return fetch('http://src.test/api/parts', {
+  return fetch(DBAdress, {
     method: 'POST',
     body: formData,
   })
