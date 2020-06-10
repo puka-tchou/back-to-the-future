@@ -27,7 +27,10 @@
   },
   "config": {
     "sort-packages": true,
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "github-oauth": {
+      "github.com": "46305927a073a07150e7d38df4543074f8351ae4"
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
