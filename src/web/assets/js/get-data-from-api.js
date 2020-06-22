@@ -1,11 +1,8 @@
-import { clearActiveState } from './clear-active-state';
 import { drawChart } from './draw-chart';
 import DBConfig from '../../dbconfig.json';
+import { createTable } from './create-table';
 
 export const getDataFromAPI = (parts) => {
-  const resultTable = document.querySelector('#result-table');
-  const resultInfo = document.querySelector('#result-table-info');
-  const fragment = document.createDocumentFragment();
   const formData = new FormData();
   const DBAdress = DBConfig.db_address;
 
@@ -25,50 +22,13 @@ export const getDataFromAPI = (parts) => {
       console.log(response.status);
     })
     .then((json) => {
-      const statusInfo = document.querySelector('#status-info');
       const { body } = json;
-      let i = 0;
 
       console.log(`🚅 API returned a response:`);
       console.log(json);
       performance.mark('api-end');
-      performance.mark('table-start');
 
-      resultTable.textContent = '';
-
-      console.log('📋 table creation has started.');
-      for (const part in body) {
-        if (Object.prototype.hasOwnProperty.call(body, part)) {
-          const row = document.createElement('tr');
-          const partCell = row.insertCell();
-          const statusCell = row.insertCell();
-          const responseCell = row.insertCell();
-          const stock = body[part].body;
-
-          stock.forEach((record) => {
-            if (record.state === '0' && record.parts_in_stock !== '-1') {
-              i++;
-              partCell.textContent = record.part_number;
-              statusCell.textContent =
-                record.state === '0' ? i + ' records found.' : '';
-              responseCell.textContent += record.parts_in_stock;
-              responseCell.textContent += ', ';
-              fragment.append(row);
-            }
-          });
-        }
-      }
-
-      resultTable.append(fragment);
-      resultInfo.textContent = `${i} stock records found.`;
-
-      clearActiveState();
-      console.log(`⭕ table creation ended. ${i} stock records found.`);
-      performance.mark('table-end');
-
-      if (i === 0) {
-        statusInfo.classList.add('active');
-      }
+      createTable(body);
 
       drawChart(body);
 
