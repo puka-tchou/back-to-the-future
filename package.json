@@ -18,8 +18,8 @@
     "zipcelx": "1.6.2"
   },
   "devDependencies": {
-    "@babel/core": "7.10.2",
-    "@babel/preset-env": "7.10.2",
+    "@babel/core": "7.10.3",
+    "@babel/preset-env": "7.10.3",
     "@prettier/plugin-xml": "0.7.2",
     "autoprefixer": "9.8.0",
     "babel-preset-minify": "0.5.1",
