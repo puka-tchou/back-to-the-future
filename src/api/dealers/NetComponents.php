@@ -102,6 +102,7 @@ class NetComponents implements DealerInterface
         curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($process, CURLOPT_VERBOSE, 1);
         curl_setopt($process, CURLOPT_HEADER, 1);
+        curl_setopt($process, CURLOPT_FAILONERROR, 1);
     
         if ($method === 'POST') {
             curl_setopt($process, CURLOPT_POST, 1);
