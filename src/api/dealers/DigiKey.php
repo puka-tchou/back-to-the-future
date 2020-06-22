@@ -1,8 +1,8 @@
 <?php namespace dealers\DigiKey;
 
-use dealers\iDealer\iDealer;
+use dealers\DealerInterface\DealerInterface;
 
-class DigiKey implements iDealer
+class DigiKey implements DealerInterface
 {
     /** Get stock information from DigiKey.
      *

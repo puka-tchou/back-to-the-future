@@ -1,9 +1,9 @@
 <?php namespace dealers\NetComponents;
 
-use dealers\iDealer\iDealer;
+use dealers\DealerInterface\DealerInterface;
 use utilities\Reporter\Reporter;
 
-class NetComponents implements iDealer
+class NetComponents implements DealerInterface
 {
     /** Check the stock of a given part number using the netComponents API.
      * @param string $part The part-number to check. It must be on of Crouzet's.
