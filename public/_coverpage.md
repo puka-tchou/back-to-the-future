@@ -1,1 +1,0 @@
-# pricing and stock history
