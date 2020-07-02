@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "chart.js": "3.0.0-alpha",
-    "spectre.css": "0.5.8",
+    "spectre.css": "0.5.9",
     "zipcelx": "1.6.2"
   },
   "devDependencies": {
