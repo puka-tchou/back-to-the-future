@@ -5,6 +5,7 @@ import { clearActiveState } from './clear-active-state';
 export const createTable = (body) => {
   const statusInfo = document.querySelector('#status-info');
   const data = [];
+  let i = 0;
 
   console.log('📋 table creation has started.');
   performance.mark('table-start');
@@ -17,11 +18,17 @@ export const createTable = (body) => {
 
       stock.forEach((record) => {
         totalStock += Number(record.parts_in_stock);
+        i += totalStock;
         numberOfSuppliers++;
       });
 
       data.push([part, totalStock, numberOfSuppliers]);
     }
+  }
+
+  if (i === 0) {
+    statusInfo.classList.add('active');
+    return i;
   }
 
   const grid = new Grid({
@@ -38,8 +45,4 @@ export const createTable = (body) => {
   clearActiveState();
   console.log(`⭕ table creation ended. ${i} stock records found.`);
   performance.mark('table-end');
-
-  if (i === 0) {
-    statusInfo.classList.add('active');
-  }
 };
