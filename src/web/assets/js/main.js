@@ -1,5 +1,5 @@
 import { clearActiveState } from './clear-active-state';
-import { getStockFromFile } from './get-stock-from-file';
+import { readStockFromFile } from './read-stock-from-file';
 // eslint-disable-next-line import/no-unassigned-import
 import 'spectre.css';
 import { createExcelFile } from './create-excel-file';
@@ -42,7 +42,7 @@ const uploadFile = (event, fileInput, loadingInfo) => {
   if (fileInput.files.length === 1) {
     console.log('⏳ getting stock records…');
     loadingInfo.classList.add('active');
-    return getStockFromFile(fileInput).then((response) => response);
+    return readStockFromFile(fileInput).then((response) => response);
   }
 
   fileInput.click();
