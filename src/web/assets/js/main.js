@@ -1,4 +1,3 @@
-import { addPartsFromFile } from './add-parts-from-file';
 import { clearActiveState } from './clear-active-state';
 import { getStockFromFile } from './get-stock-from-file';
 // eslint-disable-next-line import/no-unassigned-import
@@ -8,7 +7,6 @@ import { createExcelFile } from './create-excel-file';
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.querySelector('#file-upload');
   const getStock = document.querySelector('#get-stock');
-  const addParts = document.querySelector('#add-parts');
   const loadingInfo = document.querySelector('#loading-info');
   const downloadTable = document.querySelector('#download-button');
   let JSONresult;
@@ -25,16 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadFile(event, fileInput, loadingInfo).then((response) => {
       JSONresult = response;
     });
-  });
-
-  addParts.addEventListener('click', (event) => {
-    event.preventDefault();
-    clearActiveState();
-    if (fileInput.files.length === 1) {
-      console.log('⏳ adding parts');
-      loadingInfo.classList.add('active');
-      addPartsFromFile(fileInput);
-    }
   });
 
   downloadTable.addEventListener('click', (event) => {
