@@ -78,6 +78,12 @@ section.data-container {
 .chart-container {
   position: relative;
   width: 100%;
+  canvas {
+    background: url('../images/background.animation-cat-alternate.gif') center
+      no-repeat; // Source: https://wifflegif.com/gifs/105779-drawing-cat-gif
+    background-size: contain;
+    width: 100%;
+  }
 }
 
 .data-view {
