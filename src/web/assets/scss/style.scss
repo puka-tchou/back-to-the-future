@@ -2,6 +2,7 @@
 
 $base-color: #5755d9;
 $error-color: #d24444;
+$success-color: #008b00;
 
 body {
   max-height: 100vh;
@@ -103,6 +104,7 @@ div {
 
 button#download-button {
   margin: 0.5rem auto;
+  background-color: $success-color;
 }
 
 .loading {
