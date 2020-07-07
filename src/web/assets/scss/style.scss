@@ -53,6 +53,7 @@ div.columns {
       flex-grow: 1;
       flex-shrink: 1;
       min-width: 250px;
+      background: url(../images/cat.waiting.gif) bottom no-repeat; //Source: https://media1.giphy.com/media/wKFY1XaNEainm/giphy.gif
       background: url(../images/cat.waiting.webp) bottom no-repeat; //Source: https://media1.giphy.com/media/wKFY1XaNEainm/giphy.gif
       background-size: contain;
     }
