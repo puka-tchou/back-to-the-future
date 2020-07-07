@@ -11,8 +11,6 @@
   ],
   "masterIssue": true,
   "prCreation": "immediate",
-  "rebaseStalePrs": true,
-  "rebaseWhen": "behind-base-branch",
   "unicodeEmoji": true,
   "vulnerabilityAlerts": {
     "enabled": true,
@@ -20,6 +18,5 @@
       "bug",
       "deps"
     ]
-  },
-  "recreateClosed": true
+  }
 }
