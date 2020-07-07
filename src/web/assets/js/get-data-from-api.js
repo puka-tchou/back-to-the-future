@@ -19,7 +19,7 @@ export const getDataFromAPI = (parts) => {
         return response.json();
       }
 
-      console.log(response.status);
+      console.log(`⚠️ network error : ${response}`);
     })
     .then((json) => {
       const { body } = json;
@@ -45,6 +45,6 @@ export const getDataFromAPI = (parts) => {
       return json;
     })
     .catch((error) => {
-      console.log(error);
+      console.log(`⚠️ fetch error: ${error}`);
     });
 };
