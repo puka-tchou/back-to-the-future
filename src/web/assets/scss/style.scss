@@ -29,7 +29,7 @@ h2 {
   &.active {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 2em;
     min-height: 100%;
     width: 100%;
     position: absolute;
@@ -41,8 +41,9 @@ h2 {
     color: #fff;
   }
 }
-.container {
+div.container {
   max-height: 92vh;
+  padding: 0;
 }
 div.columns {
   margin: 0;
