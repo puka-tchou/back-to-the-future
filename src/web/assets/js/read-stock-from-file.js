@@ -1,15 +1,11 @@
 import { getDataFromAPI } from './get-data-from-api';
+import { Grid } from 'gridjs';
 
 export const readStockFromFile = (input) => {
   const CSVFile = input.files[0];
-  const fragment = new DocumentFragment();
-  const target = document.querySelector('#part-table');
   const invalidDataInfo = document.querySelector('#invalid-data-info');
-  const partsNumberInfo = document.querySelector('#parts-number-info');
   let isValidData = true;
   let data;
-
-  target.textContent = '';
 
   performance.mark('start-file');
 
@@ -18,6 +14,7 @@ export const readStockFromFile = (input) => {
     data = text.split('\r\n').filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
+    const tableData = [];
 
     performance.mark('table-start');
 
@@ -31,15 +28,20 @@ export const readStockFromFile = (input) => {
         break;
       }
 
-      const row = document.createElement('tr');
-      const idCell = row.insertCell();
-      const contentCell = row.insertCell();
-      idCell.textContent = index;
-      contentCell.textContent = line;
-      fragment.append(row);
+      console.log(line);
+      tableData.push([index, line]);
     }
 
-    target.append(fragment);
+    const grid = new Grid({
+      columns: ['Id', 'Part number'],
+      data: tableData,
+      sort: true,
+      pagination: {
+        enabled: true,
+        limit: 10,
+      },
+    });
+    grid.render(document.querySelector('#grid-partlist'));
 
     // Performance measurements calls
     console.log('🕵️ file reading has ended');
@@ -52,7 +54,6 @@ export const readStockFromFile = (input) => {
     performance.clearMeasures();
 
     if (isValidData) {
-      partsNumberInfo.textContent = `${data.length} part-numbers in this set.`;
       return getDataFromAPI(input).then((response) => response);
     }
   });
