@@ -17,7 +17,7 @@ stages:
 
 build:
   stage: build
-  image: node:12.18.1
+  image: node:12.18.2
   script:
     - npm install
     - npm run build
