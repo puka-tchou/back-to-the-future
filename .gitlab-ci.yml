@@ -19,8 +19,8 @@ build:
   stage: build
   image: node:12.18.2
   script:
-    - npm install
-    - npm run build
+    - yarn install
+    - yarn run build
   artifacts:
     paths:
       - dist/
@@ -46,8 +46,8 @@ lhci:
   stage: test
   image: cypress/browsers:node13.8.0-chrome81-ff75
   script:
-    - npm install
-    - npm run build
+    - yarn install
+    - yarn run build
     - npm install -g @lhci/cli@0.4.x
     - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
 
