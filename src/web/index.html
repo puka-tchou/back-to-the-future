@@ -46,7 +46,7 @@
           class="navbar-brand"
         />
       </div>
-      <div class="navbar-section">
+      <div class="navbar-section links">
         <a
           href="https://gaspacchio.gitlab.io/back-to-the-future"
           class="btn btn-link"
@@ -135,14 +135,14 @@
           </div>
         </div>
         <h2>Data</h2>
+        <button class="btn btn-success p-centered" id="download-button">
+          Download all the data
+        </button>
         <select name="part-number" id="part-number-select" class="form-select">
         </select>
         <div class="chart-container">
           <canvas id="data-chart"></canvas>
         </div>
-        <button class="btn btn-success p-centered" id="download-button">
-          Download all the data
-        </button>
         <!-- Grid.js will populate the div below-->
         <div id="data-result" class="data-view"></div>
       </section>
