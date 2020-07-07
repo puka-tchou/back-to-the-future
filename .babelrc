@@ -1,9 +1,0 @@
-{
-  "presets": [
-    [
-      "@babel/preset-env",
-      { "spec": true, "useBuiltIns": "usage", "corejs": 3 }
-    ],
-    ["minify", {}]
-  ]
-}
