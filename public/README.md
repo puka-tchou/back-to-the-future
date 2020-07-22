@@ -14,4 +14,4 @@ Documentation is separated on sub-pages:
 
 - [`/database`](database/) is the home of the database documentation.
 - [`/server`](server/) is the home of the PHP documentation for the backend code.
-- [`/web`](web/) is the home of the web interface documentation.
+- [`/web`](basics-interface/) is the home of the web interface documentation.

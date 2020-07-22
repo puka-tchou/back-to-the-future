@@ -202,19 +202,20 @@ The cron job is used to update on a regular basis the stock informations. A basi
 To build the web client from source, you will need:
 
 - NodeJS LTS (latest LTS version is tested and will work, you can get it at https://nodejs.org/en/download/)
+- Yarn (ideally)
 
 ### Build
 
 First, install the dependencies:
 
 ```sh
-npm install
+yarn install
 ```
 
 Before building the project, you want to change the content of `src/web/dbconfig.json` to reflect your current database setup. Then build the project:
 
 ```sh
-npm run build
+yarn run build
 ```
 
 The output folder is `dist/`. The production bundle is optimized to the last bit and the dependencies are embedded, so you don't need to worry about the size or installing the dependencies to the server.
