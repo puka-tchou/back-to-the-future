@@ -1,5 +1,5 @@
 import { drawChart } from './draw-chart';
-import DBConfig from '../../dbconfig.json';
+import DBConfig from '../dbconfig.json';
 import { createTable } from './create-table';
 
 export const getDataFromAPI = (parts) => {
