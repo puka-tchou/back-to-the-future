@@ -923,10 +923,10 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@prettier/plugin-xml@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-0.8.0.tgz#b9739a1221c3033c62c39cdebdc4dc4d7e7e0da4"
-  integrity sha512-52ZvUGjkiear2UzPz6DaofE1UKZ1Sc8Tp/+d+TGZEFVXYpUa1i9hEtyiR9xqGv36qUeJQlhdPz1Tp3xHqTK81g==
+"@prettier/plugin-xml@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-0.10.0.tgz#538e485bc38aa9852b82679a020df3e05c49df4a"
+  integrity sha512-8Pmkik2wH4sT6cVdeRN3MpzniFxzOWH0fLRnLJwMXSPMyz9ZKdVm4bg5oAWG96LABue0/W4cCr+oXuEslTTAUA==
   dependencies:
     "@xml-tools/parser" "^1.0.2"
     prettier ">=1.10"
