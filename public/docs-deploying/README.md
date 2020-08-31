@@ -1,6 +1,20 @@
 # Deploying to a production environment
 
-[TOC]
+- [Deploying to a production environment](#deploying-to-a-production-environment)
+  - [A quick note](#a-quick-note)
+    - [Pre-requirements](#pre-requirements)
+  - [Clone the project](#clone-the-project)
+  - [Deploying the API server](#deploying-the-api-server)
+    - [Requirements](#requirements)
+    - [Database setup](#database-setup)
+    - [API deployment](#api-deployment)
+      - [Security concerns](#security-concerns)
+      - [Dump the autoloader](#dump-the-autoloader)
+      - [Database settings](#database-settings)
+      - [Copy the files to the server](#copy-the-files-to-the-server)
+  - [cron job](#cron-job)
+  - [Web client](#web-client)
+    - [Build](#build)
 
 ## A quick note
 

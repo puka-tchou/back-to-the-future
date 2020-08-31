@@ -1,3 +1,2 @@
-- How to use the web interface
-
-  - [Web interface introduction](basics-interface/)
+- [Web interface introduction](/#an-introduction-to-the-interface)
+- [How to deploy the project](docs-deploying/)
