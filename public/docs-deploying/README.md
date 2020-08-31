@@ -249,7 +249,7 @@ Before building the project, you want to change the content of `src/web/dbconfig
 
 ```json
 {
-  "db_address": "http://src.test/api/parts"
+	"db_address": "http://src.test/api/parts"
 }
 ```
 

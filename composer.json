@@ -1,39 +1,39 @@
 {
-  "name": "crouzet/pricing",
-  "description": "Price tracking app",
-  "type": "project",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Gaspard Bariller",
-      "email": "gaspard.bariller@tutanota.com"
-    }
-  ],
-  "require": {},
-  "require-dev": {
-    "atoum/atoum": "3.4.2",
-    "atoum/stubs": "2.6.0",
-    "friendsofphp/php-cs-fixer": "2.16.4",
-    "kint-php/kint": "3.3.0",
-    "squizlabs/php_codesniffer": "3.5.5"
-  },
-  "scripts": {
-    "stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
-    "stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
-    "stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
-  },
-  "config": {
-    "sort-packages": true,
-    "optimize-autoloader": true,
-    "github-oauth": {
-      "github.com": "46305927a073a07150e7d38df4543074f8351ae4"
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "autoload": {
-    "classmap": [
-      "src/api/"
-    ]
-  }
+	"name": "crouzet/pricing",
+	"description": "Price tracking app",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Gaspard Bariller",
+			"email": "gaspard.bariller@tutanota.com"
+		}
+	],
+	"require": {},
+	"require-dev": {
+		"atoum/atoum": "3.4.2",
+		"atoum/stubs": "2.6.0",
+		"friendsofphp/php-cs-fixer": "2.16.4",
+		"kint-php/kint": "3.3.0",
+		"squizlabs/php_codesniffer": "3.5.5"
+	},
+	"scripts": {
+		"stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
+		"stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
+		"stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
+	},
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"github-oauth": {
+			"github.com": "46305927a073a07150e7d38df4543074f8351ae4"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"classmap": [
+			"src/api/"
+		]
+	}
 }

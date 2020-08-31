@@ -1,50 +1,50 @@
-import { drawChart } from './draw-chart';
+import {drawChart} from './draw-chart';
 import DBConfig from '../dbconfig.json';
-import { createTable } from './create-table';
+import {createTable} from './create-table';
 
 export const getDataFromAPI = (parts) => {
-  const formData = new FormData();
-  const DBAdress = DBConfig.db_address;
+	const formData = new FormData();
+	const DBAdress = DBConfig.db_address;
 
-  performance.mark('start');
+	performance.mark('start');
 
-  formData.append('parts', parts.files[0]);
-  console.log('👋 querying API…');
-  return fetch(DBAdress, {
-    method: 'POST',
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
+	formData.append('parts', parts.files[0]);
+	console.log('👋 querying API…');
+	return fetch(DBAdress, {
+		method: 'POST',
+		body: formData,
+	})
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
 
-      console.log(`⚠️ network error : ${response}`);
-    })
-    .then((json) => {
-      const { body } = json;
+			console.log(`⚠️ network error : ${response}`);
+		})
+		.then((json) => {
+			const {body} = json;
 
-      console.log(`🚅 API returned a response:`);
-      console.log(json);
-      performance.mark('api-end');
+			console.log(`🚅 API returned a response:`);
+			console.log(json);
+			performance.mark('api-end');
 
-      createTable(body);
+			createTable(body);
 
-      drawChart(body);
+			drawChart(body);
 
-      // Performance measurements calls
-      console.log('⌛ data processing has ended');
-      performance.mark('end');
-      performance.measure('api', 'start', 'api-end');
-      performance.measure('table', 'table-start', 'table-end');
-      performance.measure('total', 'start', 'end');
-      console.table(performance.getEntriesByType('measure'));
-      performance.clearMarks();
-      performance.clearMeasures();
+			// Performance measurements calls
+			console.log('⌛ data processing has ended');
+			performance.mark('end');
+			performance.measure('api', 'start', 'api-end');
+			performance.measure('table', 'table-start', 'table-end');
+			performance.measure('total', 'start', 'end');
+			console.table(performance.getEntriesByType('measure'));
+			performance.clearMarks();
+			performance.clearMeasures();
 
-      return json;
-    })
-    .catch((error) => {
-      console.log(`⚠️ fetch error: ${error}`);
-    });
+			return json;
+		})
+		.catch((error) => {
+			console.log(`⚠️ fetch error: ${error}`);
+		});
 };

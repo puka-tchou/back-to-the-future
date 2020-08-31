@@ -1,6 +1,4 @@
 {
-  "prettier": true,
-  "space": true,
   "rules": {
     "promise/prefer-await-to-then": 0
   }

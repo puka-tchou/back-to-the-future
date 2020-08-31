@@ -61,6 +61,6 @@ pages:
   script: echo "Done"
   artifacts:
     paths:
-    - public
+      - public
   only:
-  - master
+    - master
