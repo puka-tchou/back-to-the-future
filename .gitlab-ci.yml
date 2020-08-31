@@ -56,3 +56,11 @@ deploy:
   dependencies:
     - build
   script: echo "Deploying..."
+
+pages:
+  script: echo "Done"
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
