@@ -25,6 +25,7 @@ build:
     paths:
       - dist/
     untracked: true
+  needs: []
 
 sonarcloud-check:
   stage: test
@@ -41,6 +42,7 @@ sonarcloud-check:
     - merge_requests
     - master
     - develop
+  needs: []
 
 lhci:
   stage: test
@@ -50,17 +52,21 @@ lhci:
     - yarn run build
     - npm install -g @lhci/cli@0.4.x
     - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
+  needs: []
 
 deploy:
   stage: deploy
   dependencies:
     - build
   script: echo "Deploying..."
+  needs: ["build"]
 
 pages:
+  stage: deploy
   script: echo "Done"
   artifacts:
     paths:
       - public
   only:
     - master
+  needs: []
