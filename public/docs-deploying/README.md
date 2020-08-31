@@ -57,7 +57,7 @@ That’s it!
 
 To get the PHP version that is installed on your server, you can use the following commands:
 
-```sh
+```shell-session
 # Linux
 curl --head http://adress.com
 
@@ -68,7 +68,7 @@ HEAD / HTTP/1.0
 
 These commands should give you an output similar to what’s below. You can see the PHP version at the very end of the third line (here we are running PHP 7.4.2).
 
-```sh
+```shell-session
 HTTP/1.1 200 OK
 Date: Tue, 09 Jun 2020 13:28:14 GMT
 Server: Apache/2.4.35 (Win64) OpenSSL/1.1.1d PHP/7.4.2
@@ -77,7 +77,7 @@ Content-Type: text/html;charset=UTF-8
 
 To get the version of MySQL installed on your server, you will need to log in to your MySQL server using the first command and then issue a `SELECT` statement:
 
-```sh
+```shell-session
 mysql --host=localhost --user=myname --password
 ```
 
@@ -87,7 +87,7 @@ SELECT VERSION();
 
 You should get something similar to what’s below. Here, we can see that we are running MySQL version 5.7.24.
 
-```mysql
+```sql
 +-----------+
 | VERSION() |
 +-----------+
@@ -108,7 +108,7 @@ All you need to do to set the database up is to import this dump using your favo
 
 First, log in to your MySQL server. Please, note that `localhost` and `root` are placeholder values and that you will need to use the address and username that are specific to your server:
 
-```bash
+```shell-session
 mysql --host=localhost --user=root --password
 # Enter password: *****
 # Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -133,7 +133,7 @@ CREATE DATABASE new_db_name CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 exit the MySQL client (`exit;`), then run the import command. The path to the dump is relative to your current working directory and you may need to adapt it (eg. change it to `.public/docs-deploying/MySQL/dump_v1.0.0.sql`).
 
-```sh
+```shell-session
 mysql –u username –p new_db_name < dump_v1.0.0.sql
 # Enter password: *****
 ```
@@ -182,13 +182,13 @@ Composer can be used to automatically generate this autoload file (see [autoload
 
 First, make sure that your CWD (current working directory) is the root of the project. Then, dump the autoloader:
 
-```sh
+```shell-session
 composer dump-autoload --optimize --no-dev
 ```
 
 Composer will write the autoload file in `vendor/autoload.php`. This file is needed for the API to properly work and it should be present on your server. To do so, copy the autoloader to the `src/api` folder:
 
-```sh
+```shell-session
 cp vendor/autoload.php src/api
 ```
 
@@ -224,7 +224,7 @@ password = user:pass
 
 Then, copy the `src/api` folder to the server using your favorite method. Once the files are online, you can check if the API deployment was successful by browsing to your server (eg. http://localhost/api). If you get the documentation in a JSON format, everything should be fine.
 
-```JSON
+```json
 {
   "code": 0,
   "message": "Well, here is the documentation.",
@@ -239,7 +239,7 @@ Then, copy the `src/api` folder to the server using your favorite method. Once t
 
 The cron job is used to update on a regular basis the stock information. A basic cron job example is provided in `src/cron/updatestock.sh`. You want the cron job to run the PHP script located in `src/tasks/UpdateStock.php`.
 
-```sh
+```shell
 # cron task to update the stock of all the parts each week
 #
 # This will launch the task each monday at 00:00
@@ -255,7 +255,7 @@ The web client is the main front-end, it’s what users will see and interact wi
 
 First, install the dependencies:
 
-```sh
+```shell-session
 yarn install
 ```
 
@@ -269,13 +269,13 @@ Before building the project, you want to change the content of `src/web/dbconfig
 
 Then build the project:
 
-```sh
+```shell-session
 yarn run build
 ```
 
 If the build succeeded, you should have a similar output:
 
-```sh
+```shell-session
 $ yarn run build
 yarn run v1.22.5
 $ parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/
