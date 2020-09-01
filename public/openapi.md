@@ -1,3 +1,6 @@
+# OpenAPI documentation
+
+```yaml
 openapi: 3.0.2
 info:
   version: 1.2.0
@@ -71,3 +74,46 @@ components:
                 type: string
                 format: binary
                 description: A CSV file containing all the part-numbers to add.
+  examples:
+    sampleAddFile:
+      summary: A sample CSV file valid when adding parts
+      externalValue: ''
+    sampleGetFile:
+      summary: A sample CSV file valid when getting parts
+      externalValue: ''
+```
+
+## Sample response
+
+```json
+{
+	"code": 0,
+	"message": "Everything went fine.",
+	"body": {
+		"WEB": {
+			"part_number": "CWD4850",
+			"date_checked": "2020-02-25",
+			"stock": {
+				"parts_in_stock": 35,
+				"parts_on_order": 40,
+				"parts_min_order": -1
+			},
+			"supplier": "alliedelec"
+		}
+	}
+}
+```
+
+## Response codes
+
+```yaml
+---
+0: OK
+1: Notice (see the message to get additionnal informations)
+2: Bad request (malformed request)
+3: Not allowed (you can't do that, check your method or endpoint)
+4: Not found
+5: Server error (our bad)
+# Numbers 6 to 8 are currently not used
+9: Unknown error (good luck)
+```

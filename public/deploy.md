@@ -1,21 +1,5 @@
 # Deploying to a production environment
 
-- [Deploying to a production environment](#deploying-to-a-production-environment)
-  - [A quick note](#a-quick-note)
-    - [Pre-requirements](#pre-requirements)
-  - [Clone the project](#clone-the-project)
-  - [Deploying the API server](#deploying-the-api-server)
-    - [Requirements](#requirements)
-    - [Database setup](#database-setup)
-    - [API deployment](#api-deployment)
-      - [Security concerns](#security-concerns)
-      - [Dump the autoloader](#dump-the-autoloader)
-      - [Database settings](#database-settings)
-      - [Copy the files to the server](#copy-the-files-to-the-server)
-  - [cron job](#cron-job)
-  - [Web client](#web-client)
-    - [Build](#build)
-
 ## A quick note
 
 The project is made of three separated components that work together: an API, a web interface and a cron job. The API is the core of the project and the only vital part, the web interface is used to allow easy access to the data and to export the data as Excel (`.xlsx`) files and the cron job is to regularly update the data.

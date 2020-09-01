@@ -13,6 +13,10 @@
 			rel="stylesheet"
 			href="//cdn.jsdelivr.net/npm/docsify/themes/vue.min.css"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/docsify-toc@1.0.0/dist/toc.min.css"
+		/>
 		<link rel="stylesheet" href="style.css" />
 		<!-- Favicons -->
 		<!-- Main color: #ff8a00 -->
@@ -46,6 +50,7 @@
 				// repo: 'https://gitlab.com/gaspacchio/back-to-the-future',
 				loadNavbar: false,
 				loadSidebar: true,
+				subMaxLevel: 2,
 				auto2top: true,
 				coverpage: true,
 				logo: '/_media/icon.color.48x.png',
@@ -53,10 +58,16 @@
 				mergeNavbar: true,
 				search: 'auto',
 				themeColor: '#008b00',
+				toc: {
+					scope: '.markdown-section',
+					headings: 'h1, h2, h3, h4, h5, h6',
+					title: 'Table of Contents',
+				},
 			};
 		</script>
 		<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/docsify-toc@1.0.0/dist/toc.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-ini.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-php.min.js"></script>
