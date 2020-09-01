@@ -1,4 +1,4 @@
-<!-- _coverpage.md -->
+![logo](_media/logo.min.svg)
 
 # Back to the future <small>1.0.0</small>
 

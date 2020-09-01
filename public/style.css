@@ -16,6 +16,16 @@
 	box-sizing: border-box;
 }
 
+/*=== COVERPAGE ===*/
+.cover-main img[alt='logo'] {
+	max-width: 125px;
+}
+
+/*=== SIDEBAR ===*/
+.sidebar .app-name img {
+	max-width: 56px;
+}
+
 /*=== CONSTRAST FIXES ===*/
 .markdown-section em {
 	color: #69797b;
