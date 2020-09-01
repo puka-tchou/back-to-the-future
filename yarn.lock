@@ -4112,13 +4112,13 @@ grapheme-breaker@^0.3.2:
     brfs "^1.2.0"
     unicode-trie "^0.3.1"
 
-gridjs@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/gridjs/-/gridjs-1.14.0.tgz#563ae4005a7960aabd309a3d2c30147ae2a56716"
-  integrity sha512-0GJ3xrAICOZMb5f3I03P68Wre1t1YHDkqKuknnjQUZw3FefohYd0MeAGgRYzTTaD+gTMAFMLc63SAf/IKyjGZw==
+gridjs@1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/gridjs/-/gridjs-1.17.0.tgz#bd9697bd31800a2e6bba116bf6b3c05f0890e46f"
+  integrity sha512-Y/Za65jbPUXlFi68Db0nBDK23lEzIeM0w7NHZHA0hjfF4yqkrKSTGvjE8e4rBcIoLK7Rf1XFnpKDOY19TBvS/g==
   dependencies:
-    preact "^10.4.4"
-    tslib "~2.0.0"
+    preact "^10.4.8"
+    tslib "^2.0.1"
 
 har-schema@^2.0.0:
   version "2.0.0"
@@ -6841,10 +6841,10 @@ posthtml@^0.12.0:
     posthtml-parser "^0.4.2"
     posthtml-render "^1.2.2"
 
-preact@^10.4.4:
-  version "10.4.5"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.5.tgz#457fe034d558595864d0663574c2850f0b43d28e"
-  integrity sha512-/GyQOM44xNbM1nx1NWWdEO9RFjOVl3Ji6HTnEP+y9OkfyvJDHXnWJPQnuknrslzu5lZfAtFavS8gka91fbFAPg==
+preact@^10.4.8:
+  version "10.4.8"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.8.tgz#8517b106cc5591eb675237c93da99ac052cf4756"
+  integrity sha512-uVLeEAyRsCkUEFhVHlOu17OxcrwC7+hTGZ08kBoLBiGHiZooUZuibQnphgMKftw/rqYntNMyhVCPqQhcyAGHag==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -8344,10 +8344,10 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tslib@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
-  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
+tslib@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tsutils@^3.17.1:
   version "3.17.1"

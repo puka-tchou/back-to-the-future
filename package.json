@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"chart.js": "3.0.0-alpha",
-		"gridjs": "1.14.0",
+		"gridjs": "1.17.0",
 		"spectre.css": "0.5.9",
 		"zipcelx": "1.6.2"
 	},
