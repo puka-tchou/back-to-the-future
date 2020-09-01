@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "parcel watch src/web/index.html -d dev/",
-		"style": "prettier --write **/*.{html,xhtml,css,md,xml,yaml,yml,json,svg}",
+		"style": "prettier --write **/*.{html,xhtml,css,md,xml,yaml,yml,json}",
 		"lint": "xo **/*.js --fix --env=browser --env=node --prettier",
 		"build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
 	},
