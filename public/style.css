@@ -1,4 +1,4 @@
-#main {
+.markdown-section {
 	max-width: 780px;
 }
 
@@ -6,7 +6,7 @@
 	font-size: 17px;
 }
 
-p img {
+.markdown-section p img {
 	max-height: 80vh;
 	padding: 15px;
 	border: solid 2px #000;
@@ -14,6 +14,25 @@ p img {
 	display: block;
 	margin: auto;
 	box-sizing: border-box;
+}
+
+/*=== CONSTRAST FIXES ===*/
+.markdown-section em {
+	color: #69797b;
+}
+
+.markdown-section code {
+	color: #ba5200;
+	background-color: #f6f6f6;
+}
+
+.markdown-section blockquote {
+	color: #767676;
+}
+
+.markdown-section pre,
+.markdown-section pre > code {
+	background-color: #f6f6f6;
 }
 
 /*=== CODEBLOCKS ===*/
