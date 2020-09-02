@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+import { Chart } from 'chart.js';
 
 export const drawChart = (data) => {
 	const canvas = document.querySelector('#data-chart');
@@ -49,7 +49,7 @@ export const drawChart = (data) => {
 			performance.mark('chart-start');
 
 			data[select.value].body.forEach((record) => {
-				const {supplier} = record;
+				const { supplier } = record;
 				if (stock[supplier] === undefined) {
 					stock[supplier] = [];
 				}
