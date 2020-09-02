@@ -5,6 +5,7 @@ export const readStockFromFile = (input) => {
 	const CSVFile = input.files[0];
 	const invalidDataInfo = document.querySelector('#invalid-data-info');
 	let isValidData = true;
+	let problematicData;
 	let data;
 
 	performance.mark('start-file');
@@ -12,23 +13,24 @@ export const readStockFromFile = (input) => {
 	return CSVFile.text().then((text) => {
 		performance.mark('end-file');
 		data = text.split('\r\n').filter((value, index, self) => {
+			if (isCharacterForbidden(value)) {
+				isValidData = false;
+				problematicData = {index, value};
+			}
+
 			return self.indexOf(value) === index;
 		});
 		const tableData = [];
 
 		performance.mark('table-start');
 
-		for (let index = 0; index < data.length; index++) {
-			const line = data[index];
+		for (const [index, line] of data.entries()) {
 			if (line.includes(';')) {
 				isValidData = false;
-				console.log('🚫 data is not valid.');
-				console.log(data);
-				invalidDataInfo.classList.add('active');
+				problematicData = {index, line};
 				break;
 			}
 
-			console.log(line);
 			tableData.push([index, line]);
 		}
 
@@ -56,5 +58,14 @@ export const readStockFromFile = (input) => {
 		if (isValidData) {
 			return getDataFromAPI(input).then((response) => response);
 		}
+
+		console.log('🚫 data is not valid.');
+		console.log(problematicData);
+		invalidDataInfo.classList.add('active');
 	});
+};
+
+const isCharacterForbidden = (char) => {
+	const regex = /[^A-Z\d]/;
+	return regex.test(char);
 };
