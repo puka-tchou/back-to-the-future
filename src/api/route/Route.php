@@ -56,7 +56,7 @@ class Route
         $reader = new Reader;
         $reporter = new Reporter;
         $documentation['query'] = $url;
-        $documentation = $reader->readYAMLFile(__DIR__ . '/../yaml/documentation.yaml');
+        $documentation = $reader->readYAMLFile(__DIR__ . '/../specs.yml');
         
         $reporter->send(0, 'Well, here is the documentation.', $documentation);
     }
