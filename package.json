@@ -13,7 +13,7 @@
 		"build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
 	},
 	"dependencies": {
-		"chart.js": "3.0.0-alpha",
+		"chart.js": "3.0.0-beta",
 		"gridjs": "1.17.0",
 		"spectre.css": "0.5.9",
 		"zipcelx": "1.6.2"
