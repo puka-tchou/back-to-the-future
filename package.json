@@ -24,7 +24,6 @@
 		"parcel-plugin-imagemin": "4.0.1",
 		"parcel-plugin-purifycss": "1.0.5",
 		"prettier": "2.1.1",
-		"sass": "1.26.10",
-		"xo": "0.33.1"
+		"sass": "1.26.10"
 	}
 }
