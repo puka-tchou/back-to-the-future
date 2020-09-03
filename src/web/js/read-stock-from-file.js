@@ -1,9 +1,10 @@
 import {getDataFromAPI} from './get-data-from-api';
 import {Grid} from 'gridjs';
+import {showError, logError} from './errors';
+import {isCharacterForbidden} from './helpers';
 
 export const readStockFromFile = (input) => {
 	const CSVFile = input.files[0];
-	const invalidDataInfo = document.querySelector('#invalid-data-info');
 	let isValidData = true;
 	let problematicData;
 	let data;
@@ -59,13 +60,7 @@ export const readStockFromFile = (input) => {
 			return getDataFromAPI(input).then((response) => response);
 		}
 
-		console.log('🚫 data is not valid.');
-		console.log(problematicData);
-		invalidDataInfo.classList.add('active');
+		logError('invalid-data', 'warn', problematicData);
+		showError('invalid-data');
 	});
-};
-
-const isCharacterForbidden = (char) => {
-	const regex = /[^A-Z\d]/;
-	return regex.test(char);
 };

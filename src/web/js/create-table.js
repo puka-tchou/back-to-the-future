@@ -1,9 +1,10 @@
-import {Grid} from 'gridjs';
+import { Grid } from 'gridjs';
+// eslint-disable-next-line import/no-unassigned-import
 import 'gridjs/dist/theme/mermaid.css';
-import {clearActiveState} from './clear-active-state';
+import { hideLoading } from './loading';
+import { hideAllErrors, showError, logError } from './errors';
 
 export const createTable = (body) => {
-	const statusInfo = document.querySelector('#status-info');
 	const data = [];
 	let i = 0;
 
@@ -27,7 +28,8 @@ export const createTable = (body) => {
 	}
 
 	if (i === 0) {
-		statusInfo.classList.add('active');
+		logError('no-stock', 'warn');
+		showError('no-stock');
 		return i;
 	}
 
@@ -42,7 +44,8 @@ export const createTable = (body) => {
 	});
 	grid.render(document.querySelector('#data-result'));
 
-	clearActiveState();
+	hideLoading();
+	hideAllErrors();
 	console.log(`⭕ table creation ended. ${i} stock records found.`);
 	performance.mark('table-end');
 };

@@ -90,8 +90,8 @@
 				</div>
 			</section>
 			<section id="data-container" class="column col-9 data-container">
-				<div id="loading-info" class="loading loading-lg"></div>
-				<div id="status-info" class="info-display">
+				<div id="info-loading" class="loading loading-lg"></div>
+				<div id="error-no-stock" class="info-display">
 					<div>
 						<h3 class="text-center">
 							No stock records found with this set of parts.
@@ -116,12 +116,22 @@
 					</div>
 				</div>
 
-				<div id="invalid-data-info" class="info-display">
+				<div id="error-invalid-data" class="info-display">
 					<div>
 						<h3 class="text-center">Data provided is invalid.</h3>
 						<p>The file provided is invalid to get stock information.</p>
 					</div>
 				</div>
+				<div id="error-network-connection" class="info-display">
+					<div>
+						<h3 class="text-center">Network error</h3>
+						<p>
+							There was a network error while trying to connect to the API.
+							There is not that much that you can do, sorry about that...
+						</p>
+					</div>
+				</div>
+				<div id="error-no-data-to-download" class="info-display"></div>
 				<h2>Data</h2>
 				<button class="btn btn-success p-centered" id="download-button">
 					Download all the data

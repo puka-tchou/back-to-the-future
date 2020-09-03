@@ -1,6 +1,7 @@
 import {drawChart} from './draw-chart';
 import DBConfig from '../dbconfig.json';
 import {createTable} from './create-table';
+import {logError, showError} from './errors';
 
 export const getDataFromAPI = (parts) => {
 	const formData = new FormData();
@@ -19,7 +20,8 @@ export const getDataFromAPI = (parts) => {
 				return response.json();
 			}
 
-			console.log(`⚠️ network error : ${response}`);
+			logError('network-connection', 'warn', response);
+			showError('network-connection');
 		})
 		.then((json) => {
 			const {body} = json;
@@ -45,6 +47,7 @@ export const getDataFromAPI = (parts) => {
 			return json;
 		})
 		.catch((error) => {
-			console.log(`⚠️ fetch error: ${error}`);
+			logError('network-connection', 'warn', error);
+			showError('network-connection');
 		});
 };
