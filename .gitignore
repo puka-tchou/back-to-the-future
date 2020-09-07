@@ -15,6 +15,7 @@ node_modules/
 .temp/
 dev/
 .eslintcache
+.parcel-cache/
 
 # Distribution
 dist/
