@@ -1,6 +1,6 @@
 import { drawChart } from './draw-chart';
 import DBConfig from '../dbconfig.json';
-import { createTable } from './create-table';
+import { createTable } from './draw-table';
 import { logError, showError } from './errors';
 import fetchMock from 'fetch-mock';
 import testData from '../tests/test.json';
@@ -37,9 +37,16 @@ export const getDataFromAPI = (parts) => {
 			console.log(json);
 			performance.mark('api-end');
 
-			createTable(body);
-
-			drawChart(body);
+			try {
+				createTable(body);
+			} catch (error) {
+				console.log(error);
+			}
+			try {
+				drawChart(body);
+			} catch (error) {
+				console.log(error);
+			}
 
 			// Performance measurements calls
 			console.log('⌛ data processing has ended');
