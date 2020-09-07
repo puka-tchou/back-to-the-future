@@ -41,7 +41,10 @@ export const createTable = (body) => {
 			limit: 50,
 		},
 	});
-	grid.render(document.querySelector('#data-result'));
+
+	const tableContainer = document.querySelector('#data-result');
+	tableContainer.innerHTML = '';
+	grid.render(tableContainer);
 
 	hideLoading();
 	hideAllErrors();
