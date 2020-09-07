@@ -8,8 +8,8 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "parcel watch src/web/index.html -d dev/",
-		"style": "prettier --write **/*.{html,xhtml,css,md,xml,yaml,yml,json}",
-		"lint": "xo **/*.js --fix --env=browser --env=node --prettier",
+		"style": "prettier --write \"**/*.{html,xhtml,css,md,xml,yaml,yml,json}\"",
+		"lint": "eslint --fix --cache \"**/*.js\"",
 		"build": "parcel build --experimental-scope-hoisting src/web/index.html -d dist/web/ --public-url ."
 	},
 	"dependencies": {
@@ -20,6 +20,8 @@
 	},
 	"devDependencies": {
 		"@prettier/plugin-xml": "0.12.0",
+		"eslint": "7.8.1",
+		"eslint-config-prettier": "6.11.0",
 		"parcel-bundler": "1.12.4",
 		"parcel-plugin-imagemin": "4.0.1",
 		"parcel-plugin-purifycss": "1.0.5",
