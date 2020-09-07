@@ -1,4 +1,11 @@
-import { Chart } from 'chart.js';
+import {
+	Chart,
+	LineController,
+	LinearScale,
+	CategoryScale,
+	Point,
+	Line,
+} from 'chart.js';
 
 export const drawChart = (data) => {
 	const canvas = document.querySelector('#data-chart');
@@ -8,6 +15,8 @@ export const drawChart = (data) => {
 	let datasets = [];
 	let labels = [];
 
+	Chart.register(LineController, LinearScale, CategoryScale, Point, Line);
+
 	const chart = new Chart(canvas, {
 		type: 'line',
 		data: {
@@ -16,8 +25,14 @@ export const drawChart = (data) => {
 		},
 		options: {
 			scales: {
-				yAxes: [
+				x: [
 					{
+						type: 'time',
+					},
+				],
+				y: [
+					{
+						type: 'linear',
 						ticks: {
 							beginAtZero: true,
 						},

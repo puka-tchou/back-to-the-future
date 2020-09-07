@@ -1,6 +1,6 @@
-import {drawChart} from './draw-chart';
+import { drawChart } from './draw-chart';
 import DBConfig from '../dbconfig.json';
-import {createTable} from './create-table';
+import { createTable } from './create-table';
 import { logError, showError } from './errors';
 
 export const getDataFromAPI = (parts) => {
@@ -24,7 +24,7 @@ export const getDataFromAPI = (parts) => {
 			showError('network-connection');
 		})
 		.then((json) => {
-			const {body} = json;
+			const { body } = json;
 
 			console.log(`🚅 API returned a response:`);
 			console.log(json);
