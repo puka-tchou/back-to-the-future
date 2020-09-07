@@ -4,6 +4,7 @@ const errorList = {
 		'🔌 there was a network error while trying to connect to the API.',
 	'no-data-to-download': '🤔 there is no data to download.',
 	'no-stock': '🤔 there are no stock informations to show.',
+	generic: '🤷 generic error...',
 };
 
 export const showError = (errorName) => {
@@ -33,15 +34,11 @@ export const logError = (errorName, severity, data) => {
 	if (errorName in errorList) {
 		switch (severity) {
 			case 'warn':
-				console.warn(
-					`${errorList[errorName]}\n${JSON.stringify(data, null, 2)}`
-				);
+				console.warn(`${errorList[errorName]}\n${data}`);
 				break;
 			case 'error':
 			default:
-				console.error(
-					`${errorList[errorName]}\n${JSON.stringify(data, null, 2)}`
-				);
+				console.error(`${errorList[errorName]}\n${data}`);
 				break;
 		}
 	} else {
