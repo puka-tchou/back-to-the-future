@@ -19,7 +19,7 @@ export const showError = (errorName) => {
 
 export const hideAllErrors = () => {
 	for (const key in errorList) {
-		if (errorList.hasOwnProperty(key)) {
+		if (Object.prototype.hasOwnProperty.call(errorList, key)) {
 			document.querySelector(`#error-${key}`).classList.remove('active');
 		}
 	}

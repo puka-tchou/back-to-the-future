@@ -1,9 +1,8 @@
-import {readStockFromFile} from './read-stock-from-file';
-// eslint-disable-next-line import/no-unassigned-import
+import { readStockFromFile } from './read-stock-from-file';
 import 'spectre.css';
-import {createExcelFile} from './create-excel-file';
-import {logError, hideAllErrors} from './errors';
-import {hideLoading, showLoading} from './loading';
+import { createExcelFile } from './create-excel-file';
+import { logError, hideAllErrors } from './errors';
+import { hideLoading, showLoading } from './loading';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const fileInput = document.querySelector('#file-upload');

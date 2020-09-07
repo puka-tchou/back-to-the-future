@@ -1,5 +1,4 @@
 import { Grid } from 'gridjs';
-// eslint-disable-next-line import/no-unassigned-import
 import 'gridjs/dist/theme/mermaid.css';
 import { hideLoading } from './loading';
 import { hideAllErrors, showError, logError } from './errors';
