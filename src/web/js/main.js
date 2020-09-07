@@ -3,6 +3,11 @@ import 'spectre.css';
 import { createExcelFile } from './create-excel-file';
 import { logError, hideAllErrors } from './errors';
 import { hideLoading, showLoading } from './loading';
+import { mockFetch } from '../tests/fetch.mock';
+
+if (process.env.NODE_ENV === 'development') {
+	//mockFetch();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	const fileInput = document.querySelector('#file-upload');

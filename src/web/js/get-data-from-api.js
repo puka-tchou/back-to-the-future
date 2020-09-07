@@ -2,17 +2,10 @@ import { drawChart } from './draw-chart';
 import DBConfig from '../dbconfig.json';
 import { createTable } from './draw-table';
 import { logError, showError } from './errors';
-import fetchMock from 'fetch-mock';
-import testData from '../tests/test.json';
 
 export const getDataFromAPI = (parts) => {
 	const formData = new FormData();
 	const DBAdress = DBConfig.db_address;
-
-	if (process.env.NODE_ENV === 'development') {
-		// Mock the fetch() global to return a response
-		fetchMock.post(DBAdress, testData, {});
-	}
 
 	performance.mark('start');
 
