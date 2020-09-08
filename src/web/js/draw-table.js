@@ -1,7 +1,7 @@
-import { Grid } from 'gridjs';
 import 'gridjs/dist/theme/mermaid.css';
+import { hideAllErrors, logError, showError } from './errors';
+import { Grid } from 'gridjs';
 import { hideLoading } from './loading';
-import { hideAllErrors, showError, logError } from './errors';
 
 export const createTable = (body) => {
 	const data = [];

@@ -1,5 +1,5 @@
-import fetchMock from 'fetch-mock';
 import DBConfig from '../dbconfig.json';
+import fetchMock from 'fetch-mock';
 
 export const mockFetch = () => {
 	if (process.env.NODE_ENV === 'development') {

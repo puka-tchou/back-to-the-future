@@ -1,7 +1,7 @@
-import { drawChart } from './draw-chart';
+import { logError, showError } from './errors';
 import DBConfig from '../dbconfig.json';
 import { createTable } from './draw-table';
-import { logError, showError } from './errors';
+import { drawChart } from './draw-chart';
 
 export const getDataFromAPI = (parts) => {
 	const formData = new FormData();

@@ -1,10 +1,10 @@
 import {
+	CategoryScale,
 	Chart,
+	Line,
 	LineController,
 	LinearScale,
-	CategoryScale,
 	Point,
-	Line,
 } from 'chart.js';
 
 export const drawChart = (data) => {

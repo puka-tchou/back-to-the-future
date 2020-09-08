@@ -1,7 +1,7 @@
-import {getDataFromAPI} from './get-data-from-api';
-import {Grid} from 'gridjs';
-import {showError, logError} from './errors';
-import {isCharacterForbidden} from './helpers';
+import { logError, showError } from './errors';
+import { Grid } from 'gridjs';
+import { getDataFromAPI } from './get-data-from-api';
+import { isCharacterForbidden } from './helpers';
 
 export const readStockFromFile = (input) => {
 	const CSVFile = input.files[0];
@@ -16,7 +16,7 @@ export const readStockFromFile = (input) => {
 		data = text.split('\r\n').filter((value, index, self) => {
 			if (isCharacterForbidden(value)) {
 				isValidData = false;
-				problematicData = {index, value};
+				problematicData = { index, value };
 			}
 
 			return self.indexOf(value) === index;
@@ -28,7 +28,7 @@ export const readStockFromFile = (input) => {
 		for (const [index, line] of data.entries()) {
 			if (line.includes(';')) {
 				isValidData = false;
-				problematicData = {index, line};
+				problematicData = { index, line };
 				break;
 			}
 
