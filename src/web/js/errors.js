@@ -35,13 +35,14 @@ export const hideAllErrors = () => {
 
 export const logError = (errorName, severity, data) => {
 	if (data === undefined) {
-		data = {};
+		data = '';
 	}
 
 	if (errorName in errorList) {
 		switch (severity) {
 			case 'debug':
 				console.trace(`\n${errorList[errorName]}\n${data}`);
+				console.log(data);
 				break;
 			case 'warn':
 				console.warn(`${errorList[errorName]}\n${data}`);
