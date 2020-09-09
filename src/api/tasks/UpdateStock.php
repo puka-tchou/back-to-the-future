@@ -2,6 +2,7 @@
 
 use data\Database\Database;
 use data\Stock\Stock;
+use PDO;
 use utilities\Reporter\Reporter;
 
 /**
@@ -35,17 +36,56 @@ class UpdateStock
             $body = $res['body'];
 
             if ($code === 0) {
-            foreach ($body['stock'] as $dealer => $stock) {
-                $SQLres = $query->execute(array($part, $date, $stock, -1, -1, $dealer, $code));
+                foreach ($body['stock'] as $dealer => $stock) {
+                    $SQLres = $query->execute(array($part, $date, $stock, -1, -1, $dealer, $code));
         
-                if (!$SQLres) {
-                    $code = 5;
-                    $message = 'SQL error.';
-                    $body = $query->errorInfo();
+                    if (!$SQLres) {
+                        $code = 5;
+                        $message = 'SQL error.';
+                        $body = $query->errorInfo();
+                    }
                 }
             }
         }
             
+        return $reporter->format($code, $message, $body);
+    }
+
+    /** Update all the stock records at once.
+     *
+     * @return array
+     */
+    public function updateAll(): array
+    {
+        $database = new Database;
+        $reporter = new Reporter;
+        $code = 0;
+        $message = 'Stock successfully updated!';
+
+        $query = $database->connection->prepare('SELECT part_number from products');
+        $res = $query->execute();
+        
+        if (!$res) {
+            $code = 5;
+            $message = 'SQL error';
+            $body = $query->errorInfo();
+        } else {
+            $parts = $query->fetchAll(PDO::FETCH_COLUMN);
+
+            $addCode = 0;
+
+            foreach ($parts as $part) {
+                $addResult = $this->addRecord($part);
+                $addCode += $addResult['code'];
+                $body[$part] = $addResult['body'];
+            }
+
+            if ($addCode !== 0) {
+                $code = 5;
+                $message = 'There was an error while trying to update the stock.';
+            }
+        }
+
         return $reporter->format($code, $message, $body);
     }
 }

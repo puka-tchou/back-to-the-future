@@ -170,4 +170,28 @@ class Route
 
         $reporter->send($code, $message, $body);
     }
+
+    /** Update the stock information for all the $parts.
+     * This an example:
+     * ```
+     * $task = new UpdateStock;
+     * $res = $task->updateAll();
+     * $reporter->send($res['code'], $res['message'], $res['body']);
+     * ```
+     * @todo This route should require user authentication.
+     *
+     * @return void
+     */
+    public function updateall(): void
+    {
+        $reporter = new Reporter;
+                
+        $answer = $reporter->format(401, 'You should be logged in', null);
+
+        header('WWW-Authenticate: Basic realm="Back to the future"');
+        header('HTTP/1.0 401 Unauthorized');
+        header('Content-Type: application/json');
+
+        echo json_encode($answer);
+    }
 }

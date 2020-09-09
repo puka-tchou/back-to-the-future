@@ -47,6 +47,9 @@ function route(): void
         case '/api/update':
             $route->update();
             break;
+        case '/api/updateall':
+            $route->updateall();
+            break;
         case '/api/coffee':
             header("HTTP/1.1 418 I'm a teapot");
             $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
