@@ -11,7 +11,17 @@
 		"style": "prettier --write \"**/*.{html,xhtml,css,md,xml,yaml,yml,json}\"",
 		"lint": "eslint --fix --cache \"**/*.js\"",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\"",
-		"breakdown": "npx cross-env BUNDLE_BUDDY=true parcel build \"src/web/index.html\" --dist-dir \"dist/web\" --public-url \".\""
+		"breakdown": "npx cross-env BUNDLE_BUDDY=true parcel build \"src/web/index.html\" --dist-dir \"dist/web\" --public-url \".\" --no-minify"
+	},
+	"targets": {
+		"browser": {
+			"engines": {
+				"browsers": [
+					"> 0.2%",
+					"not dead"
+				]
+			}
+		}
 	},
 	"dependencies": {
 		"chart.js": "3.0.0-beta",
@@ -25,7 +35,6 @@
 		"eslint-config-prettier": "6.11.0",
 		"fetch-mock": "9.10.7",
 		"parcel": "2.0.0-beta.1",
-		"parcel-plugin-imagemin": "4.0.1",
 		"parcel-plugin-purifycss": "1.0.5",
 		"prettier": "2.1.1",
 		"sass": "1.26.10"
