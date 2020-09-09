@@ -68,11 +68,14 @@ class Stock
 
         $code = $res['code'];
         $message = $part . ': ' . $res['message'];
-        $body = array(
+        $body = 'API error: ' . $res['body'];
+        if ($code === 0) {
+            $body = array(
             'part_number' => $part,
             'date_checked' => date('Y-m-d'),
             'stock' => $res['body']
-        );
+            );
+        }
 
         return $reporter->format($code, $message, $body);
     }

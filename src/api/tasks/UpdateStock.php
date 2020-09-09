@@ -34,6 +34,7 @@ class UpdateStock
             $message = $res['message'];
             $body = $res['body'];
 
+            if ($code === 0) {
             foreach ($body['stock'] as $dealer => $stock) {
                 $SQLres = $query->execute(array($part, $date, $stock, -1, -1, $dealer, $code));
         

@@ -31,38 +31,46 @@ class NetComponents implements DealerInterface
     public function getStock(string $part): array
     {
         $reporter = new Reporter;
-
-        $code = 4;
-        $message = 'No records were found with the given part-number.';
-        $body = [];
+        
         $login = parse_ini_file(__DIR__ . '/../netcomponents.ini');
         $defaultAuth = 'Authorization: Basic ' . base64_encode($login['password']);
-
+        
         $login_response = $this->getApiResponse('/Login', $defaultAuth, 'POST', array('Content-Type:application/json'), array());
-        $token = 'Authorization: ' . json_decode($login_response, true)['AuthToken'];
-        $search_response = json_decode(
-            $this->getApiResponse(
-                '/Search',
-                $token,
-                'GET',
-                array(),
-                array(
+        
+        $message = 'There was an error while trying to login to the netcomponents API.';
+        $body = $login_response['body'];
+        $code = $login_response['code'];
+        
+        if ($code === 0) {
+            $code = 4;
+            $message = 'No records were found with the given part-number.';
+            $body = [];
+
+            $token = 'Authorization: ' . json_decode($login_response, true)['AuthToken'];
+            $search_response = json_decode(
+                $this->getApiResponse(
+                    '/Search',
+                    $token,
+                    'GET',
+                    array(),
+                    array(
                     'pn1' => $part,
                     'SearchType' => 'EQUALS',
                     'ClientIP' => $_SERVER['SERVER_ADDR']
                     )
-            )
-        );
+                )
+            );
 
-        $filteredResponse = $search_response->SearchedParts[0]->Parts;
+            $filteredResponse = $search_response->SearchedParts[0]->Parts;
 
-        if ($filteredResponse !== null) {
-            foreach ($filteredResponse as $value) {
-                $body[$value->Distributor->Name] = $value->Quantity;
+            if ($filteredResponse !== null) {
+                foreach ($filteredResponse as $value) {
+                    $body[$value->Distributor->Name] = $value->Quantity;
+                }
+
+                $code = 0;
+                $message = 'Found stock for ' . count($body) . ' dealers.';
             }
-
-            $code = 0;
-            $message = 'Found stock for ' . count($body) . ' dealers.';
         }
 
         return $reporter->format(
@@ -80,10 +88,12 @@ class NetComponents implements DealerInterface
      * @param mixed $headers The headers.
      * @param mixed $postData The data to post.
      *
-     * @return string
+     * @return array
      */
-    private function getApiResponse($url, $auth, $method, $headers, $postData): string
+    private function getApiResponse($url, $auth, $method, $headers, $postData): array
     {
+        $res = array();
+        $res['code'] = 0;
         $baseUrl = 'https://api.netcomponents.com/api/DILP/v3'.$url;
 
         if (count($postData)>0) {
@@ -113,10 +123,15 @@ class NetComponents implements DealerInterface
 
         $response = curl_exec($process);
         $header_size = curl_getinfo($process, CURLINFO_HEADER_SIZE);
-        $body = substr($response, $header_size);
+        $res['body'] = substr($response, $header_size);
+
+        if (curl_errno($process)) {
+            $res['code'] = 5;
+            $res['body'] = curl_error($process);
+        }
 
         curl_close($process);
 
-        return $body;
+        return $res;
     }
 }
