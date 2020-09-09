@@ -1,5 +1,6 @@
 <?php namespace data\Database;
 
+use Exception;
 use PDO;
 use utilities\Reporter\Reporter;
 
@@ -14,20 +15,25 @@ class Database
     public PDO $connection;
 
     /** Construct a new connection to the database.
-     * @todo Make this a singleton.
      * @return void
      */
     public function __construct()
     {
         $db = parse_ini_file(__DIR__ . '/../db.ini');
-        $this->connection = new PDO(
-            $db['type']
-            .':dbname='.$db['name']
-            .';host='.$db['host']
-            .';charset=UTF8',
-            $db['user'],
-            $db['pass']
-        );
+        try {
+            $this->connection = new PDO(
+                $db['type']
+                .':dbname='.$db['name']
+                .';host='.$db['host']
+                .';charset=UTF8',
+                $db['user'],
+                $db['pass']
+            );
+        } catch (Exception $exception) {
+            $reporter = new Reporter;
+            $reporter->send(5, 'Error while trying to connect to the database.', '');
+            die;
+        }
     }
 
     /** Get all products stored in the database.
