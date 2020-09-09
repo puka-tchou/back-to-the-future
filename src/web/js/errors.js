@@ -5,6 +5,7 @@ const errorList = {
 	'no-data-to-download': '🤔 there is no data to download.',
 	'no-stock': '🤔 there are no stock informations to show.',
 	generic: '🤷 generic error...',
+	debug: '🐛 good luck debugging this one.',
 };
 
 export const showError = (errorName) => {
@@ -21,7 +22,13 @@ export const showError = (errorName) => {
 export const hideAllErrors = () => {
 	for (const key in errorList) {
 		if (Object.prototype.hasOwnProperty.call(errorList, key)) {
-			document.querySelector(`#error-${key}`).classList.remove('active');
+			try {
+				document.querySelector(`#error-${key}`).classList.remove('active');
+			} catch (error) {
+				console.info(
+					`'${key}' error type has no container to display it to the user.`
+				);
+			}
 		}
 	}
 };
@@ -33,6 +40,9 @@ export const logError = (errorName, severity, data) => {
 
 	if (errorName in errorList) {
 		switch (severity) {
+			case 'debug':
+				console.trace(`\n${errorList[errorName]}\n${data}`);
+				break;
 			case 'warn':
 				console.warn(`${errorList[errorName]}\n${data}`);
 				break;
