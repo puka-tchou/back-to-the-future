@@ -9,7 +9,8 @@
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,md,xml,yaml,yml,json}\"",
-		"lint": "eslint --fix --cache \"**/*.js\"",
+		"lint-js": "eslint --fix --cache \"**/*.js\"",
+		"lint-css": "stylelint \"**/*.css\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\"",
 		"breakdown": "npx cross-env BUNDLE_BUDDY=true parcel build \"src/web/index.html\" --dist-dir \"dist/web\" --public-url \".\" --no-minify"
 	},
@@ -37,6 +38,9 @@
 		"parcel": "2.0.0-beta.1",
 		"parcel-plugin-purifycss": "1.0.5",
 		"prettier": "2.1.1",
-		"sass": "1.26.10"
+		"sass": "1.26.10",
+		"stylelint": "13.7.0",
+		"stylelint-config-prettier": "8.0.2",
+		"stylelint-config-standard": "20.0.0"
 	}
 }

@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+.cache/
+.phpdoc/
+.scannerwork/
+.temp/
+dev/
+dist/
