@@ -1,23 +1,23 @@
 /* === BASE === */
 body,
 html {
+	box-sizing: border-box;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
 	-webkit-overflow-scrolling: touch;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-text-size-adjust: none;
 	-webkit-touch-callout: none;
-	box-sizing: border-box;
 }
 body {
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	color: #34495e;
 	font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
 	font-size: 15px;
-	letter-spacing: 0;
-	margin: 0;
 	overflow-x: hidden;
+	margin: 0;
+	letter-spacing: 0;
+	color: #34495e;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
 }
 body:not(.ready) {
 	overflow: hidden;
@@ -36,30 +36,32 @@ div#app {
 div#app:empty::before {
 	content: 'Loading...';
 }
+main {
+	position: relative;
+	z-index: 0;
+	display: block;
+	width: 100vw;
+	height: 100%;
+}
+main.hidden {
+	display: none;
+}
+
+/* === UTILS === */
 .emoji {
 	height: 1.2rem;
 	vertical-align: middle;
 }
 .progress {
-	background-color: var(--theme-color, #42b983);
-	height: 2px;
-	left: 0;
 	position: fixed;
-	right: 0;
-	top: 0;
-	transition: width 0.2s, opacity 0.4s;
-	width: 0;
 	z-index: 999999;
-}
-
-/* === SEARCH BAR === */
-.search .search-keyword,
-.search a:hover {
-	color: var(--theme-color, #42b983);
-}
-.search .search-keyword {
-	font-style: normal;
-	font-weight: 700;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	transition: width 0.2s, opacity 0.4s;
+	background-color: var(--theme-color, #42b983);
 }
 img {
 	max-width: 100%;
@@ -69,27 +71,48 @@ a[disabled] {
 	opacity: 0.6;
 }
 kbd {
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	display: inline-block;
 	font-size: 12px !important;
 	line-height: 12px;
+	display: inline-block;
 	margin-bottom: 3px;
 	padding: 3px 5px;
 	vertical-align: middle;
+	border: 1px solid #ccc;
+	border-radius: 3px;
 }
 li input[type='checkbox'] {
 	margin: 0 0.2em 0.25em 0;
 	vertical-align: middle;
 }
+.anchor {
+	display: inline-block;
+	transition: all 0.3s;
+	text-decoration: none;
+}
+.anchor span {
+	color: #34495e;
+}
+.anchor:hover {
+	text-decoration: underline;
+}
+
+/* === SEARCH BAR === */
+.search .search-keyword,
+.search a:hover {
+	color: var(--theme-color, #42b983);
+}
+.search .search-keyword {
+	font-weight: 700;
+	font-style: normal;
+}
 
 /* === NAVIGATION === */
 .app-nav {
-	margin: 25px 60px 0 0;
 	position: absolute;
-	right: 0;
-	text-align: right;
 	z-index: 10;
+	right: 0;
+	margin: 25px 60px 0 0;
+	text-align: right;
 }
 .app-nav.no-badge {
 	margin-right: 25px;
@@ -104,14 +127,14 @@ li input[type='checkbox'] {
 .app-nav li,
 .app-nav ul {
 	display: inline-block;
-	list-style: none;
 	margin: 0;
+	list-style: none;
 }
 .app-nav a {
-	color: inherit;
 	font-size: 16px;
-	text-decoration: none;
 	transition: color 0.3s;
+	text-decoration: none;
+	color: inherit;
 }
 .app-nav a.active,
 .app-nav a:hover {
@@ -121,38 +144,38 @@ li input[type='checkbox'] {
 	border-bottom: 2px solid var(--theme-color, #42b983);
 }
 .app-nav li {
+	position: relative;
 	display: inline-block;
 	margin: 0 1rem;
 	padding: 5px 0;
-	position: relative;
 	cursor: pointer;
 }
 .app-nav li ul {
-	background-color: #fff;
+	position: absolute;
+	top: 100%;
+	right: -15px;
+	display: none;
+	overflow-y: auto;
+	box-sizing: border-box;
+	max-height: calc(100vh - 61px);
+	padding: 10px 0;
+	text-align: left;
+	white-space: nowrap;
 	border: 1px solid;
 	border-color: #ddd #ddd #ccc;
 	border-radius: 4px;
-	box-sizing: border-box;
-	display: none;
-	max-height: calc(100vh - 61px);
-	overflow-y: auto;
-	padding: 10px 0;
-	position: absolute;
-	right: -15px;
-	text-align: left;
-	top: 100%;
-	white-space: nowrap;
+	background-color: #fff;
 }
 .app-nav li ul li {
-	display: block;
 	font-size: 14px;
 	line-height: 1rem;
+	display: block;
 	margin: 8px 14px;
 	white-space: nowrap;
 }
 .app-nav li ul a {
-	display: block;
 	font-size: inherit;
+	display: block;
 	margin: 0;
 	padding: 0;
 }
@@ -162,70 +185,54 @@ li input[type='checkbox'] {
 .app-nav li:hover ul {
 	display: block;
 }
+
+/* === GITHUB CORNER === */
 .github-corner {
-	border-bottom: 0;
 	position: fixed;
+	z-index: 1;
+	top: 0;
 	right: 0;
 	text-decoration: none;
-	top: 0;
-	z-index: 1;
+	border-bottom: 0;
 }
 .github-corner:hover .octo-arm {
 	-webkit-animation: octocat-wave 0.56s ease-in-out;
 	animation: octocat-wave 0.56s ease-in-out;
 }
 .github-corner svg {
+	width: 80px;
+	height: 80px;
 	color: #fff;
 	fill: var(--theme-color, #42b983);
-	height: 80px;
-	width: 80px;
 }
-main {
-	display: block;
-	position: relative;
-	width: 100vw;
-	height: 100%;
-	z-index: 0;
-}
-main.hidden {
-	display: none;
-}
-.anchor {
-	display: inline-block;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-.anchor span {
-	color: #34495e;
-}
-.anchor:hover {
-	text-decoration: underline;
-}
+
+/* === SIDEBAR === */
 .sidebar {
-	border-right: 1px solid rgba(0, 0, 0, 0.07);
-	overflow-y: auto;
-	padding: 40px 0 0;
 	position: absolute;
+	z-index: 20;
 	top: 0;
 	bottom: 0;
 	left: 0;
-	transition: transform 0.25s ease-out;
+	overflow-y: auto;
 	width: 300px;
-	z-index: 20;
+	padding: 40px 0 0;
+	transition: transform 0.25s ease-out;
+	color: #364149;
+	border-right: 1px solid rgba(0, 0, 0, 0.07);
 }
 .sidebar > h1 {
-	margin: 0 auto 1rem;
 	font-size: 1.5rem;
 	font-weight: 300;
+	margin: 0 auto 1rem;
 	text-align: center;
 }
 .sidebar > h1 a {
-	color: inherit;
 	text-decoration: none;
+	color: inherit;
 }
 .sidebar > h1 .app-nav {
-	display: block;
 	position: static;
+	display: block;
 }
 .sidebar .sidebar-nav {
 	line-height: 2em;
@@ -247,18 +254,25 @@ main.hidden {
 	list-style: none;
 }
 .sidebar ul li a {
-	border-bottom: none;
+	font-size: 14px;
+	font-weight: 400;
 	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	color: #505d6b;
+	border-bottom: none;
 }
 .sidebar ul li ul {
-	padding-left: 20px;
+	padding: 0;
 }
 .sidebar::-webkit-scrollbar {
 	width: 4px;
 }
 .sidebar::-webkit-scrollbar-thumb {
-	background: transparent;
 	border-radius: 4px;
+	background: transparent;
 }
 .sidebar:hover::-webkit-scrollbar-thumb {
 	background: hsla(0, 0%, 53.3%, 0.4);
@@ -267,81 +281,82 @@ main.hidden {
 	background: hsla(0, 0%, 53.3%, 0.1);
 }
 .sidebar-toggle {
-	background-color: transparent;
-	background-color: hsla(0, 0%, 100%, 0.8);
-	border: 0;
-	outline: none;
-	padding: 10px;
 	position: absolute;
+	z-index: 30;
 	bottom: 0;
 	left: 0;
-	text-align: center;
-	transition: opacity 0.3s;
 	width: 284px;
-	z-index: 30;
+	padding: 10px;
 	cursor: pointer;
+	transition: opacity 0.3s;
+	text-align: center;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	background-color: hsla(0, 0%, 100%, 0.8);
 }
 .sidebar-toggle:hover .sidebar-toggle-button {
 	opacity: 0.4;
 }
 .sidebar-toggle span {
-	background-color: var(--theme-color, #42b983);
 	display: block;
-	margin-bottom: 4px;
 	width: 16px;
 	height: 2px;
+	margin-bottom: 4px;
+	background-color: var(--theme-color, #42b983);
 }
 body.sticky .sidebar,
 body.sticky .sidebar-toggle {
 	position: fixed;
 }
 .content {
-	padding-top: 60px;
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 300px;
+	padding-top: 60px;
 	transition: left 0.25s ease;
 }
 .markdown-section {
-	margin: 0 auto;
-	max-width: 80%;
-	padding: 30px 15px 40px;
 	position: relative;
+	max-width: 80%;
+	margin: 0 auto;
+	padding: 30px 15px 40px;
 }
 .markdown-section > * {
-	box-sizing: border-box;
 	font-size: inherit;
+	box-sizing: border-box;
 }
 .markdown-section > :first-child {
 	margin-top: 0 !important;
 }
 .markdown-section hr {
+	margin: 2em 0;
 	border: none;
 	border-bottom: 1px solid #eee;
-	margin: 2em 0;
 }
 .markdown-section iframe {
-	border: 1px solid #eee;
 	width: 1px;
 	min-width: 100%;
+	margin: 1em 0;
+	border: 1px solid #eee;
 }
 .markdown-section table {
-	border-collapse: collapse;
-	border-spacing: 0;
 	display: block;
-	margin-bottom: 1rem;
 	overflow: auto;
 	width: 100%;
+	margin-bottom: 1rem;
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 .markdown-section th {
 	font-weight: 700;
 }
 .markdown-section td,
 .markdown-section th {
-	border: 1px solid #ddd;
 	padding: 6px 13px;
+	border: 1px solid #ddd;
 }
 .markdown-section tr {
 	border-top: 1px solid #ccc;
@@ -351,28 +366,28 @@ body.sticky .sidebar-toggle {
 	background-color: #f8f8f8;
 }
 .markdown-section p.tip {
-	border-bottom-right-radius: 2px;
-	border-left: 4px solid #f66;
-	border-top-right-radius: 2px;
+	position: relative;
 	margin: 2em 0;
 	padding: 12px 24px 12px 30px;
-	position: relative;
+	border-left: 4px solid #f66;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
 }
 .markdown-section p.tip::before {
-	background-color: #f66;
-	border-radius: 100%;
-	color: #fff;
-	content: '!';
 	font-family: Dosis, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
 	font-size: 14px;
 	font-weight: 700;
-	left: -12px;
 	line-height: 20px;
 	position: absolute;
-	height: 20px;
-	width: 20px;
-	text-align: center;
 	top: 14px;
+	left: -12px;
+	width: 20px;
+	height: 20px;
+	content: '!';
+	text-align: center;
+	color: #fff;
+	border-radius: 100%;
+	background-color: #f66;
 }
 .markdown-section p.tip code {
 	background-color: #efefef;
@@ -381,9 +396,9 @@ body.sticky .sidebar-toggle {
 	color: #34495e;
 }
 .markdown-section p.warn {
-	background: rgba(66, 185, 131, 0.1);
-	border-radius: 2px;
 	padding: 1rem;
+	border-radius: 2px;
+	background: rgba(66, 185, 131, 0.1);
 }
 .markdown-section ul.task-list > li {
 	list-style-type: none;
@@ -397,128 +412,31 @@ body.close .sidebar-toggle {
 body.close .content {
 	left: 0;
 }
-@media print {
-	.app-nav,
-	.github-corner,
-	.sidebar,
-	.sidebar-toggle {
-		display: none;
-	}
-}
-@media screen and (max-width: 768px) {
-	.github-corner,
-	.sidebar,
-	.sidebar-toggle {
-		position: fixed;
-	}
-	.app-nav {
-		margin-top: 16px;
-	}
-	.app-nav li ul {
-		top: 30px;
-	}
-	main {
-		height: auto;
-		overflow-x: hidden;
-	}
-	.sidebar {
-		left: -300px;
-		transition: transform 0.25s ease-out;
-	}
-	.content {
-		left: 0;
-		max-width: 100vw;
-		position: static;
-		padding-top: 20px;
-		transition: transform 0.25s ease;
-	}
-	.app-nav,
-	.github-corner {
-		transition: transform 0.25s ease-out;
-	}
-	.sidebar-toggle {
-		background-color: transparent;
-		width: auto;
-		padding: 30px 30px 10px 10px;
-	}
-	body.close .sidebar {
-		transform: translateX(300px);
-	}
-	body.close .sidebar-toggle {
-		background-color: hsla(0, 0%, 100%, 0.8);
-		transition: background-color 1s;
-		width: 284px;
-		padding: 10px;
-	}
-	body.close .content {
-		transform: translateX(300px);
-	}
-	body.close .app-nav,
-	body.close .github-corner {
-		display: none;
-	}
-	.github-corner:hover .octo-arm {
-		-webkit-animation: none;
-		animation: none;
-	}
-	.github-corner .octo-arm {
-		-webkit-animation: octocat-wave 0.56s ease-in-out;
-		animation: octocat-wave 0.56s ease-in-out;
-	}
-}
-@-webkit-keyframes octocat-wave {
-	0%,
-	to {
-		transform: rotate(0);
-	}
-	20%,
-	60% {
-		transform: rotate(-25deg);
-	}
-	40%,
-	80% {
-		transform: rotate(10deg);
-	}
-}
-@keyframes octocat-wave {
-	0%,
-	to {
-		transform: rotate(0);
-	}
-	20%,
-	60% {
-		transform: rotate(-25deg);
-	}
-	40%,
-	80% {
-		transform: rotate(10deg);
-	}
-}
 section.cover {
-	align-items: center;
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100vh;
-	width: 100vw;
 	display: none;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: cover;
 }
 section.cover.show {
 	display: flex;
 }
 section.cover.has-mask .mask {
-	background-color: #fff;
-	opacity: 0.8;
 	position: absolute;
 	top: 0;
-	height: 100%;
 	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	background-color: #fff;
 }
 section.cover .cover-main {
+	position: relative;
 	flex: 1;
 	margin: -20px 16px 0;
 	text-align: center;
-	position: relative;
 }
 section.cover a {
 	color: inherit;
@@ -532,20 +450,20 @@ section.cover p {
 	margin: 1em 0;
 }
 section.cover h1 {
-	color: inherit;
 	font-size: 2.5rem;
 	font-weight: 300;
-	margin: 0.625rem 0 2.5rem;
 	position: relative;
+	margin: 0.625rem 0 2.5rem;
 	text-align: center;
+	color: inherit;
 }
 section.cover h1 a {
 	display: block;
 }
 section.cover h1 small {
-	bottom: -0.4375rem;
 	font-size: 1rem;
 	position: absolute;
+	bottom: -0.4375rem;
 }
 section.cover blockquote {
 	font-size: 1.5rem;
@@ -553,38 +471,38 @@ section.cover blockquote {
 }
 section.cover ul {
 	line-height: 1.8;
-	list-style-type: none;
-	margin: 1em auto;
 	max-width: 500px;
+	margin: 1em auto;
 	padding: 0;
+	list-style-type: none;
 }
 section.cover .cover-main > p:last-child a {
-	border-radius: 2rem;
-	border: 1px solid var(--theme-color, #42b983);
-	box-sizing: border-box;
-	color: var(--theme-color, #42b983);
-	display: inline-block;
 	font-size: 1.05rem;
-	letter-spacing: 0.1rem;
+	display: inline-block;
+	box-sizing: border-box;
 	margin: 0.5rem 1rem;
 	padding: 0.75em 2rem;
-	text-decoration: none;
 	transition: all 0.15s ease;
+	text-decoration: none;
+	letter-spacing: 0.1rem;
+	color: var(--theme-color, #42b983);
+	border: 1px solid var(--theme-color, #42b983);
+	border-radius: 2rem;
 }
 section.cover .cover-main > p:last-child a:last-child {
-	background-color: var(--theme-color, #42b983);
 	color: #fff;
+	background-color: var(--theme-color, #42b983);
 }
 section.cover .cover-main > p:last-child a:last-child:hover {
-	color: inherit;
 	opacity: 0.8;
+	color: inherit;
 }
 section.cover .cover-main > p:last-child a:hover {
 	color: inherit;
 }
 section.cover blockquote > p > a {
-	border-bottom: 2px solid var(--theme-color, #42b983);
 	transition: color 0.3s;
+	border-bottom: 2px solid var(--theme-color, #42b983);
 }
 section.cover blockquote > p > a:hover {
 	color: var(--theme-color, #42b983);
@@ -593,48 +511,33 @@ section.cover blockquote > p > a:hover {
 body {
 	background-color: #fff;
 }
-.sidebar {
-	color: #364149;
-}
 .sidebar li {
 	margin: 6px 0;
-}
-.sidebar ul li a {
-	color: #505d6b;
-	font-size: 14px;
-	font-weight: 400;
-	overflow: hidden;
-	text-decoration: none;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 .sidebar ul li a:hover {
 	text-decoration: underline;
 }
-.sidebar ul li ul {
-	padding: 0;
-}
 .sidebar ul li.active > a {
-	border-right: 2px solid;
-	color: var(--theme-color, #42b983);
 	font-weight: 600;
+	color: var(--theme-color, #42b983);
+	border-right: 2px solid;
 }
 .app-sub-sidebar li::before {
-	content: '-';
-	padding-right: 4px;
 	float: left;
+	padding-right: 4px;
+	content: '-';
 }
 .markdown-section h1,
 .markdown-section h2,
 .markdown-section h3,
 .markdown-section h4,
 .markdown-section strong {
-	color: #2c3e50;
 	font-weight: 600;
+	color: #2c3e50;
 }
 .markdown-section a {
-	color: var(--theme-color, #42b983);
 	font-weight: 600;
+	color: var(--theme-color, #42b983);
 }
 .markdown-section h1 {
 	font-size: 2rem;
@@ -655,8 +558,8 @@ body {
 	font-size: 1rem;
 }
 .markdown-section h6 {
-	color: #777;
 	font-size: 1rem;
+	color: #777;
 }
 .markdown-section figure,
 .markdown-section p {
@@ -673,43 +576,40 @@ body {
 	padding-left: 1.5rem;
 }
 .markdown-section blockquote {
-	border-left: 4px solid var(--theme-color, #42b983);
-	color: #858585;
 	margin: 2em 0;
 	padding-left: 20px;
+	color: #858585;
+	border-left: 4px solid var(--theme-color, #42b983);
 }
 .markdown-section blockquote p {
 	font-weight: 600;
 	margin-left: 0;
 }
-.markdown-section iframe {
-	margin: 1em 0;
-}
 .markdown-section em {
 	color: #7f8c8d;
 }
 .markdown-section code {
-	border-radius: 2px;
-	color: #e96900;
 	font-size: 0.8rem;
 	margin: 0 2px;
 	padding: 3px 5px;
 	white-space: pre-wrap;
+	color: #e96900;
+	border-radius: 2px;
 }
 .markdown-section code,
 .markdown-section pre {
-	background-color: #f8f8f8;
 	font-family: Roboto Mono, Monaco, courier, monospace;
+	background-color: #f8f8f8;
 }
 .markdown-section pre {
+	line-height: 1.5rem;
+	position: relative;
+	overflow: auto;
+	margin: 1.2em 0;
+	padding: 0 1.4rem;
+	word-wrap: normal;
 	-moz-osx-font-smoothing: initial;
 	-webkit-font-smoothing: initial;
-	line-height: 1.5rem;
-	margin: 1.2em 0;
-	overflow: auto;
-	padding: 0 1.4rem;
-	position: relative;
-	word-wrap: normal;
 }
 .token.cdata,
 .token.comment,
@@ -771,8 +671,8 @@ body {
 	text-decoration: line-through;
 }
 .token.inserted {
-	border-bottom: 1px dotted #202746;
 	text-decoration: none;
+	border-bottom: 1px dotted #202746;
 }
 .token.italic {
 	font-style: italic;
@@ -788,42 +688,143 @@ body {
 	cursor: help;
 }
 .markdown-section pre > code {
-	-moz-osx-font-smoothing: initial;
-	-webkit-font-smoothing: initial;
-	background-color: #f8f8f8;
-	border-radius: 2px;
-	color: #525252;
-	display: block;
 	font-family: Roboto Mono, Monaco, courier, monospace;
 	font-size: 0.8rem;
 	line-height: inherit;
-	margin: 0 2px;
-	max-width: inherit;
+	display: block;
 	overflow: inherit;
+	max-width: inherit;
+	margin: 0 2px;
 	padding: 2.2em 5px;
 	white-space: inherit;
+	color: #525252;
+	border-radius: 2px;
+	background-color: #f8f8f8;
+	-moz-osx-font-smoothing: initial;
+	-webkit-font-smoothing: initial;
 }
 .markdown-section code::after,
 .markdown-section code::before {
 	letter-spacing: 0.05rem;
 }
 code .token {
-	-moz-osx-font-smoothing: initial;
-	-webkit-font-smoothing: initial;
-	min-height: 1.5rem;
 	position: relative;
 	left: auto;
+	min-height: 1.5rem;
+	-moz-osx-font-smoothing: initial;
+	-webkit-font-smoothing: initial;
 }
 pre::after {
-	color: #ccc;
-	content: attr(data-lang);
 	font-size: 0.6rem;
 	font-weight: 600;
-	height: 15px;
 	line-height: 15px;
-	padding: 5px 10px 0;
 	position: absolute;
-	right: 0;
-	text-align: right;
 	top: 0;
+	right: 0;
+	height: 15px;
+	padding: 5px 10px 0;
+	content: attr(data-lang);
+	text-align: right;
+	color: #ccc;
+}
+
+/* === MEDIA QUERIES === */
+@media print {
+	.app-nav,
+	.github-corner,
+	.sidebar,
+	.sidebar-toggle {
+		display: none;
+	}
+}
+@media screen and (max-width: 768px) {
+	.github-corner,
+	.sidebar,
+	.sidebar-toggle {
+		position: fixed;
+	}
+	.app-nav {
+		margin-top: 16px;
+	}
+	.app-nav li ul {
+		top: 30px;
+	}
+	main {
+		overflow-x: hidden;
+		height: auto;
+	}
+	.sidebar {
+		left: -300px;
+		transition: transform 0.25s ease-out;
+	}
+	.content {
+		position: static;
+		left: 0;
+		max-width: 100vw;
+		padding-top: 20px;
+		transition: transform 0.25s ease;
+	}
+	.app-nav,
+	.github-corner {
+		transition: transform 0.25s ease-out;
+	}
+	.sidebar-toggle {
+		width: auto;
+		padding: 30px 30px 10px 10px;
+		background-color: transparent;
+	}
+	body.close .sidebar {
+		transform: translateX(300px);
+	}
+	body.close .sidebar-toggle {
+		width: 284px;
+		padding: 10px;
+		transition: background-color 1s;
+		background-color: hsla(0, 0%, 100%, 0.8);
+	}
+	body.close .content {
+		transform: translateX(300px);
+	}
+	body.close .app-nav,
+	body.close .github-corner {
+		display: none;
+	}
+	.github-corner:hover .octo-arm {
+		-webkit-animation: none;
+		animation: none;
+	}
+	.github-corner .octo-arm {
+		-webkit-animation: octocat-wave 0.56s ease-in-out;
+		animation: octocat-wave 0.56s ease-in-out;
+	}
+}
+
+/* === ANIMATIONS === */
+@-webkit-keyframes octocat-wave {
+	0%,
+	to {
+		transform: rotate(0);
+	}
+	20%,
+	60% {
+		transform: rotate(-25deg);
+	}
+	40%,
+	80% {
+		transform: rotate(10deg);
+	}
+}
+@keyframes octocat-wave {
+	0%,
+	to {
+		transform: rotate(0);
+	}
+	20%,
+	60% {
+		transform: rotate(-25deg);
+	}
+	40%,
+	80% {
+		transform: rotate(10deg);
+	}
 }
