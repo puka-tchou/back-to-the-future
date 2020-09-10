@@ -8,9 +8,9 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\"",
-		"style": "prettier --write \"**/*.{html,xhtml,css,md,xml,yaml,yml,json}\"",
+		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json}\"",
 		"lint-js": "eslint --fix --cache \"**/*.js\"",
-		"lint-css": "stylelint \"**/*.css\" --fix",
+		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\"",
 		"breakdown": "npx cross-env BUNDLE_BUDDY=true parcel build \"src/web/index.html\" --dist-dir \"dist/web\" --public-url \".\" --no-minify"
 	},
