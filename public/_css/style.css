@@ -1,11 +1,9 @@
 .markdown-section {
 	max-width: 780px;
 }
-
 .markdown-section p {
 	font-size: 17px;
 }
-
 .markdown-section p img {
 	max-height: 80vh;
 	padding: 15px;
@@ -30,16 +28,13 @@
 .markdown-section em {
 	color: #69797b;
 }
-
 .markdown-section code {
 	color: #ba5200;
 	background-color: #f6f6f6;
 }
-
 .markdown-section blockquote {
 	color: #767676;
 }
-
 .markdown-section pre,
 .markdown-section pre > code {
 	background-color: #f6f6f6;
@@ -54,6 +49,8 @@
 }
 
 /* === FONTS === */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+
 @font-face {
 	font-family: 'Fira Code';
 	src: url('_font/woff2/FiraCode-Light.woff2') format('woff2'),
@@ -61,7 +58,6 @@
 	font-weight: 300;
 	font-style: normal;
 }
-
 @font-face {
 	font-family: 'Fira Code';
 	src: url('_font/woff2/FiraCode-Regular.woff2') format('woff2'),
@@ -69,7 +65,6 @@
 	font-weight: 400;
 	font-style: normal;
 }
-
 @font-face {
 	font-family: 'Fira Code';
 	src: url('_font/woff2/FiraCode-Medium.woff2') format('woff2'),
@@ -77,7 +72,6 @@
 	font-weight: 500;
 	font-style: normal;
 }
-
 @font-face {
 	font-family: 'Fira Code';
 	src: url('_font/woff2/FiraCode-Bold.woff2') format('woff2'),
@@ -85,7 +79,6 @@
 	font-weight: 700;
 	font-style: normal;
 }
-
 @font-face {
 	font-family: 'Fira Code VF';
 	src: url('_font/woff2/FiraCode-VF.woff2') format('woff2-variations'),
