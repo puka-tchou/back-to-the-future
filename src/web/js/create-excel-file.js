@@ -13,8 +13,8 @@ export const createExcelFile = (stock) => {
 	const data = [
 		// Next array holds the dates
 		[
-			{value: '', type: 'string'},
-			{value: '', type: 'string'},
+			{ value: '', type: 'string' },
+			{ value: '', type: 'string' },
 		],
 	];
 
@@ -39,7 +39,7 @@ export const createExcelFile = (stock) => {
 					data.push([]);
 				}
 
-				data[line].push({value: record.parts_in_stock, type: 'number'});
+				data[line].push({ value: record.parts_in_stock, type: 'number' });
 			});
 
 			// Finally, add the suppliers and the part-number
@@ -47,8 +47,8 @@ export const createExcelFile = (stock) => {
 			suppliersArray.forEach((supplier, index) => {
 				// Index 0 is for the dates
 				data[index + 1 + offset].unshift(
-					{value: partNumber, type: 'string'},
-					{value: supplier, type: 'string'}
+					{ value: partNumber, type: 'string' },
+					{ value: supplier, type: 'string' }
 				);
 			});
 
@@ -57,7 +57,7 @@ export const createExcelFile = (stock) => {
 	}
 
 	dates.forEach((date) => {
-		data[0].push({value: date, type: 'string'});
+		data[0].push({ value: date, type: 'string' });
 	});
 
 	config.sheet.data = data;
