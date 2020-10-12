@@ -40,7 +40,7 @@ sonarcloud-check:
     - sonar-scanner
   only:
     - merge_requests
-    - master
+    - main
     - develop
   needs: []
 
@@ -68,5 +68,5 @@ pages:
     paths:
       - public
   only:
-    - master
+    - main
   needs: []
