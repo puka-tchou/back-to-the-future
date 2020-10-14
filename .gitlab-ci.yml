@@ -7,7 +7,6 @@ variables:
 stages:
   - test
   - build
-  - sonarcloud
   - deploy
 
 test:lighthouse:
@@ -38,6 +37,19 @@ test:php:
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
   needs: []
 
+sonarcloud:
+  stage: test
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: ['']
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  needs: []
+
 build:js:
   stage: build
   image: node:12.18.3
@@ -47,7 +59,7 @@ build:js:
     - yarn run build
   artifacts:
     paths:
-      - dist/
+      - dist/web
     untracked: true
   needs: []
 
@@ -65,18 +77,6 @@ build:php:
     untracked: true
   needs: ['test:php']
 
-sonarcloud:
-  stage: sonarcloud
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: ['']
-  cache:
-    key: '${CI_JOB_NAME}'
-    paths:
-      - .sonar/cache
-  script:
-    - sonar-scanner
-  needs: ['test:php']
 
 deploy:
   stage: deploy
