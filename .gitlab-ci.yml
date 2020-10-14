@@ -73,6 +73,8 @@ deploy:
   dependencies:
     - build
   script: echo "Deploying..."
+  only:
+    - deploy
   needs: ['build', 'test:php']
 
 pages:
