@@ -1,0 +1,23 @@
+<phpunit
+	colors="false"
+	beStrictAboutChangesToGlobalState="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	verbose="true"
+	testdox="true"
+>
+	<testsuites>
+		<testsuite name="unit">
+			<directory>src/api/tests</directory>
+		</testsuite>
+	</testsuites>
+	
+	<coverage cacheDirectory=".cache" pathCoverage="true">
+		<include>
+			<directory suffix=".php">src/api</directory>
+		</include>
+		<report>
+			<clover outputFile="coverage.xml" />
+			<text outputFile="" />
+		</report>
+	</coverage>
+</phpunit>

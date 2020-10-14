@@ -22,3 +22,6 @@ dist/
 
 # Credentials
 *.ini
+
+# Test artifacts
+coverage.xml
