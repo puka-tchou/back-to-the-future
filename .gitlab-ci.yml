@@ -12,7 +12,7 @@ cache:
 stages:
   - build
   - test
-  - sonarcloud-check
+  - sonarcloud
   - deploy
 
 build:
@@ -27,24 +27,7 @@ build:
     untracked: true
   needs: []
 
-sonarcloud-check:
-  stage: test
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: ['']
-  cache:
-    key: '${CI_JOB_NAME}'
-    paths:
-      - .sonar/cache
-  script:
-    - sonar-scanner
-  only:
-    - merge_requests
-    - main
-    - develop
-  needs: []
-
-lhci:
+test:lighthouse:
   stage: test
   image: cypress/browsers:node12.18.0-chrome83-ff77
   script:
@@ -54,12 +37,43 @@ lhci:
     - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
   needs: []
 
+test:php:
+  stage: test
+  image: alpine:edge
+  before_script:
+    - apk -U add composer php7 php7-common php7-tokenizer musl-dev make php7-dom php7-xml php7-simplexml php7-xmlwriter php7-pear php7-dev gcc
+    - pecl install xdebug
+    - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
+    - echo "memory_limit=-1" >> /etc/php7/php.ini
+    - php -m
+  script:
+    - composer install
+    - composer run test
+    - ls
+  after_script:
+    - apk -U add git curl bash findutils
+    - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
+  needs: []
+
+sonarcloud:
+  stage: sonarcloud
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: ['']
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  needs: ['test:php']
+
 deploy:
   stage: deploy
   dependencies:
     - build
   script: echo "Deploying..."
-  needs: ['build']
+  needs: ['build', 'test:php']
 
 pages:
   stage: deploy
