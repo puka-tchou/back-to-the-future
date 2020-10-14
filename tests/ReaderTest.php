@@ -5,7 +5,7 @@ use utilities\Reader\Reader;
 
 class ReaderTest extends TestCase
 {
-    public function testErrorsIfPathIsIncorrect()
+    public function testErrorsIfCsvDoesNotExists()
     {
         $reader = new Reader();
         $path = 'not/a/path';
@@ -25,5 +25,17 @@ class ReaderTest extends TestCase
         $actual = $reader->readCSVFile('./tests/sample.csv');
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testErrorsIfYamlDoesNotExists()
+    {
+        $reader = new Reader();
+        $path = 'not/a/path';
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionCode(1);
+        $this->expectExceptionMessage("File '" . $path . "' does not seem to exist.");
+
+        $reader->readYAMLFile($path);
     }
 }
