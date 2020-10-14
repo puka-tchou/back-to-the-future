@@ -37,8 +37,10 @@ test:php:
   stage: test
   image: alpine:edge
   before_script:
-    - apk -U add composer php7 php7-common php7-tokenizer musl-dev make php7-dom php7-xml php7-simplexml php7-xmlwriter php7-pear php7-dev gcc
+    - apk -U add composer php7 php7-common php7-tokenizer musl-dev make php7-dom php7-xml php7-simplexml php7-xmlwriter php7-pear php7-dev gcc yaml yaml-dev
+    - pecl install yaml
     - pecl install xdebug
+    - echo "extension=yaml" >> /etc/php7/php.ini
     - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
     - echo "memory_limit=-1" >> /etc/php7/php.ini
     - php -m
