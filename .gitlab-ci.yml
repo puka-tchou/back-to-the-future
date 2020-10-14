@@ -20,7 +20,7 @@ test:lighthouse:
     - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!" | tee lighthouse-report.log
   artifacts:
     paths:
-      - lighthouse-report.txt
+      - lighthouse-report.log
   needs: []
 
 test:php:
@@ -86,7 +86,7 @@ deploy:
   script:
     - ls -a
   only:
-    - branches@ci-deploy
+    - ci-deployment
   needs: ['test:php', 'build:js', 'build:php']
 
 pages:
