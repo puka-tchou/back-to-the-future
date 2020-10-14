@@ -15,7 +15,7 @@ test:lighthouse:
     - yarn run build
     - npm install -g @lhci/cli@0.4.x
   script:
-    - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!" | tee lighthouse-report.log
+    - lhci autorun --collect.settings.chromeFlags="--no-sandbox" | tee lighthouse-report.log
   artifacts:
     paths:
       - lighthouse-report.log
