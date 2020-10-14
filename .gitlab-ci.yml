@@ -5,37 +5,10 @@ variables:
   GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
 
 stages:
-  - build
   - test
+  - build
   - sonarcloud
   - deploy
-
-build:js:
-  stage: build
-  image: node:12.18.3
-  before_script:
-    - yarn install
-  script:
-    - yarn run build
-  artifacts:
-    paths:
-      - dist/
-    untracked: true
-  needs: []
-
-build:php:
-  stage: build
-  image: composer:1.10.13
-  before_script:
-    - php -v
-  script:
-    - composer install --no-dev --optimize-autoloader --no-progress
-  artifacts:
-    paths:
-      - src/api
-      - vendor/
-    untracked: true
-  needs: [test:php]
 
 test:lighthouse:
   stage: test
@@ -65,6 +38,33 @@ test:php:
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
   needs: []
 
+build:js:
+  stage: build
+  image: node:12.18.3
+  before_script:
+    - yarn install
+  script:
+    - yarn run build
+  artifacts:
+    paths:
+      - dist/
+    untracked: true
+  needs: []
+
+build:php:
+  stage: build
+  image: composer:1.10.13
+  before_script:
+    - php -v
+  script:
+    - composer install --no-dev --optimize-autoloader --no-progress
+  artifacts:
+    paths:
+      - src/api
+      - vendor/
+    untracked: true
+  needs: ['test:php']
+
 sonarcloud:
   stage: sonarcloud
   image:
@@ -81,11 +81,12 @@ sonarcloud:
 deploy:
   stage: deploy
   dependencies:
-    - build
+    - build:js
+    - build:php
   script: echo "Deploying..."
   only:
     - deploy
-  needs: ['build', 'test:php']
+  needs: ['test:php', 'build:js', 'build:php']
 
 pages:
   stage: deploy
