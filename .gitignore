@@ -24,4 +24,4 @@ dist/
 *.ini
 
 # Test artifacts
-coverage.xml
+coverage/

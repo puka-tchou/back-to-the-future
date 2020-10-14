@@ -1,0 +1,6 @@
+{
+	"collectCoverage": true,
+	"collectCoverageFrom": ["src/web/**/*.js"],
+	"coverageDirectory": "coverage/",
+	"coverageReporters": ["clover", "text-summary"]
+}

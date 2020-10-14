@@ -21,6 +21,17 @@ test:lighthouse:
       - lighthouse-report.log
   needs: []
 
+test:js:
+  stage: test
+  image: node:12.18.3
+  before_script:
+    - yarn install
+  script:
+    - yarn test
+  after_script:
+    - bash <(curl -s https://codecov.io/bash)
+  needs: []
+
 test:php:
   stage: test
   image: alpine:edge
@@ -32,7 +43,7 @@ test:php:
     - php -m
     - composer install
   script:
-    - composer run test
+    - composer test
   after_script:
     - apk -U add git curl bash findutils
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
@@ -64,7 +75,7 @@ build:js:
   artifacts:
     paths:
       - dist/web
-  needs: []
+  needs: ['test:js']
 
 build:php:
   stage: build
