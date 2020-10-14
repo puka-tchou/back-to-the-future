@@ -12,11 +12,15 @@ stages:
 test:lighthouse:
   stage: test
   image: cypress/browsers:node12.18.0-chrome83-ff77
-  script:
+  before_script:
     - yarn install
     - yarn run build
     - npm install -g @lhci/cli@0.4.x
-    - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!"
+  script:
+    - lhci autorun --collect.settings.chromeFlags="--no-sandbox" || echo "LHCI failed!" | lighthouse-report.log
+  artifacts:
+    paths:
+      - lighthouse-report.txt
   needs: []
 
 test:php:
@@ -28,16 +32,15 @@ test:php:
     - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
     - echo "memory_limit=-1" >> /etc/php7/php.ini
     - php -m
-  script:
     - composer install
+  script:
     - composer run test
-    - ls
   after_script:
     - apk -U add git curl bash findutils
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
   needs: []
 
-sonarcloud:
+test:sonarcloud:
   stage: test
   image:
     name: sonarsource/sonar-scanner-cli:latest
@@ -60,7 +63,6 @@ build:js:
   artifacts:
     paths:
       - dist/web
-    untracked: true
   needs: []
 
 build:php:
@@ -74,18 +76,17 @@ build:php:
     paths:
       - src/api
       - vendor/
-    untracked: true
   needs: ['test:php']
-
 
 deploy:
   stage: deploy
   dependencies:
     - build:js
     - build:php
-  script: echo "Deploying..."
+  script:
+    - ls -a
   only:
-    - deploy
+    - ci-deploy
   needs: ['test:php', 'build:js', 'build:php']
 
 pages:
