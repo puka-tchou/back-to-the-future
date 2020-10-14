@@ -38,4 +38,31 @@ class ReaderTest extends TestCase
 
         $reader->readYAMLFile($path);
     }
+
+    public function testCanReadAYamlFile()
+    {
+        $reader = new Reader();
+        $path = './tests/sample.yml';
+        $expected = array('This' => ['is', 'a', 'test']);
+      
+        $actual=$reader->readYAMLFile($path);
+      
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testCanReadAYamlString()
+    {
+        $reader = new Reader();
+        $string = <<<EOD
+        This:
+          - is
+          - a
+          - test
+        EOD;
+        $expected = array('This' => ['is', 'a', 'test']);
+
+        $actual = $reader->readFromString($string);
+
+        $this->assertEquals($expected, $actual);
+    }
 }
