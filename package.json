@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
-		"test": "jest --config jest.config.json --passWithNoTests",
+		"test": "jest --config jest.config.json",
 		"lint-js": "eslint --fix --cache \"**/*.js\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\"",
@@ -32,7 +32,10 @@
 		"zipcelx": "1.6.2"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.11.6",
+		"@babel/preset-env": "^7.11.5",
 		"@prettier/plugin-xml": "0.12.0",
+		"babel-jest": "^26.5.2",
 		"eslint": "7.8.1",
 		"eslint-config-prettier": "6.11.0",
 		"fetch-mock": "9.10.7",
