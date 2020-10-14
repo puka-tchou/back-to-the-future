@@ -51,10 +51,20 @@ class Reporter
     public function setCode(int $code): void
     {
         $this->code = $code;
-        if (preg_match('#\d#m', $code) === 0) {
+        if (0 < $code || $code > 9) {
             $this->code = 5;
         }
     }
+
+    /** Get the code.
+     *
+     * @return int
+     */
+    public function getCode(): int
+    {
+        return $this->code;
+    }
+
 
     /** Sets the short message of the answer. The `string` should be less than 150 char.
      *
@@ -67,6 +77,15 @@ class Reporter
         $this->shortMessage = $shortMessage;
     }
 
+    /** Get the short message.
+     *
+     * @return string
+     */
+    public function getShortMessage(): string
+    {
+        return $this->shortMessage;
+    }
+
     /** Sets the body of the answer.
      *
      * @param mixed $body The body of the anwser.
@@ -76,6 +95,15 @@ class Reporter
     public function setBody($body): void
     {
         $this->body = $body;
+    }
+
+    /** Get the body.
+     *
+     * @return [type]
+     */
+    public function getBody()
+    {
+        return $this->body;
     }
 
     /** Send the appropriate answer, accompanied with the correct HTTP headers.
