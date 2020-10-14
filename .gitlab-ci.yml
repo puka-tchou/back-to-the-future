@@ -10,6 +10,7 @@ stages:
 test:lighthouse:
   stage: test
   image: cypress/browsers:node12.18.0-chrome83-ff77
+  allow_failure: true
   before_script:
     - yarn install
     - yarn run build
