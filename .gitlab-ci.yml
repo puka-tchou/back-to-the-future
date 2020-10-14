@@ -1,8 +1,6 @@
 ---
 variables:
-  SAST_EXCLUDED_PATHS: public,vendor,node_modules
-  SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
-  GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
+  GIT_STRATEGY: fetch
 
 stages:
   - test
@@ -42,6 +40,9 @@ test:php:
 
 test:sonarcloud:
   stage: test
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
+    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: ['']
@@ -80,6 +81,8 @@ build:php:
 
 deploy:
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   dependencies:
     - build:js
     - build:php
