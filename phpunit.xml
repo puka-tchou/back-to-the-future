@@ -17,7 +17,6 @@
 		</include>
 		<report>
 			<clover outputFile="coverage.xml" />
-			<text outputFile="" />
 		</report>
 	</coverage>
 </phpunit>

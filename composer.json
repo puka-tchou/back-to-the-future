@@ -19,7 +19,7 @@
 		"stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
 		"stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
 		"stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots",
-		"test": "phpunit"
+		"test": "phpunit --coverage-text"
 	},
 	"config": {
 		"sort-packages": true,
