@@ -87,7 +87,7 @@ deploy:
     - build:js
     - build:php
   script:
-    - ls -a
+    - ls -AshR
   only:
     - ci-deployment
   needs: ['test:php', 'build:js', 'build:php']
