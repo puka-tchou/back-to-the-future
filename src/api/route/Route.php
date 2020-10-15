@@ -5,7 +5,6 @@ namespace BackToTheFuture\route;
 use BackToTheFuture\data\Database;
 use BackToTheFuture\data\Product;
 use BackToTheFuture\data\Stock;
-use BackToTheFuture\tasks\UpdateStock;
 use BackToTheFuture\utilities\FilterConnection;
 use BackToTheFuture\utilities\Reader;
 use BackToTheFuture\utilities\Reporter;
@@ -188,7 +187,7 @@ class Route
     {
         $reader = new Reader();
         $reporter = new Reporter();
-        $task = new UpdateStock();
+        $task = new Stock();
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
         $code = 2;
         $message = 'The CSV file was not found.';
@@ -223,7 +222,7 @@ class Route
      */
     public function updateall(): void
     {
-        $stock = new UpdateStock();
+        $stock = new Stock();
         $stock->updateAll();
     }
 }
