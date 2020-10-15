@@ -31,6 +31,7 @@ test:js:
     - yarn test
   after_script:
     - bash <(curl -s https://codecov.io/bash)
+  coverage: /All\sfiles.*?\s+(\d+.\d+)/
   artifacts:
     when: always
     paths:
@@ -56,6 +57,7 @@ test:php:
   after_script:
     - apk -U add git curl bash findutils
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
+  coverage: /^\s*Lines:\s*\d+.\d+\%/
   artifacts:
     when: always
     paths:
