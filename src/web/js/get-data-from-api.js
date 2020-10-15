@@ -16,6 +16,7 @@ export const getDataFromAPI = (parts) => {
 		body: formData,
 	})
 		.then((response) => {
+			logError('debug', 'debug', response);
 			if (response.ok) {
 				return response.json();
 			}
@@ -30,16 +31,9 @@ export const getDataFromAPI = (parts) => {
 			console.log(json);
 			performance.mark('api-end');
 
-			try {
-				createTable(body);
-			} catch (error) {
-				console.log(error);
-			}
-			try {
-				drawChart(body);
-			} catch (error) {
-				console.log(error);
-			}
+			createTable(body);
+
+			drawChart(body);
 
 			// Performance measurements calls
 			console.log('⌛ data processing has ended');
@@ -54,6 +48,7 @@ export const getDataFromAPI = (parts) => {
 			return json;
 		})
 		.catch((error) => {
-			logError('generic', 'warn', error);
+			console.log('Hmmmm');
+			logError('debug', 'debug', error);
 		});
 };
