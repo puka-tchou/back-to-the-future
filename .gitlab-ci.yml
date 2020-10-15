@@ -117,7 +117,7 @@ deploy:
   script:
     - ls -AshR
   only:
-    - ci-deployment
+    - deploy
   needs: ['test:php', 'build:js', 'build:php']
 
 pages:
