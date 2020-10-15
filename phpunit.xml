@@ -19,4 +19,9 @@
 			<clover outputFile="coverage/clover.xml" />
 		</report>
 	</coverage>
+
+	<logging>
+		<junit outputFile="logs/phpunit.xml" />
+	</logging>
+
 </phpunit>

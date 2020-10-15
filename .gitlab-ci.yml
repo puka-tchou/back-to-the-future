@@ -31,6 +31,12 @@ test:js:
     - yarn test
   after_script:
     - bash <(curl -s https://codecov.io/bash)
+  artifacts:
+    when: always
+    paths:
+      - logs/jest.xml
+    reports:
+      junit: logs/jest.xml
   needs: []
 
 test:php:
@@ -50,6 +56,12 @@ test:php:
   after_script:
     - apk -U add git curl bash findutils
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
+  artifacts:
+    when: always
+    paths:
+      - logs/phpunit.xml
+    reports:
+      junit: logs/phpunit.xml
   needs: []
 
 test:sonarcloud:

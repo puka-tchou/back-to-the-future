@@ -2,5 +2,9 @@
 	"collectCoverage": true,
 	"collectCoverageFrom": ["./src/web/js/*.js"],
 	"coverageDirectory": "coverage/",
-	"coverageReporters": ["clover", "text-summary"]
+	"coverageReporters": ["clover", "text-summary"],
+	"reporters": [
+		"default",
+		["jest-junit", { "outputDirectory": "logs/", "outputName": "jest.xml" }]
+	]
 }
