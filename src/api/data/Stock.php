@@ -126,6 +126,48 @@ class Stock
         return $reporter->format($code, $message, $body);
     }
 
+    /** Get only the last stock records for a given part-number.
+     * @param string $part The part-number to check.
+     *
+     * @return array An array containing the stock objects under the form:
+     * ```php
+     * [
+     *  {
+     *      "id": [int],
+     *      "part_number": [string],
+     *      "date_checked": [string], //formatted as YYYY-mm-dd
+     *      "state": [float] //`-1` if there is no data, `0` if it's OK, `1` if there is a problem
+     *      "parts_in_stock": [int],
+     *      "parts_on_order": [int],
+     *      "min_order": [int],
+     *      "supplier": [string]
+     *  }
+     * ]
+     * ```
+     */
+    private function getLastRecord(string $part)
+    {
+        $database = new Database;
+
+        $productQuery = $database->connection->prepare('SELECT last_check FROM products WHERE part_number = ?');
+        $productQueryRes = $productQuery->execute(array($part));
+
+        if ($productQueryRes) {
+            $lastCheckDate = $productQuery->fetch(PDO::FETCH_ASSOC)['last_check'];
+
+            if ($lastCheckDate != null) {
+                $stockQuery = $database->connection->prepare('SELECT * FROM stock_history WHERE part_number = ? AND date_checked = ?');
+                $stockQueryRes = $stockQuery->execute(array($part, $lastCheckDate));
+                
+                if ($stockQueryRes) {
+                    $records = $stockQuery->fetchAll(PDO::FETCH_ASSOC);
+                }
+            }
+        }
+
+        return $records;
+    }
+
     /** Add a stock record for the given part-number.
      * @param string $part The part-number.
      *
