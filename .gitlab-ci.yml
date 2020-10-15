@@ -31,7 +31,7 @@ test:js:
     - yarn test
   after_script:
     - bash <(curl -s https://codecov.io/bash)
-  coverage: /All\sfiles.*?\s+(\d+.\d+)/
+  coverage: /^\s*Lines\s*:\s*\d+.\d+\%/
   artifacts:
     when: always
     paths:
