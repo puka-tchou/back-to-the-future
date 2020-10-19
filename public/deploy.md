@@ -86,7 +86,7 @@ _Friendly reminder: semicolons are mandatory in SQL_
 
 ### Database setup
 
-In the `public/docs-deploying/MySQL/` folder, you will find the database dump ([dump_v1.0.0.sql](./MySQL/dump_v1.0.0.sql)). This dump is holding the table structure, the relations and the triggers necessary to ensure smooth operation of the server API.
+In the `public/_MySQL/` folder, you will find the database dump ([dump_v1.0.0.sql](./_MySQL/dump_v1.0.0.sql)). This dump is holding the table structure, the relations and the triggers necessary to ensure smooth operation of the server API.
 
 All you need to do to set the database up is to import this dump using your favorite method. For the sake of this document, we'll walk you through the steps of importing with the MySQL CLI.
 
@@ -115,7 +115,7 @@ CREATE DATABASE new_db_name CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 /* Query OK, 1 row affected (0.00 sec) */
 ```
 
-exit the MySQL client (`exit;`), then run the import command. The path to the dump is relative to your current working directory and you may need to adapt it (eg. change it to `.public/docs-deploying/MySQL/dump_v1.0.0.sql`).
+exit the MySQL client (`exit;`), then run the import command. The path to the dump is relative to your current working directory and you may need to adapt it (eg. change it to `.public/_MySQL/dump_v1.0.0.sql`).
 
 ```shell-session
 mysql –u username –p new_db_name < dump_v1.0.0.sql
