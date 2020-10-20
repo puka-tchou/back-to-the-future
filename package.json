@@ -32,8 +32,8 @@
 		"zipcelx": "1.6.2"
 	},
 	"devDependencies": {
-		"@babel/core": "7.11.6",
-		"@babel/preset-env": "7.11.5",
+		"@babel/core": "7.12.3",
+		"@babel/preset-env": "7.12.1",
 		"@prettier/plugin-xml": "0.12.0",
 		"babel-jest": "26.6.0",
 		"eslint": "7.8.1",
