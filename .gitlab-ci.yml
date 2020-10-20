@@ -24,7 +24,7 @@ test:lighthouse:
 
 test:js:
   stage: test
-  image: node:12.18.3
+  image: node:12.19.0
   before_script:
     - yarn install
   script:
@@ -84,7 +84,7 @@ test:sonarcloud:
 
 build:js:
   stage: build
-  image: node:12.18.3
+  image: node:12.19.0
   before_script:
     - yarn install
   script:
