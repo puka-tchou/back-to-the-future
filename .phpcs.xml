@@ -5,6 +5,9 @@
 -->
 <ruleset name="Crouzet PHP Standard">
   <description>The PSR12 coding standard.</description>
+  <!-- Directories to use and ignore -->
+  <file>./src</file>
+  <file>./tests</file>
   <!-- CLI args -->
   <arg name="report" value="summary" />
   <arg name="colors" />

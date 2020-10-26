@@ -15,9 +15,9 @@
 		"squizlabs/php_codesniffer": "3.5.8"
 	},
 	"scripts": {
-		"stylecheck": "phpcs src/ -p",
-		"stylecheck:full": "phpcs --report=full src/ -p",
-		"stylefix": "phpcbf src/ -p",
+		"stylecheck": "phpcs -p",
+		"stylecheck:full": "phpcs --report=full -p",
+		"stylefix": "phpcbf -p",
 		"test": "phpunit --coverage-text"
 	},
 	"config": {
