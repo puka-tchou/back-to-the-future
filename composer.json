@@ -11,14 +11,13 @@
 	],
 	"require": {},
 	"require-dev": {
-		"friendsofphp/php-cs-fixer": "2.16.4",
 		"phpunit/phpunit": "9.4.2",
 		"squizlabs/php_codesniffer": "3.5.8"
 	},
 	"scripts": {
-		"stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
-		"stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
-		"stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots",
+		"stylecheck": "phpcs src/ -p",
+		"stylecheck:full": "phpcs --report=full src/ -p",
+		"stylefix": "phpcbf src/ -p",
 		"test": "phpunit --coverage-text"
 	},
 	"config": {

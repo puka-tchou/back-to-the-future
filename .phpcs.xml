@@ -4,16 +4,15 @@
   https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
 <ruleset name="Crouzet PHP Standard">
-  <description>The PSR1 and 2 coding standard.</description>
+  <description>The PSR12 coding standard.</description>
   <!-- CLI args -->
   <arg name="report" value="summary" />
   <arg name="colors" />
   <arg name="extensions" value="php" />
   <arg name="tab-width" value="4" />
   <arg name="parallel" value="75" />
-  <!-- Include the whole PSR1 & 2 standard -->
-  <rule ref="PSR1" />
-  <rule ref="PSR2" />
+  <!-- Include the whole PSR12 standard -->
+  <rule ref="PSR12" />
   <!-- Warn about TODO comments -->
   <rule ref="Generic.Commenting.Todo.CommentFound">
     <message>Please review this TODO comment: %s</message>
