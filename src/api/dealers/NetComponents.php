@@ -1,4 +1,6 @@
-<?php namespace dealers\NetComponents;
+<?php
+
+namespace dealers\NetComponents;
 
 use dealers\DealerInterface\DealerInterface;
 use utilities\Reporter\Reporter;
@@ -30,17 +32,17 @@ class NetComponents implements DealerInterface
      */
     public function getStock(string $part): array
     {
-        $reporter = new Reporter;
-        
+        $reporter = new Reporter();
+
         $login = parse_ini_file(__DIR__ . '/../netcomponents.ini');
         $defaultAuth = 'Authorization: Basic ' . base64_encode($login['password']);
-        
+
         $login_response = $this->getApiResponse('/Login', $defaultAuth, 'POST', array('Content-Type:application/json'), array());
-        
+
         $message = 'There was an error while trying to login to the netcomponents API.';
         $body = $login_response['body'];
         $code = $login_response['code'];
-        
+
         if ($code === 0) {
             $code = 4;
             $message = 'No records were found with the given part-number.';
@@ -94,12 +96,12 @@ class NetComponents implements DealerInterface
     {
         $res = array();
         $res['code'] = 0;
-        $baseUrl = 'https://api.netcomponents.com/api/DILP/v3'.$url;
+        $baseUrl = 'https://api.netcomponents.com/api/DILP/v3' . $url;
 
-        if (count($postData)>0) {
+        if (count($postData) > 0) {
             $baseUrl .= '?';
             foreach ($postData as $key => $value) {
-                $baseUrl .= $key.'='.$value.'&';
+                $baseUrl .= $key . '=' . $value . '&';
             }
         }
 
@@ -113,7 +115,7 @@ class NetComponents implements DealerInterface
         curl_setopt($process, CURLOPT_VERBOSE, 1);
         curl_setopt($process, CURLOPT_HEADER, 1);
         curl_setopt($process, CURLOPT_FAILONERROR, 1);
-    
+
         if ($method === 'POST') {
             curl_setopt($process, CURLOPT_POST, 1);
             curl_setopt($process, CURLOPT_POSTFIELDS, $postData);

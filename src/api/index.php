@@ -14,7 +14,8 @@ function filter_connection(): void
 {
     $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'INVALID';
 
-    if ($method !== 'GET'
+    if (
+        $method !== 'GET'
         && $method !== 'HEAD'
         && $method !== 'POST'
     ) {
@@ -29,8 +30,8 @@ function filter_connection(): void
 function route(): void
 {
     $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
-    $route = new Route;
-    
+    $route = new Route();
+
     switch ($url) {
         case '/api/add':
             $route->add();

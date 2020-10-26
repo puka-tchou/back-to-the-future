@@ -1,4 +1,6 @@
-<?php namespace data\Stock;
+<?php
+
+namespace data\Stock;
 
 use data\Database\Database;
 use dealers\AlliedElec\AlliedElec;
@@ -19,11 +21,9 @@ class Stock
     public function getFromDealers(string $part): array
     {
         $part = strtoupper($part);
-        $alliedelec = new AlliedElec;
-        $reporter = new Reporter;
-
+        $alliedelec = new AlliedElec();
+        $reporter = new Reporter();
         $res = $alliedelec->getStock($part);
-
         $code = $res['code'];
         $message = $res['message'];
         $body = array(
@@ -31,7 +31,6 @@ class Stock
             'date_checked' => date('Y-m-d'),
             'alliedelec' => $res['body']
         );
-
         return $reporter->format($code, $message, $body);
     }
 
@@ -61,11 +60,9 @@ class Stock
     public function getFromDilp(string $part): array
     {
         $part = strtoupper($part);
-        $netcomponents = new NetComponents;
-        $reporter = new Reporter;
-
+        $netcomponents = new NetComponents();
+        $reporter = new Reporter();
         $res = $netcomponents->getStock($part);
-
         $code = $res['code'];
         $message = $part . ': ' . $res['message'];
         $body = 'API error: ' . $res['body'];
@@ -95,28 +92,23 @@ class Stock
      */
     public function get(string $partNumber, float $limit): array
     {
-        $database = new Database;
-        $reporter = new Reporter;
+        $database = new Database();
+        $reporter = new Reporter();
         $code = 4;
         $message = 'Part-number not found.';
         $body = array();
         $partNumber = strtoupper($partNumber);
         $limit = ($limit == -1) ? ';' : ('LIMIT ' . $limit . ';');
-
         if ($database->partNumberExists($partNumber)) {
-            $query = $database->connection->prepare(
-                'SELECT *
+            $query = $database->connection->prepare('SELECT *
                 FROM stock_history
                 WHERE part_number = ?
                 ORDER BY id ASC '
-                . $limit
-            );
-            
+                . $limit);
             $res = $query->execute(array($partNumber));
             $code = 0;
             $body = $query->fetchAll(PDO::FETCH_ASSOC);
             $message = count($body) . ' stock records found.';
-            
             if (!$res) {
                 $code = 5;
                 $message = 'SQL error';

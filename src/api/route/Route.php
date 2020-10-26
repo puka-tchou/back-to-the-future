@@ -1,4 +1,6 @@
-<?php namespace route\Route;
+<?php
+
+namespace route\Route;
 
 use data\Database\Database;
 use data\Product\Product;
@@ -9,7 +11,6 @@ use utilities\Reporter\Reporter;
 
 define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');
-
 /**
  * This class represents the different API endpoints.
  */
@@ -20,14 +21,13 @@ class Route
      */
     public function add(): void
     {
-        $product = new Product;
-        $reader = new Reader;
-        $reporter = new Reporter;
+        $product = new Product();
+        $reader = new Reader();
+        $reporter = new Reporter();
         $code = 0;
         $shortMessage = 'The part-numbers were successfully added to the database.';
         $body = array();
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
-        
         if ($parts === null) {
             $code = 2;
             $shortMessage = 'The CSV file was not found.';
@@ -53,11 +53,10 @@ class Route
      */
     public function documentation(string $url): void
     {
-        $reader = new Reader;
-        $reporter = new Reporter;
+        $reader = new Reader();
+        $reporter = new Reporter();
         $documentation['query'] = $url;
         $documentation = $reader->readYAMLFile(__DIR__ . '/../specs.yml');
-        
         $reporter->send(0, 'Well, here is the documentation.', $documentation);
     }
 
@@ -68,12 +67,11 @@ class Route
      *
      * @return void
      */
-    public function products() : void
+    public function products(): void
     {
-        $database = new Database;
-        $reporter = new Reporter;
+        $database = new Database();
+        $reporter = new Reporter();
         $result = $database->getAllProducts();
-
         $reporter->send($result['code'], $result['message'], $result['body']);
     }
 
@@ -82,14 +80,13 @@ class Route
      */
     public function part(): void
     {
-        $stock = new Stock;
-        $reporter = new Reporter;
+        $stock = new Stock();
+        $reporter = new Reporter();
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $source = isset($_GET['source']) ? $_GET['source'] : 'BOTH';
         $code = 2;
         $message = 'You must provide an id.';
         $body = array();
-
         if ($id !== null) {
             $code = 0;
             $message = 'Stock information found for part-number ' . $id;
@@ -115,14 +112,13 @@ class Route
      */
     public function parts(): void
     {
-        $reader = new Reader;
-        $stock = new Stock;
-        $reporter = new Reporter;
+        $reader = new Reader();
+        $stock = new Stock();
+        $reporter = new Reporter();
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
         $code = 2;
         $message = 'CSV file not found.';
         $body = array();
-
         if ($parts !== null) {
             $code = 0;
             $message = 'Found stock history for ' . count($parts) . ' part-numbers.';
@@ -131,7 +127,7 @@ class Route
                 $body[$part] = $res;
                 $code += $res['code'];
             }
-            
+
             if ($code !== 0) {
                 $code = 1;
                 $message = 'There were errors.';
@@ -146,14 +142,13 @@ class Route
      */
     public function update(): void
     {
-        $reader = new Reader;
-        $reporter = new Reporter;
-        $task = new UpdateStock;
+        $reader = new Reader();
+        $reporter = new Reporter();
+        $task = new UpdateStock();
         $parts = isset($_FILES[INPUT][FILENAME]) ? $reader->readCSVFile($_FILES[INPUT][FILENAME]) : null;
         $code = 2;
         $message = 'The CSV file was not found.';
         $body = array();
-
         if ($parts !== null) {
             $code = 0;
             $message = 'The stock was successfully updated for ' . count($parts) . ' part-numbers.';
@@ -184,14 +179,11 @@ class Route
      */
     public function updateall(): void
     {
-        $reporter = new Reporter;
-                
+        $reporter = new Reporter();
         $answer = $reporter->format(401, 'You should be logged in', null);
-
         header('WWW-Authenticate: Basic realm="Back to the future"');
         header('HTTP/1.0 401 Unauthorized');
         header('Content-Type: application/json');
-
         echo json_encode($answer);
     }
 }

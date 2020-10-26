@@ -20,7 +20,7 @@ class ReaderTest extends TestCase
     public function testCanReadACsv()
     {
         $reader = new Reader();
-        $expected = array('This' => 'This' , 'is' => 'is', 'a' => 'a', 'test'=> 'test');
+        $expected = array('This' => 'This' , 'is' => 'is', 'a' => 'a', 'test' => 'test');
 
         $actual = $reader->readCSVFile('./tests/sample.csv');
 
@@ -44,9 +44,9 @@ class ReaderTest extends TestCase
         $reader = new Reader();
         $path = './tests/sample.yml';
         $expected = array('This' => ['is', 'a', 'test']);
-      
-        $actual=$reader->readYAMLFile($path);
-      
+
+        $actual = $reader->readYAMLFile($path);
+
         $this->assertEquals($expected, $actual);
     }
 

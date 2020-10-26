@@ -1,4 +1,6 @@
-<?php namespace dealers\DigiKey;
+<?php
+
+namespace dealers\DigiKey;
 
 use dealers\DealerInterface\DealerInterface;
 

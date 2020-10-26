@@ -1,4 +1,6 @@
-<?php namespace data\Product;
+<?php
+
+namespace data\Product;
 
 use data\Database\Database;
 use utilities\Reporter\Reporter;
@@ -19,8 +21,8 @@ class Product
     {
         $partNumber = strtoupper($partNumber);
         $tracked_since = date('Y-m-d');
-        $database = new Database;
-        $reporter = new Reporter;
+        $database = new Database();
+        $reporter = new Reporter();
         $query = $database->connection->prepare('INSERT INTO products (part_number, tracked_since, update_interval, state, manufacturer) VALUES (?, ?, ?, ?, ?);');
 
         return (

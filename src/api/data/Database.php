@@ -1,4 +1,6 @@
-<?php namespace data\Database;
+<?php
+
+namespace data\Database;
 
 use Exception;
 use PDO;
@@ -21,16 +23,12 @@ class Database
     {
         $db = parse_ini_file(__DIR__ . '/../db.ini');
         try {
-            $this->connection = new PDO(
-                $db['type']
-                .':dbname='.$db['name']
-                .';host='.$db['host']
-                .';charset=UTF8',
-                $db['user'],
-                $db['pass']
-            );
+            $this->connection = new PDO($db['type']
+                . ':dbname=' . $db['name']
+                . ';host=' . $db['host']
+                . ';charset=UTF8', $db['user'], $db['pass']);
         } catch (Exception $exception) {
-            $reporter = new Reporter;
+            $reporter = new Reporter();
             $reporter->send(5, 'Error while trying to connect to the database.', '');
             die;
         }
@@ -43,16 +41,13 @@ class Database
      */
     public function getAllProducts(int $page = 0): array
     {
-        $database = new Database;
-        $reporter = new Reporter;
+        $database = new Database();
+        $reporter = new Reporter();
         $code = 0;
         $query = $database->connection->prepare('SELECT * FROM products LIMIT ' . $page * 100 . ' ,100;');
-
         $query->execute();
-
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $message = 'There are ' . count($result) . ' products in the database (showing ' . ($page * 100) . ' to ' . (($page * 100) + 99) . ').';
-
         if ($query->errorInfo()[1] !== null) {
             $result = $query->errorInfo();
             $message = 'There was an SQL error while trying to get the products';
@@ -70,13 +65,10 @@ class Database
     public function partNumberExists(string $partNumber): bool
     {
         $partNumber = strtoupper($partNumber);
-        $database = new Database;
+        $database = new Database();
         $query = $database->connection->prepare('SELECT EXISTS(SELECT * FROM products WHERE part_number= ?)');
-        
         $query->execute(array($partNumber));
-        
         $res = $query->fetch(PDO::FETCH_NUM);
-
         return ($res[0] == 1);
     }
 }

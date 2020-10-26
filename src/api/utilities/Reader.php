@@ -1,4 +1,6 @@
-<?php namespace utilities\Reader;
+<?php
+
+namespace utilities\Reader;
 
 use Exception;
 use InvalidArgumentException;
@@ -17,7 +19,6 @@ class Reader
     public function readCSVFile(string $path): array
     {
         $content = array();
-
         if (!file_exists($path)) {
             throw new InvalidArgumentException("File '" . $path . "' does not seem to exist.", 1);
         }

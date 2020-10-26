@@ -1,4 +1,6 @@
-<?php namespace tasks\UpdateStock;
+<?php
+
+namespace tasks\UpdateStock;
 
 use data\Database\Database;
 use data\Stock\Stock;
@@ -18,27 +20,23 @@ class UpdateStock
      */
     public function addRecord(string $part): array
     {
-        $database = new Database;
-        $stock = new Stock;
-        $reporter = new Reporter;
+        $database = new Database();
+        $stock = new Stock();
+        $reporter = new Reporter();
         $part = strtoupper($part);
         $code = 4;
         $message = 'Part-number ' . $part . ' not found in the database.';
         $body = array();
-
         if ($database->partNumberExists($part)) {
             $query = $database->connection->prepare('INSERT INTO stock_history (part_number, date_checked, parts_in_stock, parts_on_order, min_order, supplier, state) VALUES (?, ?, ?, ?, ?, ?, ?);');
-            
             $res = $stock->getFromDilp($part);
             $date = date('Y-m-d');
             $code = $res['code'];
             $message = $res['message'];
             $body = $res['body'];
-
             if ($code === 0) {
                 foreach ($body['stock'] as $dealer => $stock) {
                     $SQLres = $query->execute(array($part, $date, $stock, -1, -1, $dealer, $code));
-        
                     if (!$SQLres) {
                         $code = 5;
                         $message = 'SQL error.';
@@ -47,7 +45,7 @@ class UpdateStock
                 }
             }
         }
-            
+
         return $reporter->format($code, $message, $body);
     }
 
@@ -57,23 +55,19 @@ class UpdateStock
      */
     public function updateAll(): array
     {
-        $database = new Database;
-        $reporter = new Reporter;
+        $database = new Database();
+        $reporter = new Reporter();
         $code = 0;
         $message = 'Stock successfully updated!';
-
         $query = $database->connection->prepare('SELECT part_number from products');
         $res = $query->execute();
-        
         if (!$res) {
             $code = 5;
             $message = 'SQL error';
             $body = $query->errorInfo();
         } else {
             $parts = $query->fetchAll(PDO::FETCH_COLUMN);
-
             $addCode = 0;
-
             foreach ($parts as $part) {
                 $addResult = $this->addRecord($part);
                 $addCode += $addResult['code'];

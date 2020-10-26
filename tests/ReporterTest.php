@@ -52,12 +52,12 @@ class ReporterTest extends TestCase
         $expected = array(
           'code' => $code,
           'message' => $shortMessage,
-          'body'=> $body
+          'body' => $body
         );
-      
+
         $this->assertSame($expected, $this->reporter->format($code, $shortMessage, $body));
     }
-    
+
     /**
      * @runInSeparateProcess
      */
@@ -69,7 +69,7 @@ class ReporterTest extends TestCase
         $expected = json_encode(array(
           'code' => $code,
           'message' => $shortMessage,
-          'body'=> $body
+          'body' => $body
         ));
 
         $this->expectOutputString($expected);

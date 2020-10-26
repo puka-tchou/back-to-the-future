@@ -1,4 +1,6 @@
-<?php namespace dealers\AlliedElec;
+<?php
+
+namespace dealers\AlliedElec;
 
 use dealers\DealerInterface\DealerInterface;
 use DOMDocument;
@@ -18,13 +20,13 @@ class AlliedElec implements DealerInterface
      */
     public function getStock(string $part_number): array
     {
-        $reporter = new Reporter;
+        $reporter = new Reporter();
         $code = 1;
         $message = 'Exact part-number not found.';
-        $ch = curl_init('https://www.alliedelec.com/view/search?keyword='.$part_number);
+        $ch = curl_init('https://www.alliedelec.com/view/search?keyword=' . $part_number);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $html = str_replace('&', '$&amp;', curl_exec($ch));
-        
+
         // Temporarly mute warnings and errors caused by a malformed HTML
         // This should be safe because DOMXPath will still throw errors
         libxml_use_internal_errors(true);
@@ -32,11 +34,11 @@ class AlliedElec implements DealerInterface
         $document = new DOMDocument();
         $document->preserveWhiteSpace = false;
         $document->loadHTML($html);
-        
+
         $documentXpath = new DOMXPath($document);
         // This div contains the results of our query
         $details = $documentXpath->query('//div[@class="search-result-details"]');
-        $regex = '/\bManufacturer #: '.$part_number.'\b/';
+        $regex = '/\bManufacturer #: ' . $part_number . '\b/';
         $parts_in_stock = -1;
         $parts_on_order = -1;
         $parts_min_order = -1;
@@ -55,16 +57,16 @@ class AlliedElec implements DealerInterface
             $stocks = $xml->div[1][0]->div[0]->span;
             $stocksCount = count($stocks);
             // We know the structure of the array, so we know that we can test only one element out of two.
-            for ($i=0; $i < $stocksCount; $i += 2) {
+            for ($i = 0; $i < $stocksCount; $i += 2) {
                 switch ($stocks[$i]) {
                     case 'In Stock: ':
-                        $parts_in_stock = (int)$stocks[$i+1];
+                        $parts_in_stock = (int)$stocks[$i + 1];
                         break;
                     case 'On Order: ':
-                        $parts_on_order = (int)$stocks[$i+1];
+                        $parts_on_order = (int)$stocks[$i + 1];
                         break;
                     case 'Min Qty: ':
-                        $parts_min_order = (int)$stocks[$i+1];
+                        $parts_min_order = (int)$stocks[$i + 1];
                         break;
                     default:
                         $code = 1;
@@ -78,8 +80,8 @@ class AlliedElec implements DealerInterface
             $message,
             array(
             'parts_in_stock' => $parts_in_stock,
-            'parts_on_order'=>$parts_on_order,
-            'parts_min_order'=>$parts_min_order
+            'parts_on_order' => $parts_on_order,
+            'parts_min_order' => $parts_min_order
             )
         );
     }

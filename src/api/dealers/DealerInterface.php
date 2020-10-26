@@ -1,4 +1,6 @@
-<?php namespace dealers\DealerInterface;
+<?php
+
+namespace dealers\DealerInterface;
 
 interface DealerInterface
 {

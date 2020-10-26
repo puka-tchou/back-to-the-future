@@ -1,4 +1,6 @@
-<?php namespace utilities\Reporter;
+<?php
+
+namespace utilities\Reporter;
 
 /**
  * The Reporter class is responsible for returning data to the client.
@@ -159,19 +161,19 @@ class Reporter
         $shortMessage = $shortMessage === null ? $this->shortMessage : $shortMessage;
         $body = $body === null ? $this->body : $body;
 
-        if (!is_string($shortMessage)|| !is_int($code)) {
+        if (!is_string($shortMessage) || !is_int($code)) {
             $this->setCode(5);
             $this->setShortMessage('The arguments given to the Reporter are not of the right type. The `code` must an `integer` and the `shortMessage` must be a `string`.');
             $this->setBody(array(
                 'shortMessage' => $this->shortMessage,
-                'code'=> $this->code
+                'code' => $this->code
             ));
         }
 
         return array(
             'code' => $code,
             'message' => $shortMessage,
-            'body'=> $body
+            'body' => $body
         );
     }
 }
