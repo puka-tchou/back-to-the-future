@@ -45,10 +45,10 @@ test:php:
   image: alpine:edge
   before_script:
     - apk -U add composer gcc make musl-dev php7 php7-common php7-dev php7-dom php7-mysqlnd php7-pear php7-pdo php7-pdo_mysql php7-simplexml php7-tokenizer php7-xml php7-xmlwriter yaml yaml-dev
+    - docker-php-install pdo_mysql
     - pecl install yaml
     - pecl install xdebug
     - echo "extension=yaml" >> /etc/php7/php.ini
-    - echo "extension=pdo_mysql" >> /etc/php7/php.ini
     - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
     - echo "memory_limit=-1" >> /etc/php7/php.ini
     - php -m
