@@ -42,15 +42,16 @@ test:js:
 
 test:php:
   stage: test
-  image: alpine:edge
+  variables:
+    TZ: Etc/UTC
+    DEBIAN_FRONTEND: noninteractive
+  image: ubuntu:20.04
   before_script:
-    - apk -U add composer gcc make musl-dev php7 php7-common php7-dev php7-dom php7-mysqlnd php7-pear php7-pdo php7-pdo_mysql php7-simplexml php7-tokenizer php7-xml php7-xmlwriter yaml yaml-dev
-    - docker-php-install pdo_mysql
-    - pecl install yaml
-    - pecl install xdebug
-    - echo "extension=yaml" >> /etc/php7/php.ini
-    - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
-    - echo "memory_limit=-1" >> /etc/php7/php.ini
+    - apt-get update
+    - apt-get install -qq composer libyaml-dev php7.4 php7.4-common php7.4-cli php7.4-dev php-curl php-mysql php-yaml php-xdebug
+    - php -i | grep php.ini
+    - phpenmod pdo_mysql
+    - echo "memory_limit=-1" >> /etc/php/7.4/cli/php.ini
     - php -m
     - mv -v src/api/db.ini.sample src/api/db.ini
     - mv -v src/api/netcomponents.ini.sample src/api/netcomponents.ini
@@ -58,7 +59,7 @@ test:php:
   script:
     - composer test
   after_script:
-    - apk -U add git curl bash findutils
+    - apt-get install -qq curl
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
   coverage: /^\s*Lines:\s*\d+.\d+\%/
   artifacts:
