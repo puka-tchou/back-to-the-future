@@ -1,6 +1,8 @@
 <?php
 
-use dealers\DigiKey\DigiKey;
+namespace BackToTheFuture\tests;
+
+use BackToTheFuture\dealers\DigiKey;
 use PHPUnit\Framework\TestCase;
 
 class DigiKeyTest extends TestCase

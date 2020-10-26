@@ -1,8 +1,7 @@
 <?php
 
-namespace utilities\Reader;
+namespace BackToTheFuture\utilities;
 
-use Exception;
 use InvalidArgumentException;
 
 /**

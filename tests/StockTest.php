@@ -1,6 +1,8 @@
 <?php
 
-use data\Stock\Stock;
+namespace BackToTheFuture\tests;
+
+use BackToTheFuture\data\Stock;
 use PHPUnit\Framework\TestCase;
 
 class StockTest extends TestCase
@@ -9,9 +11,9 @@ class StockTest extends TestCase
     {
         $this->stock = new Stock();
         $this->expected = array(
-        'code' => 5,
-        'message' => 'TEST: There was an error while trying to login to the netcomponents API.',
-        'body' => 'API error:'
+            'code' => 5,
+            'message' => 'TEST: There was an error while trying to login to the netcomponents API.',
+            'body' => 'API error:'
         );
 
         $this->actual = $this->stock->getFromDilp('TEST');
@@ -24,9 +26,9 @@ class StockTest extends TestCase
     {
         $this->stock = new Stock();
         $this->expected = array(
-        'code' => 5,
-        'message' => 'Could not create a connection to the database.',
-        'body' => ''
+            'code' => 5,
+            'message' => 'Could not create a connection to the database.',
+            'body' => ''
         );
 
         $this->assertSame($this->expected, $this->stock->get('', 0));

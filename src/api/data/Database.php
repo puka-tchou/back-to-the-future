@@ -1,11 +1,11 @@
 <?php
 
-namespace data\Database;
+namespace BackToTheFuture\data;
 
+use BackToTheFuture\utilities\Reporter;
 use Exception;
 use PDO;
 use RuntimeException;
-use utilities\Reporter\Reporter;
 
 /**
  * Interact with the database.

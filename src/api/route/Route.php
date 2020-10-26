@@ -1,13 +1,13 @@
 <?php
 
-namespace route\Route;
+namespace BackToTheFuture\route;
 
-use data\Database\Database;
-use data\Product\Product;
-use data\Stock\Stock;
-use tasks\UpdateStock\UpdateStock;
-use utilities\Reader\Reader;
-use utilities\Reporter\Reporter;
+use BackToTheFuture\data\Database;
+use BackToTheFuture\data\Product;
+use BackToTheFuture\data\Stock;
+use BackToTheFuture\tasks\UpdateStock;
+use BackToTheFuture\utilities\Reader;
+use BackToTheFuture\utilities\Reporter;
 
 define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');

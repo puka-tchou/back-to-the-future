@@ -1,13 +1,12 @@
 <?php
 
-namespace data\Stock;
+namespace BackToTheFuture\data;
 
-use data\Database\Database;
-use dealers\AlliedElec\AlliedElec;
-use dealers\NetComponents\NetComponents;
+use BackToTheFuture\dealers\AlliedElec;
+use BackToTheFuture\dealers\NetComponents;
+use BackToTheFuture\utilities\Reporter;
 use Exception;
 use PDO;
-use utilities\Reporter\Reporter;
 
 /**
  * Manipulate stock data, get data from online stores.
@@ -69,9 +68,9 @@ class Stock
         $body = 'API error: ' . $res['body'];
         if ($code === 0) {
             $body = array(
-            'part_number' => $part,
-            'date_checked' => date('Y-m-d'),
-            'stock' => $res['body']
+                'part_number' => $part,
+                'date_checked' => date('Y-m-d'),
+                'stock' => $res['body']
             );
         }
 

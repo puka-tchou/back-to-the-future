@@ -1,9 +1,8 @@
 <?php
 
-namespace dealers\NetComponents;
+namespace BackToTheFuture\dealers;
 
-use dealers\DealerInterface\DealerInterface;
-use utilities\Reporter\Reporter;
+use BackToTheFuture\utilities\Reporter;
 
 class NetComponents implements DealerInterface
 {
@@ -56,9 +55,9 @@ class NetComponents implements DealerInterface
                     'GET',
                     array(),
                     array(
-                    'pn1' => $part,
-                    'SearchType' => 'EQUALS',
-                    'ClientIP' => $_SERVER['SERVER_ADDR']
+                        'pn1' => $part,
+                        'SearchType' => 'EQUALS',
+                        'ClientIP' => $_SERVER['SERVER_ADDR']
                     )
                 )
             );
@@ -112,7 +111,7 @@ class NetComponents implements DealerInterface
         curl_setopt($process, CURLOPT_HTTPHEADER, $hdrs);
         curl_setopt($process, CURLOPT_TIMEOUT, 30);
         curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($process, CURLOPT_VERBOSE, 1);
+        curl_setopt($process, CURLOPT_VERBOSE, 0);
         curl_setopt($process, CURLOPT_HEADER, 1);
         curl_setopt($process, CURLOPT_FAILONERROR, 1);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace utilities\Reporter;
+namespace BackToTheFuture\utilities;
 
 /**
  * The Reporter class is responsible for returning data to the client.
@@ -130,8 +130,8 @@ class Reporter
 
         header(
             $answer['code'] === 5
-            ? 'HTTP/1.1 500 Server error: ' . $answer['message']
-            : 'HTTP/1.1 200 OK'
+                ? 'HTTP/1.1 500 Server error: ' . $answer['message']
+                : 'HTTP/1.1 200 OK'
         );
         header('Content-Type: application/json');
 

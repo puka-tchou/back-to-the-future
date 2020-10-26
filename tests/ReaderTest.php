@@ -1,7 +1,9 @@
 <?php
 
+namespace BackToTheFuture\tests;
+
+use BackToTheFuture\utilities\Reader;
 use PHPUnit\Framework\TestCase;
-use utilities\Reader\Reader;
 
 class ReaderTest extends TestCase
 {
@@ -20,7 +22,7 @@ class ReaderTest extends TestCase
     public function testCanReadACsv()
     {
         $reader = new Reader();
-        $expected = array('This' => 'This' , 'is' => 'is', 'a' => 'a', 'test' => 'test');
+        $expected = array('This' => 'This', 'is' => 'is', 'a' => 'a', 'test' => 'test');
 
         $actual = $reader->readCSVFile('./tests/sample.csv');
 

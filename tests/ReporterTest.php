@@ -1,7 +1,9 @@
 <?php
 
+namespace BackToTheFuture\tests;
+
+use BackToTheFuture\utilities\Reporter;
 use PHPUnit\Framework\TestCase;
-use utilities\Reporter\Reporter;
 
 class ReporterTest extends TestCase
 {
@@ -50,9 +52,9 @@ class ReporterTest extends TestCase
         $shortMessage = 'Wonderful.';
         $body = 'Truly wonderful';
         $expected = array(
-          'code' => $code,
-          'message' => $shortMessage,
-          'body' => $body
+            'code' => $code,
+            'message' => $shortMessage,
+            'body' => $body
         );
 
         $this->assertSame($expected, $this->reporter->format($code, $shortMessage, $body));
@@ -67,9 +69,9 @@ class ReporterTest extends TestCase
         $shortMessage = 'Wonderful.';
         $body = 'Truly wonderful';
         $expected = json_encode(array(
-          'code' => $code,
-          'message' => $shortMessage,
-          'body' => $body
+            'code' => $code,
+            'message' => $shortMessage,
+            'body' => $body
         ));
 
         $this->expectOutputString($expected);
