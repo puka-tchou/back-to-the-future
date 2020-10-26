@@ -5,6 +5,7 @@ namespace data\Stock;
 use data\Database\Database;
 use dealers\AlliedElec\AlliedElec;
 use dealers\NetComponents\NetComponents;
+use Exception;
 use PDO;
 use utilities\Reporter\Reporter;
 
@@ -92,14 +93,21 @@ class Stock
      */
     public function get(string $partNumber, float $limit): array
     {
-        $database = new Database();
-        $reporter = new Reporter();
         $code = 4;
         $message = 'Part-number not found.';
         $body = array();
+        $reporter = new Reporter();
         $partNumber = strtoupper($partNumber);
         $limit = ($limit == -1) ? ';' : ('LIMIT ' . $limit . ';');
-        if ($database->partNumberExists($partNumber)) {
+
+        try {
+            $database = new Database();
+        } catch (Exception $exception) {
+            $code = $exception->getCode();
+            $message = $exception->getMessage();
+            $body = '';
+        }
+        if ($code === 4 && $database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare('SELECT *
                 FROM stock_history
                 WHERE part_number = ?

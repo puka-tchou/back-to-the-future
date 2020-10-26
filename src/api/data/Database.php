@@ -4,6 +4,7 @@ namespace data\Database;
 
 use Exception;
 use PDO;
+use RuntimeException;
 use utilities\Reporter\Reporter;
 
 /**
@@ -28,9 +29,7 @@ class Database
                 . ';host=' . $db['host']
                 . ';charset=UTF8', $db['user'], $db['pass']);
         } catch (Exception $exception) {
-            $reporter = new Reporter();
-            $reporter->send(5, 'Error while trying to connect to the database.', '');
-            die;
+            throw new RuntimeException("Could not create a connection to the database.", 5);
         }
     }
 
