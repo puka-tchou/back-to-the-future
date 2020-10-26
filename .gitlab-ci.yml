@@ -51,6 +51,7 @@ test:php:
     - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
     - echo "memory_limit=-1" >> /etc/php7/php.ini
     - php -m
+    - mv -v src/api/db.ini.sample src/api/db.ini
     - composer install --no-progress
   script:
     - composer test
