@@ -22,7 +22,7 @@ class ReaderTest extends TestCase
     public function testCanReadACsv()
     {
         $reader = new Reader();
-        $expected = array('This' => 'This', 'is' => 'is', 'a' => 'a', 'test' => 'test');
+        $expected = array('This' => 'That', 'is' => 'is', 'a' => 'a', 'test' => 'test');
 
         $actual = $reader->readCSVFile('./tests/sample.csv');
 
