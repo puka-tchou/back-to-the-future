@@ -6,6 +6,7 @@ use BackToTheFuture\data\Database;
 use BackToTheFuture\data\Product;
 use BackToTheFuture\data\Stock;
 use BackToTheFuture\tasks\UpdateStock;
+use BackToTheFuture\utilities\FilterConnection;
 use BackToTheFuture\utilities\Reader;
 use BackToTheFuture\utilities\Reporter;
 
@@ -16,6 +17,48 @@ define('FILENAME', 'tmp_name');
  */
 class Route
 {
+    /** Routing.
+     * @return void
+     */
+    function doTheMagic()
+    {
+        $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
+        $route = new Route();
+        $connectionFilter = new FilterConnection();
+
+        if ($connectionFilter->connectionIsAllowed()) {
+            switch ($url) {
+                case '/api/add':
+                    $route->add();
+                    break;
+                case '/api/part':
+                    $route->part();
+                    break;
+                case '/api/parts':
+                    $route->parts();
+                    break;
+                case '/api/products':
+                    $route->products();
+                    break;
+                case '/api/update':
+                    $route->update();
+                    break;
+                case '/api/updateall':
+                    $route->updateall();
+                    break;
+                case '/api/coffee':
+                    header("HTTP/1.1 418 I'm a teapot");
+                    $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
+                    echo json_encode(array(
+                        '☕' => $quote->en . ' (' . $quote->author . ')'
+                    ));
+                    break;
+                default:
+                    $route->documentation($url);
+                    break;
+            }
+        }
+    }
     /** This route adds the part-numbers to the products database.
      * @return void
      */
