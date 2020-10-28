@@ -1,7 +1,6 @@
 ---
 variables:
   GIT_STRATEGY: fetch
-  SECRET_DETECTION_HISTORIC_SCAN: 'true'
 
 include:
   - template: Dependency-Scanning.gitlab-ci.yml
