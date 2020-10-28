@@ -56,6 +56,13 @@ class Reporter
     public function format(int $code, string $shortMessage, $body): array
     {
         if ($code < 0 || $code > 9) {
+            $oldBody = $body;
+            $body = [
+                'original_code' => $code,
+                'original_message' => $shortMessage,
+                'original_body' => $oldBody
+            ];
+            $shortMessage = 'We received an incorrect status code.';
             $code = 5;
         }
 
