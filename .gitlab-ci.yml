@@ -1,10 +1,12 @@
 ---
 variables:
   GIT_STRATEGY: fetch
+  SECRET_DETECTION_HISTORIC_SCAN: 'true'
 
 include:
   - template: Dependency-Scanning.gitlab-ci.yml
   - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Secret-Detection.gitlab-ci.yml
 
 stages:
   - test
