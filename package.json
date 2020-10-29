@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
-		"test": "jest --config jest.config.json",
+		"test": "jest --config jest.config.json --runInBand",
 		"lint-js": "eslint --fix --cache \"**/*.js\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\"",

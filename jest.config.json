@@ -6,5 +6,7 @@
 	"reporters": [
 		"default",
 		["jest-junit", { "outputDirectory": "logs/", "outputName": "jest.xml" }]
-	]
+	],
+	"testEnvironment": "node",
+	"verbose": true
 }
