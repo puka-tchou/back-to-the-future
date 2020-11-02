@@ -23,28 +23,27 @@ class Route
     function doTheMagic()
     {
         $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
-        $route = new Route();
         $connectionFilter = new FilterConnection();
 
         if ($connectionFilter->connectionIsAllowed()) {
             switch ($url) {
                 case '/api/add':
-                    $route->add();
+                    $this->add();
                     break;
                 case '/api/part':
-                    $route->part();
+                    $this->part();
                     break;
                 case '/api/parts':
-                    $route->parts();
+                    $this->parts();
                     break;
                 case '/api/products':
-                    $route->products();
+                    $this->products();
                     break;
                 case '/api/update':
-                    $route->update();
+                    $this->update();
                     break;
                 case '/api/updateall':
-                    $route->updateall();
+                    $this->updateall();
                     break;
                 case '/api/coffee':
                     header("HTTP/1.1 418 I'm a teapot");
@@ -54,7 +53,7 @@ class Route
                     ));
                     break;
                 default:
-                    $route->documentation($url);
+                    $this->documentation($url);
                     break;
             }
         }
