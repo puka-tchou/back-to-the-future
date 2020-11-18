@@ -7,12 +7,12 @@
 	"author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
 	"license": "MIT",
 	"scripts": {
-		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\"",
+		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\" --cache-dir \".cache/parcel/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
 		"test": "mocha",
-		"lint-js": "eslint --fix --cache \"**/*.js\"",
+		"lint-js": "eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.js\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
-		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\""
+		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\" --cache-dir \".cache/parcel/\""
 	},
 	"browserslist": [
 		"last 2 versions",
@@ -34,8 +34,9 @@
 		"mocha": "8.2.0",
 		"parcel": "2.0.0-beta.1",
 		"prettier": "2.1.2",
+		"sass": "1.28.0",
 		"stylelint": "13.7.2",
 		"stylelint-config-prettier": "8.0.2",
-		"stylelint-config-standard": "20.0.0"
+		"stylelint-config-sass-guidelines": "7.1.0"
 	}
 }
