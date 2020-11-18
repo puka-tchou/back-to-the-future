@@ -11,11 +11,7 @@ node_modules/
 # Cache files and folders
 *.cache
 .cache/
-.phpdoc/
-.temp/
 dev/
-.eslintcache
-.parcel-cache/
 
 # Distribution
 dist/
