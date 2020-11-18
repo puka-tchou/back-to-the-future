@@ -1,7 +1,7 @@
 import { logError, showError } from './errors';
 import { Grid } from 'gridjs';
+import { containsForbiddenChar } from './helpers';
 import { getDataFromAPI } from './get-data-from-api';
-import { isCharacterForbidden } from './helpers';
 
 export const readStockFromFile = (input) => {
 	const CSVFile = input.files[0];
@@ -14,7 +14,7 @@ export const readStockFromFile = (input) => {
 	return CSVFile.text().then((text) => {
 		performance.mark('end-file');
 		data = text.split('\r\n').filter((value, index, self) => {
-			if (isCharacterForbidden(value)) {
+			if (containsForbiddenChar(value)) {
 				isValidData = false;
 				problematicData = { index, value };
 			}

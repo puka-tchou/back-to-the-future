@@ -1,4 +1,4 @@
-export const isCharacterForbidden = (char) => {
+export const containsForbiddenChar = (string) => {
 	const regex = /^[A-Z\d]+$/i;
-	return regex.test(char);
+	return !regex.test(string);
 };

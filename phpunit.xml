@@ -11,7 +11,7 @@
 		</testsuite>
 	</testsuites>
 	
-	<coverage cacheDirectory=".cache" pathCoverage="true">
+	<coverage cacheDirectory=".cache/phpunit/" pathCoverage="true">
 		<include>
 			<directory suffix=".php">src/api</directory>
 		</include>
