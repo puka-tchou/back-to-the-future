@@ -6,10 +6,11 @@
 	},
 	"author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
 	"license": "MIT",
+	"type": "module",
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\" --cache-dir \".cache/parcel/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
-		"test": "mocha",
+		"test": "nyc mocha",
 		"lint-js": "eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.js\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\" --cache-dir \".cache/parcel/\""
@@ -32,6 +33,7 @@
 		"eslint": "7.11.0",
 		"eslint-config-prettier": "6.13.0",
 		"mocha": "8.2.0",
+		"nyc": "15.1.0",
 		"parcel": "2.0.0-beta.1",
 		"prettier": "2.1.2",
 		"sass": "1.28.0",
