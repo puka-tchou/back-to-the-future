@@ -36,7 +36,7 @@ test:js:
     - yarn test
   after_script:
     - bash <(curl -s https://codecov.io/bash)
-  coverage: All files[^|]*\|[^|]*\s+([\d\.]+)
+  coverage: /^All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
     when: always
     paths:
