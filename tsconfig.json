@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"lib": ["es2015", "dom"],
+		"target": "ES6"
+	},
+	"include": ["src/web/js/**/*"]
+}

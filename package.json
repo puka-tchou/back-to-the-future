@@ -11,7 +11,7 @@
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\" --cache-dir \".cache/parcel/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
 		"test": "nyc mocha",
-		"lint-js": "eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.js\"",
+		"lint-js": "tsc --noemit && eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.{js,ts}\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/web/\" --public-url \".\" --cache-dir \".cache/parcel/\""
 	},
@@ -28,9 +28,14 @@
 		"zipcelx": "1.6.2"
 	},
 	"devDependencies": {
+		"@parcel/config-default": "2.0.0-beta.1",
+		"@parcel/transformer-typescript-tsc": "2.0.0-beta.1",
+		"@parcel/validator-typescript": "2.0.0-beta.1",
 		"@prettier/plugin-xml": "0.12.0",
+		"@typescript-eslint/eslint-plugin": "4.8.2",
+		"@typescript-eslint/parser": "4.8.2",
 		"chai": "4.2.0",
-		"eslint": "7.11.0",
+		"eslint": "7.14.0",
 		"eslint-config-prettier": "6.13.0",
 		"mocha": "8.2.0",
 		"nyc": "15.1.0",
@@ -39,6 +44,7 @@
 		"sass": "1.28.0",
 		"stylelint": "13.7.2",
 		"stylelint-config-prettier": "8.0.2",
-		"stylelint-config-sass-guidelines": "7.1.0"
+		"stylelint-config-sass-guidelines": "7.1.0",
+		"typescript": "4.1.2"
 	}
 }
