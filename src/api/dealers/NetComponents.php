@@ -39,7 +39,6 @@ class NetComponents implements DealerInterface
         $login_response = $this->getApiResponse('/Login', $defaultAuth, 'POST', array('Content-Type:application/json'), array());
 
         $message = 'There was an error while trying to login to the netcomponents API.';
-        $body = $login_response['body'];
         $code = $login_response['code'];
 
         if ($code === 0) {
@@ -47,7 +46,7 @@ class NetComponents implements DealerInterface
             $message = 'No records were found with the given part-number.';
             $body = [];
 
-            $token = 'Authorization: ' . json_decode($login_response, true)['AuthToken'];
+            $token = 'Authorization: ' . json_decode($login_response['body'])->AuthToken;
             $search_response = json_decode(
                 $this->getApiResponse(
                     '/Search',
@@ -57,9 +56,9 @@ class NetComponents implements DealerInterface
                     array(
                         'pn1' => $part,
                         'SearchType' => 'EQUALS',
-                        'ClientIP' => $_SERVER['SERVER_ADDR']
+                        'ClientIP' => '86.248.195.75'
                     )
-                )
+                )['body']
             );
 
             $filteredResponse = $search_response->SearchedParts[0]->Parts;

@@ -65,7 +65,7 @@ class Stock
         $res = $netcomponents->getStock($part);
         $code = $res['code'];
         $message = $part . ': ' . $res['message'];
-        $body = 'API error: ' . $res['body'];
+        $body = is_string($res['body']) ? 'API error: ' . $res['body'] : json_encode($res['body']);
         if ($code === 0) {
             $body = array(
                 'part_number' => $part,
