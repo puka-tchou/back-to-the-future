@@ -19,8 +19,6 @@ export class AppChart {
 	public draw(APIAnswer: IAPIAnswer): void {
 		this._canvas = document.querySelector('#data-chart');
 
-		console.debug('first element', Object.keys(APIAnswer.body)[0]);
-
 		this.formatStockData(APIAnswer, Object.keys(APIAnswer.body)[0]);
 
 		this._chart = new Chart(this._canvas, {

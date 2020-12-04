@@ -1,6 +1,7 @@
 import 'spectre.css';
 import { Api } from './api/api';
 import { AppFile } from './input/appFile';
+import { Excel } from './output/excel';
 import { AppChart } from './userInterface/chart';
 import { Dropdown } from './userInterface/dropdown';
 import { Table } from './userInterface/table';
@@ -10,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const table = new Table();
 	const dropdown = new Dropdown('#part-number-select');
 	const appChart = new AppChart();
+	const excel = new Excel();
+
 	const fileInput: HTMLInputElement = document.querySelector('#file-upload');
 	const getStock: HTMLButtonElement = document.querySelector('#get-stock');
 	const downloadTable: HTMLButtonElement = document.querySelector(
@@ -40,17 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		dropdown.HTMLElement.addEventListener('change', () => {
 			appChart.update(APIAnswer, dropdown.HTMLElement.value);
 		});
+
+		downloadTable.addEventListener('click', () => {
+			excel.newFile(APIAnswer);
+		});
 	};
 
 	fileInput.addEventListener('change', start);
 
 	getStock.addEventListener('click', start);
-
-	downloadTable.addEventListener('click', async () => {
-		console.table(api.json);
-		if (typeof api.json !== 'undefined') {
-			console.log('📥 downloading data as an excel file…');
-			//createExcelFile();
-		}
-	});
 });
