@@ -26,11 +26,11 @@ class StockTest extends TestCase
             'body' => 'API error:'
         );
 
-        $this->actual = $this->stock->getFromDilp('TEST');
-
         $this->markTestIncomplete(
             'This test is unreliable and may fail if connection is successfull.'
         );
+
+        $this->actual = $this->stock->getFromDilp('TEST');
 
         $this->assertEquals($this->expected['code'], $this->actual['code']);
         $this->assertEquals($this->expected['message'], $this->actual['message']);
