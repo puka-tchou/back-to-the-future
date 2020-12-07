@@ -10,7 +10,7 @@
 	"scripts": {
 		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\" --cache-dir \".cache/parcel/\"",
 		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
-		"test": "echo 'These tests are not implemented yet.' && echo Lines: 0%",
+		"test": "echo 'These tests are not implemented yet.' && echo Lines: 0.0%",
 		"lint-js": "tsc --noemit && eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.{js,ts}\"",
 		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
 		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/www/\" --public-url \".\" --cache-dir \".cache/parcel/\""
