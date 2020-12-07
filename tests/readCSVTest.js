@@ -1,5 +1,6 @@
-const reader = require('../src/web/js/reader');
-const fs = require('fs');
+import { readCSV, splitTextOnLinebreak } from '../src/web/js/reader.js';
+import chai from 'chai';
+import { readFileSync } from 'fs';
 
 const testSplit = [['This\r\ntext'], ['This\ntext']];
 const testFiles = [
@@ -23,9 +24,9 @@ const testFiles = [
 describe('the reader', () => {
 	test.each(testSplit)('can split text on any line break', (sampleText) => {
 		const expected = { data: ['This', 'text'], isValid: true, problematic: [] };
-		const data = reader.splitTextOnLinebreak(sampleText);
+		const data = splitTextOnLinebreak(sampleText);
 
-		expect(data).toStrictEqual(expected);
+		chai.expect(data).to.equal(expected);
 	});
 
 	test('correctly detects when the data has a problem', () => {
@@ -35,7 +36,7 @@ describe('the reader', () => {
 			isValid: false,
 			problematic: [{ index: 1, value: '&BAD!' }],
 		};
-		const data = reader.splitTextOnLinebreak(sampleText);
+		const data = splitTextOnLinebreak(sampleText);
 
 		expect(data).toStrictEqual(expected);
 	});
@@ -43,8 +44,8 @@ describe('the reader', () => {
 	test.each(testFiles)(
 		'returns the expected array',
 		async (input, expected) => {
-			const file = new File([fs.readFileSync(input, 'utf8')], 'file.csv');
-			const csvArray = await reader.readCSV(file);
+			const file = new File([readFileSync(input, 'utf8')], 'file.csv');
+			const csvArray = await readCSV(file);
 
 			expect(csvArray).toStrictEqual(expected);
 		}
