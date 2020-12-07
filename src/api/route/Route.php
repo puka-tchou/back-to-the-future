@@ -221,11 +221,7 @@ class Route
      */
     public function updateall(): void
     {
-        $reporter = new Reporter();
-        $answer = $reporter->format(401, 'You should be logged in', null);
-        header('WWW-Authenticate: Basic realm="Back to the future"');
-        header('HTTP/1.0 401 Unauthorized');
-        header('Content-Type: application/json');
-        echo json_encode($answer);
+        $stock = new UpdateStock();
+        $stock->updateAll();
     }
 }
