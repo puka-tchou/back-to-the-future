@@ -97,10 +97,11 @@ build:js:
   before_script:
     - yarn install
   script:
+    - rm -rfv ./dist/
     - yarn run build
   artifacts:
     paths:
-      - dist/web
+      - dist/
   needs: ['test:js']
 
 build:php:
@@ -109,11 +110,14 @@ build:php:
   before_script:
     - php -v
   script:
-    - composer install --no-dev --optimize-autoloader --no-progress
+    - rm -rfv ./dist/
+    - mkdir ./dist
+    - mkdir ./dist/api/
+    - cp -av ./src/api/ ./dist/api/v1
+    - echo " you should run 'composer dumpautoload --no-dev --classmap-authoritative' on the production server."
   artifacts:
     paths:
-      - src/api
-      - vendor/
+      - dist/
   needs: ['test:php']
 
 deploy:
@@ -124,10 +128,13 @@ deploy:
     - build:js
     - build:php
   script:
-    - ls -AshR
+    - ls -AlR
   only:
     - deploy
-  needs: ['test:php', 'build:js', 'build:php']
+  artifacts:
+    paths:
+      - dist/
+  needs: ['build:js', 'build:php']
 
 pages:
   stage: deploy
