@@ -56,7 +56,7 @@ class NetComponents implements DealerInterface
                     array(
                         'pn1' => $part,
                         'SearchType' => 'EQUALS',
-                        'ClientIP' => '86.248.195.75'
+                        'ClientIP' => $_SERVER['SERVER_ADDR']
                     )
                 )['body']
             );
