@@ -1,6 +1,6 @@
 <?php
 
-namespace dealers\DealerInterface;
+namespace BackToTheFuture\dealers;
 
 interface DealerInterface
 {

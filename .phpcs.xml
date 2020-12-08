@@ -4,7 +4,7 @@
   https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
 <ruleset name="Crouzet PHP Standard">
-  <description>The PSR12 coding standard.</description>
+  <description>The PSR1 and PSR12 coding standards.</description>
   <!-- Directories to use and ignore -->
   <file>./src</file>
   <file>./tests</file>
@@ -14,7 +14,8 @@
   <arg name="extensions" value="php" />
   <arg name="tab-width" value="4" />
   <arg name="parallel" value="75" />
-  <!-- Include the whole PSR12 standard -->
+  <!-- Include the PSR1 and PSR12 standards -->
+  <rule ref="PSR1" />
   <rule ref="PSR12" />
   <!-- Warn about TODO comments -->
   <rule ref="Generic.Commenting.Todo.CommentFound">

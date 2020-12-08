@@ -1,9 +1,8 @@
 <?php
 
-namespace dealers\NetComponents;
+namespace BackToTheFuture\dealers;
 
-use dealers\DealerInterface\DealerInterface;
-use utilities\Reporter\Reporter;
+use BackToTheFuture\utilities\Reporter;
 
 class NetComponents implements DealerInterface
 {
@@ -40,7 +39,6 @@ class NetComponents implements DealerInterface
         $login_response = $this->getApiResponse('/Login', $defaultAuth, 'POST', array('Content-Type:application/json'), array());
 
         $message = 'There was an error while trying to login to the netcomponents API.';
-        $body = $login_response['body'];
         $code = $login_response['code'];
 
         if ($code === 0) {
@@ -48,7 +46,7 @@ class NetComponents implements DealerInterface
             $message = 'No records were found with the given part-number.';
             $body = [];
 
-            $token = 'Authorization: ' . json_decode($login_response, true)['AuthToken'];
+            $token = 'Authorization: ' . json_decode($login_response['body'])->AuthToken;
             $search_response = json_decode(
                 $this->getApiResponse(
                     '/Search',
@@ -56,11 +54,11 @@ class NetComponents implements DealerInterface
                     'GET',
                     array(),
                     array(
-                    'pn1' => $part,
-                    'SearchType' => 'EQUALS',
-                    'ClientIP' => $_SERVER['SERVER_ADDR']
+                        'pn1' => $part,
+                        'SearchType' => 'EQUALS',
+                        'ClientIP' => $_SERVER['SERVER_ADDR']
                     )
-                )
+                )['body']
             );
 
             $filteredResponse = $search_response->SearchedParts[0]->Parts;
@@ -112,7 +110,7 @@ class NetComponents implements DealerInterface
         curl_setopt($process, CURLOPT_HTTPHEADER, $hdrs);
         curl_setopt($process, CURLOPT_TIMEOUT, 30);
         curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($process, CURLOPT_VERBOSE, 1);
+        curl_setopt($process, CURLOPT_VERBOSE, 0);
         curl_setopt($process, CURLOPT_HEADER, 1);
         curl_setopt($process, CURLOPT_FAILONERROR, 1);
 

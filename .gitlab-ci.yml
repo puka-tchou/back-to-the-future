@@ -2,6 +2,11 @@
 variables:
   GIT_STRATEGY: fetch
 
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Secret-Detection.gitlab-ci.yml
+
 stages:
   - test
   - build
@@ -31,7 +36,7 @@ test:js:
     - yarn test
   after_script:
     - bash <(curl -s https://codecov.io/bash)
-  coverage: /^\s*Lines\s*:\s*\d+.\d+\%/
+  coverage: /^\s*Lines:\s*\d+.\d+\%/
   artifacts:
     when: always
     paths:
@@ -42,20 +47,24 @@ test:js:
 
 test:php:
   stage: test
-  image: alpine:edge
+  variables:
+    TZ: Etc/UTC
+    DEBIAN_FRONTEND: noninteractive
+  image: ubuntu:20.04
   before_script:
-    - apk -U add composer php7 php7-common php7-tokenizer musl-dev make php7-dom php7-xml php7-simplexml php7-xmlwriter php7-pear php7-dev gcc yaml yaml-dev
-    - pecl install yaml
-    - pecl install xdebug
-    - echo "extension=yaml" >> /etc/php7/php.ini
-    - echo "zend_extension=/usr/lib/php7/modules/xdebug.so" >> /etc/php7/php.ini
-    - echo "memory_limit=-1" >> /etc/php7/php.ini
+    - apt-get update
+    - apt-get install -qq composer libyaml-dev php7.4 php7.4-common php7.4-cli php7.4-dev php-curl php-mysql php-yaml php-xdebug
+    - php -i | grep php.ini
+    - phpenmod pdo_mysql
+    - echo "memory_limit=-1" >> /etc/php/7.4/cli/php.ini
     - php -m
+    - mv -v src/api/db.ini.sample src/api/db.ini
+    - mv -v src/api/netcomponents.ini.sample src/api/netcomponents.ini
     - composer install --no-progress
   script:
     - composer test
   after_script:
-    - apk -U add git curl bash findutils
+    - apt-get install -qq curl
     - bash -c '/bin/bash <(curl -s https://codecov.io/bash)'
   coverage: /^\s*Lines:\s*\d+.\d+\%/
   artifacts:
@@ -88,10 +97,11 @@ build:js:
   before_script:
     - yarn install
   script:
+    - rm -rfv ./dist/
     - yarn run build
   artifacts:
     paths:
-      - dist/web
+      - dist/
   needs: ['test:js']
 
 build:php:
@@ -100,11 +110,14 @@ build:php:
   before_script:
     - php -v
   script:
-    - composer install --no-dev --optimize-autoloader --no-progress
+    - rm -rfv ./dist/
+    - mkdir ./dist
+    - mkdir ./dist/api/
+    - cp -av ./src/api/ ./dist/api/v1
+    - echo " you should run 'composer dumpautoload --no-dev --classmap-authoritative' on the production server."
   artifacts:
     paths:
-      - src/api
-      - vendor/
+      - dist/
   needs: ['test:php']
 
 deploy:
@@ -115,10 +128,13 @@ deploy:
     - build:js
     - build:php
   script:
-    - ls -AshR
+    - ls -AlR
   only:
     - deploy
-  needs: ['test:php', 'build:js', 'build:php']
+  artifacts:
+    paths:
+      - dist/
+  needs: ['build:js', 'build:php']
 
 pages:
   stage: deploy

@@ -1,11 +1,11 @@
 <?php
 
-namespace tasks\UpdateStock;
+namespace BackToTheFuture\tasks;
 
-use data\Database\Database;
-use data\Stock\Stock;
+use BackToTheFuture\data\Database;
+use BackToTheFuture\data\Stock;
+use BackToTheFuture\utilities\Reporter;
 use PDO;
-use utilities\Reporter\Reporter;
 
 /**
  * Update stock data.

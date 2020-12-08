@@ -1,8 +1,7 @@
 <?php
 
-namespace utilities\Reader;
+namespace BackToTheFuture\utilities;
 
-use Exception;
 use InvalidArgumentException;
 
 /**
@@ -11,7 +10,7 @@ use InvalidArgumentException;
 class Reader
 {
 
-    /** Reads a file input in CSV format.
+    /** Reads the two first columns of CSV file.
      * @param string $path The path to the file.
      *
      * @return array
@@ -25,8 +24,8 @@ class Reader
 
         $handle = fopen($path, 'r');
         while (($data = fgetcsv($handle, 1_000, ';')) !== false) {
-            if (isset($data[1])) {
-                $content[$data[1]] = $data[0];
+            if (isset($data[0]) && isset($data[1])) {
+                $content[$data[0]] = $data[1];
             } else {
                 $content[$data[0]] = $data[0];
             }

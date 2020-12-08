@@ -1,8 +1,6 @@
 <?php
 
-namespace dealers\DigiKey;
-
-use dealers\DealerInterface\DealerInterface;
+namespace BackToTheFuture\dealers;
 
 class DigiKey implements DealerInterface
 {

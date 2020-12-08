@@ -1,12 +1,12 @@
 <?php
 
-namespace data\Stock;
+namespace BackToTheFuture\data;
 
-use data\Database\Database;
-use dealers\AlliedElec\AlliedElec;
-use dealers\NetComponents\NetComponents;
+use BackToTheFuture\dealers\AlliedElec;
+use BackToTheFuture\dealers\NetComponents;
+use BackToTheFuture\utilities\Reporter;
+use Exception;
 use PDO;
-use utilities\Reporter\Reporter;
 
 /**
  * Manipulate stock data, get data from online stores.
@@ -65,12 +65,12 @@ class Stock
         $res = $netcomponents->getStock($part);
         $code = $res['code'];
         $message = $part . ': ' . $res['message'];
-        $body = 'API error: ' . $res['body'];
+        $body = is_string($res['body']) ? 'API error: ' . $res['body'] : json_encode($res['body']);
         if ($code === 0) {
             $body = array(
-            'part_number' => $part,
-            'date_checked' => date('Y-m-d'),
-            'stock' => $res['body']
+                'part_number' => $part,
+                'date_checked' => date('Y-m-d'),
+                'stock' => $res['body']
             );
         }
 
@@ -92,14 +92,21 @@ class Stock
      */
     public function get(string $partNumber, float $limit): array
     {
-        $database = new Database();
-        $reporter = new Reporter();
         $code = 4;
         $message = 'Part-number not found.';
         $body = array();
+        $reporter = new Reporter();
         $partNumber = strtoupper($partNumber);
         $limit = ($limit == -1) ? ';' : ('LIMIT ' . $limit . ';');
-        if ($database->partNumberExists($partNumber)) {
+
+        try {
+            $database = new Database();
+        } catch (Exception $exception) {
+            $code = $exception->getCode();
+            $message = $exception->getMessage();
+            $body = '';
+        }
+        if ($code === 4 && $database->partNumberExists($partNumber)) {
             $query = $database->connection->prepare('SELECT *
                 FROM stock_history
                 WHERE part_number = ?

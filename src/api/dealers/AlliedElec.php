@@ -1,12 +1,10 @@
 <?php
 
-namespace dealers\AlliedElec;
+namespace BackToTheFuture\dealers;
 
-use dealers\DealerInterface\DealerInterface;
+use BackToTheFuture\utilities\Reporter;
 use DOMDocument;
 use DOMXPath;
-use Exception;
-use utilities\Reporter\Reporter;
 
 /**
  * AlliedElec distributor stock check.
@@ -79,9 +77,9 @@ class AlliedElec implements DealerInterface
             $code,
             $message,
             array(
-            'parts_in_stock' => $parts_in_stock,
-            'parts_on_order' => $parts_on_order,
-            'parts_min_order' => $parts_min_order
+                'parts_in_stock' => $parts_in_stock,
+                'parts_on_order' => $parts_on_order,
+                'parts_min_order' => $parts_min_order
             )
         );
     }

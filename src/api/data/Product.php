@@ -1,9 +1,8 @@
 <?php
 
-namespace data\Product;
+namespace BackToTheFuture\data;
 
-use data\Database\Database;
-use utilities\Reporter\Reporter;
+use BackToTheFuture\utilities\Reporter;
 
 /**
  * Manipulate products in the database.
@@ -25,16 +24,14 @@ class Product
         $reporter = new Reporter();
         $query = $database->connection->prepare('INSERT INTO products (part_number, tracked_since, update_interval, state, manufacturer) VALUES (?, ?, ?, ?, ?);');
 
-        return (
-            $query->execute(array(
+        return ($query->execute(array(
             $partNumber,
             $tracked_since,
             $updateInterval,
             -1,
             $manufacturer
-            ))
-        )
-        ? ($reporter->format(0, 'Part-number successfully added.', ''))
-        : ($reporter->format(2, 'SQL error.', $query->errorInfo()));
+        )))
+            ? ($reporter->format(0, 'Part-number successfully added.', ''))
+            : ($reporter->format(2, 'SQL error.', $query->errorInfo()));
     }
 }

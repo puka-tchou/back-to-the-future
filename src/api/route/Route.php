@@ -1,13 +1,14 @@
 <?php
 
-namespace route\Route;
+namespace BackToTheFuture\route;
 
-use data\Database\Database;
-use data\Product\Product;
-use data\Stock\Stock;
-use tasks\UpdateStock\UpdateStock;
-use utilities\Reader\Reader;
-use utilities\Reporter\Reporter;
+use BackToTheFuture\data\Database;
+use BackToTheFuture\data\Product;
+use BackToTheFuture\data\Stock;
+use BackToTheFuture\tasks\UpdateStock;
+use BackToTheFuture\utilities\FilterConnection;
+use BackToTheFuture\utilities\Reader;
+use BackToTheFuture\utilities\Reporter;
 
 define('INPUT', 'parts');
 define('FILENAME', 'tmp_name');
@@ -16,6 +17,47 @@ define('FILENAME', 'tmp_name');
  */
 class Route
 {
+    /** Routing.
+     * @return void
+     */
+    function doTheMagic()
+    {
+        $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
+        $connectionFilter = new FilterConnection();
+
+        if ($connectionFilter->connectionIsAllowed()) {
+            switch ($url) {
+                case '/api/add':
+                    $this->add();
+                    break;
+                case '/api/part':
+                    $this->part();
+                    break;
+                case '/api/parts':
+                    $this->parts();
+                    break;
+                case '/api/products':
+                    $this->products();
+                    break;
+                case '/api/update':
+                    $this->update();
+                    break;
+                case '/api/updateall':
+                    $this->updateall();
+                    break;
+                case '/api/coffee':
+                    header("HTTP/1.1 418 I'm a teapot");
+                    $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
+                    echo json_encode(array(
+                        '☕' => $quote->en . ' (' . $quote->author . ')'
+                    ));
+                    break;
+                default:
+                    $this->documentation($url);
+                    break;
+            }
+        }
+    }
     /** This route adds the part-numbers to the products database.
      * @return void
      */
@@ -179,11 +221,7 @@ class Route
      */
     public function updateall(): void
     {
-        $reporter = new Reporter();
-        $answer = $reporter->format(401, 'You should be logged in', null);
-        header('WWW-Authenticate: Basic realm="Back to the future"');
-        header('HTTP/1.0 401 Unauthorized');
-        header('Content-Type: application/json');
-        echo json_encode($answer);
+        $stock = new UpdateStock();
+        $stock->updateAll();
     }
 }
