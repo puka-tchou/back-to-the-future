@@ -55,7 +55,7 @@ export class error {
 			if (Object.prototype.hasOwnProperty.call(this.errors, key)) {
 				try {
 					document.querySelector(`#error-${key}`).classList.remove('active');
-				} catch (error) {
+				} catch {
 					console.info(
 						`'${key}' error type has no container to display it to the user.`
 					);

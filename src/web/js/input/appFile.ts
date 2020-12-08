@@ -1,9 +1,10 @@
-import { containsForbiddenChar } from '../helpers/containsForbiddenChar';
+import { Helpers } from '../helpers/helpers';
 import { ICSVText } from '../interface/ICSVText';
 
 export class AppFile {
 	private fileList: FileList;
 	private _file: Blob;
+	private containsForbiddenChar;
 
 	constructor(input: HTMLInputElement) {
 		this.fileList = input.files;
@@ -12,6 +13,7 @@ export class AppFile {
 		} else {
 			console.error('❌ You tried to send multiple files.');
 		}
+		this.containsForbiddenChar = new Helpers().containsForbiddenChar;
 	}
 
 	public get file(): Blob {
@@ -28,7 +30,7 @@ export class AppFile {
 
 		const rawText = await this._file.text();
 		const csv = rawText.split('\r\n').filter((value, index, self) => {
-			if (containsForbiddenChar(value)) {
+			if (this.containsForbiddenChar(value)) {
 				isValid = false;
 				problematicLine = { index, value };
 			}
