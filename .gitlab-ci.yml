@@ -9,6 +9,7 @@ include:
 
 stages:
   - test
+  - sonarcloud
   - build
   - deploy
 
@@ -70,13 +71,14 @@ test:php:
   artifacts:
     when: always
     paths:
-      - logs/phpunit.xml
+      - logs/
+      - coverage/
     reports:
-      junit: logs/phpunit.xml
+      junit: logs/execution-report-php.xml
   needs: []
 
 test:sonarcloud:
-  stage: test
+  stage: sonarcloud
   variables:
     SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
     GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
@@ -89,7 +91,7 @@ test:sonarcloud:
       - .sonar/cache
   script:
     - sonar-scanner
-  needs: []
+  needs: ['test:php']
 
 build:js:
   stage: build

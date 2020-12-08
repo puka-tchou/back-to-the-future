@@ -16,12 +16,12 @@
 			<directory suffix=".php">src/api</directory>
 		</include>
 		<report>
-			<clover outputFile="coverage/clover.xml" />
+			<clover outputFile="coverage/coverage-report-php.xml" />
 		</report>
 	</coverage>
 
 	<logging>
-		<junit outputFile="logs/phpunit.xml" />
+		<junit outputFile="logs/execution-report-php.xml" />
 	</logging>
 
 </phpunit>
