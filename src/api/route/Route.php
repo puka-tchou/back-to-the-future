@@ -22,7 +22,7 @@ class Route
      */
     function doTheMagic()
     {
-        $url = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '/';
+        $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         $connectionFilter = new FilterConnection();
 
         if ($connectionFilter->connectionIsAllowed()) {
