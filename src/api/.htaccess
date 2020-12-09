@@ -1,6 +1,4 @@
-Header set Access-Control-Allow-Origin "*"
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ api/index.php [QSA,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^.*$ index.php [QSA,L]
+</IfModule>

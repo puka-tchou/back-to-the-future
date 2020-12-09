@@ -23,29 +23,30 @@ class Route
     function doTheMagic()
     {
         $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+        $requestedRoute = array_pop(explode('/', $url));
         $connectionFilter = new FilterConnection();
 
         if ($connectionFilter->connectionIsAllowed()) {
-            switch ($url) {
-                case '/api/add':
+            switch ($requestedRoute) {
+                case 'add':
                     $this->add();
                     break;
-                case '/api/part':
+                case 'part':
                     $this->part();
                     break;
-                case '/api/parts':
+                case 'parts':
                     $this->parts();
                     break;
-                case '/api/products':
+                case 'products':
                     $this->products();
                     break;
-                case '/api/update':
+                case 'update':
                     $this->update();
                     break;
-                case '/api/updateall':
+                case 'updateall':
                     $this->updateall();
                     break;
-                case '/api/coffee':
+                case 'coffee':
                     header("HTTP/1.1 418 I'm a teapot");
                     $quote = json_decode(file_get_contents('https://programming-quotes-api.herokuapp.com/quotes/random'));
                     echo json_encode(array(
