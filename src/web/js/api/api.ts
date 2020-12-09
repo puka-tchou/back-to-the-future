@@ -1,4 +1,4 @@
-import DBConfig from '../../dbconfig.json';
+import DBConfig from '../../apiconfig.json';
 import { AppFile } from '../input/appFile';
 import { IAPIAnswer } from '../interface/IAPIAnswer';
 
@@ -11,14 +11,14 @@ export class Api {
 
 	public async query(fileInput: HTMLInputElement): Promise<IAPIAnswer> {
 		const formData = new FormData();
-		const DBAdress = DBConfig.db_address;
+		const APIAdress = `${DBConfig.api_address}/parts`;
 		let json: IAPIAnswer;
 
 		if (fileInput.files.length === 1) {
 			const file = new AppFile(fileInput);
 			formData.append('parts', file.file);
 
-			const response = await fetch(DBAdress, {
+			const response = await fetch(APIAdress, {
 				method: 'POST',
 				body: formData,
 			});
