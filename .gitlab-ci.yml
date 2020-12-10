@@ -148,12 +148,14 @@ renovate:
   image: ubuntu:20.04
   before_script:
     - apt-get update
-    - apt-get install -qq composer nodejs
+    - apt-get install -qq composer nodejs npm
     - npm install -g renovate yarn
   script:
     - renovate
   only:
+    - schedules
     - fix-renovate
+  needs: []
 
 pages:
   stage: deploy
