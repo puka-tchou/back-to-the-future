@@ -1,0 +1,4 @@
+---
+reporter: ['text', 'clover']
+temp-dir: './.cache/nyc'
+include: './src/web/js'

@@ -1,2 +1,24 @@
-/vendor/
-.vscode
+# Vendor files
+vendor/
+node_modules/
+
+# Work folder
+.work/
+
+# SonarQube analysis files
+.scannerwork/
+
+# Cache files and folders
+*.cache
+.cache/
+dev/
+
+# Distribution
+dist/
+
+# Credentials
+*.ini
+
+# Test artifacts
+coverage/
+logs/

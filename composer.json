@@ -1,30 +1,50 @@
 {
-  "name": "crouzet/pricing",
-  "description": "Price tracking app",
-  "type": "project",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Gaspard Bariller",
-      "email": "gaspard.bariller@tutanota.com"
-    }
-  ],
-  "require": {
-    "symfony/browser-kit": "^5.0"
-  },
-  "require-dev": {
-    "atoum/atoum": "^3.4",
-    "atoum/stubs": "^2.6",
-    "friendsofphp/php-cs-fixer": "^2.16",
-    "phpunit/phpunit": "^9",
-    "squizlabs/php_codesniffer": "^3.5"
-  },
-  "scripts": {
-    "stylecheck": "phpcs src/ -p || php-cs-fixer fix --dry-run --show-progress=dots",
-    "stylecheck:full": "phpcs --report=full src/ -p || php-cs-fixer fix . --dry-run --show-progress=dots --verbose",
-    "stylefix": "phpcbf src/ -p || php-cs-fixer fix --show-progress=dots"
-  },
-  "config": {
-    "sort-packages": true
-  }
+	"name": "crouzet/pricing",
+	"description": "Price tracking app",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Gaspard Bariller",
+			"email": "gaspard.bariller@tutanota.com"
+		}
+	],
+	"require": {
+		"PHP": "^7.4.2",
+		"ext-dom": "*",
+		"ext-filter": "*",
+		"ext-json": "*",
+		"ext-libxml": "*",
+		"ext-mbstring": "*",
+		"ext-simplexml": "*",
+		"ext-tokenizer": "*",
+		"ext-xml": "*",
+		"ext-xmlwriter": "*",
+		"ext-PDO": "*",
+		"ext-pdo_mysql": "*",
+		"ext-yaml": "*"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "9.4.2",
+		"squizlabs/php_codesniffer": "3.5.8"
+	},
+	"scripts": {
+		"stylecheck": "phpcs -p",
+		"stylecheck:full": "phpcs --report=full -p",
+		"stylefix": "phpcbf -p",
+		"test": "phpunit --coverage-text"
+	},
+	"config": {
+		"sort-packages": true,
+		"github-oauth": {
+			"github.com": "46305927a073a07150e7d38df4543074f8351ae4"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"BackToTheFuture\\": "src/api"
+		}
+	}
 }

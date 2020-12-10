@@ -3,22 +3,20 @@
   Reference file from:
   https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
-<ruleset
-  name="Crouzet PHP Standard"
->
-  <description>The PSR1 and 2 coding standard.</description>
-  <!-- Exclude pattern -->
-  <exclude-pattern>*/algolia_src/*</exclude-pattern>
-  <exclude-pattern>*/soapclient/*</exclude-pattern>
+<ruleset name="Crouzet PHP Standard">
+  <description>The PSR1 and PSR12 coding standards.</description>
+  <!-- Directories to use and ignore -->
+  <file>./src</file>
+  <file>./tests</file>
   <!-- CLI args -->
   <arg name="report" value="summary" />
   <arg name="colors" />
   <arg name="extensions" value="php" />
   <arg name="tab-width" value="4" />
   <arg name="parallel" value="75" />
-  <!-- Include the whole PSR1 & 2 standard -->
+  <!-- Include the PSR1 and PSR12 standards -->
   <rule ref="PSR1" />
-  <rule ref="PSR2" />
+  <rule ref="PSR12" />
   <!-- Warn about TODO comments -->
   <rule ref="Generic.Commenting.Todo.CommentFound">
     <message>Please review this TODO comment: %s</message>

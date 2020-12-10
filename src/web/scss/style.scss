@@ -1,0 +1,112 @@
+@import 'spectre.css';
+
+$base-color: #5755d9;
+$error-color: #d24444;
+$success-color: #008b00;
+
+body {
+	max-height: 100vh;
+	max-width: 100vw;
+}
+header.navbar {
+	min-height: 8vh;
+	.links {
+		flex-wrap: wrap;
+	}
+}
+h1,
+h2 {
+	text-align: center;
+}
+.info-display {
+	display: none;
+	> div {
+		max-width: 80%;
+		> pre {
+			white-space: pre-line;
+		}
+	}
+	&.active {
+		background: $error-color;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		left: 0;
+		min-height: 100%;
+		padding-top: 2em;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 9;
+	}
+}
+div.container {
+	max-height: 92vh;
+	padding: 0;
+}
+div.columns {
+	margin: 0;
+	section.column {
+		min-height: 80vh;
+		&.main-input {
+			background: url(../assets/images/cat.waiting.gif) bottom no-repeat; //Source: https://media1.giphy.com/media/wKFY1XaNEainm/giphy.gif
+			// background: url(../images/cat.waiting.webp) bottom no-repeat; //Source: https://media1.giphy.com/media/wKFY1XaNEainm/giphy.gif
+			background-size: contain;
+			border-right: 2px solid $base-color;
+			flex-grow: 1;
+			flex-shrink: 1;
+			min-width: 250px;
+		}
+		&.data-container {
+			flex-grow: 1;
+			flex-shrink: 1;
+			position: relative;
+		}
+	}
+}
+.chart-container {
+	position: relative;
+	width: 100%;
+	canvas {
+		// background: url('../images/background.animation-cat-alternate.gif') center
+		//   no-repeat; // Source: https://wifflegif.com/gifs/105779-drawing-cat-gif
+		// background-size: contain;
+		width: 100%;
+	}
+}
+.data-view {
+	word-wrap: break-word;
+}
+div {
+	&.btn-group {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+
+		button.btn {
+			flex: 0 0 auto;
+		}
+	}
+	&.action-btn {
+		display: flex;
+		justify-content: space-evenly;
+	}
+}
+button#download-button {
+	background-color: $success-color;
+	margin: 0.5rem auto;
+}
+.loading {
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+
+@media (max-width: 1015px) {
+	div.columns section.column.main-input {
+		border-bottom: 2px solid $base-color;
+		border-right: none;
+	}
+}

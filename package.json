@@ -1,0 +1,52 @@
+{
+	"name": "pricing",
+	"version": "1.2.0",
+	"engines": {
+		"node": ">=10.0.0"
+	},
+	"author": "Gaspard Bariller <gaspard.bariller@tutanota.com>",
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"start": "parcel watch \"src/web/index.html\" --dist-dir \"dev/\" --cache-dir \".cache/parcel/\"",
+		"style": "prettier --write \"**/*.{html,xhtml,css,scss,md,xml,yaml,yml,json,js}\"",
+		"test": "echo 'These tests are not implemented yet.' && echo Lines: 0.0%",
+		"lint-js": "tsc --noemit && eslint --fix --cache --cache-location \".cache/eslint/\" \"**/*.{js,ts}\"",
+		"lint-css": "stylelint \"**/*.{css,scss}\" --fix",
+		"build": "parcel build \"src/web/index.html\" --dist-dir \"dist/www/\" --public-url \".\" --cache-dir \".cache/parcel/\""
+	},
+	"browserslist": [
+		"last 2 versions",
+		"Firefox ESR",
+		"IE 11",
+		"not dead"
+	],
+	"dependencies": {
+		"chart.js": "2.9.4",
+		"gridjs": "1.17.0",
+		"spectre.css": "0.5.9",
+		"zipcelx": "1.6.2"
+	},
+	"devDependencies": {
+		"@parcel/config-default": "2.0.0-beta.1",
+		"@parcel/transformer-typescript-tsc": "2.0.0-beta.1",
+		"@parcel/validator-typescript": "2.0.0-beta.1",
+		"@prettier/plugin-xml": "0.12.0",
+		"@types/chart.js": "2.9.28",
+		"@types/zipcelx": "1.5.0",
+		"@typescript-eslint/eslint-plugin": "4.8.2",
+		"@typescript-eslint/parser": "4.8.2",
+		"chai": "4.2.0",
+		"eslint": "7.14.0",
+		"eslint-config-prettier": "6.13.0",
+		"mocha": "8.2.0",
+		"nyc": "15.1.0",
+		"parcel": "2.0.0-beta.1",
+		"prettier": "2.1.2",
+		"sass": "1.28.0",
+		"stylelint": "13.7.2",
+		"stylelint-config-prettier": "8.0.2",
+		"stylelint-config-sass-guidelines": "7.1.0",
+		"typescript": "4.1.2"
+	}
+}

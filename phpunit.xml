@@ -1,0 +1,27 @@
+<phpunit
+	colors="false"
+	beStrictAboutChangesToGlobalState="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	verbose="true"
+	testdox="true"
+>
+	<testsuites>
+		<testsuite name="unit">
+			<directory>tests</directory>
+		</testsuite>
+	</testsuites>
+	
+	<coverage cacheDirectory=".cache/phpunit/" pathCoverage="true">
+		<include>
+			<directory suffix=".php">src/api</directory>
+		</include>
+		<report>
+			<clover outputFile="coverage/coverage-report-php.xml" />
+		</report>
+	</coverage>
+
+	<logging>
+		<junit outputFile="logs/execution-report-php.xml" />
+	</logging>
+
+</phpunit>

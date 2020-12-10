@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Stock history for Crouzet's part-number."
+		/>
+		<!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
+		<script nomodule src="./js/main.ts" defer></script>
+		<!-- This script tag will get a reference to the esmodule bundle -->
+		<script type="module" src="./js/main.ts" defer></script>
+		<link rel="stylesheet" href="./scss/style.scss" />
+		<!-- Favicons -->
+		<!-- Main color: #ff8a00 -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./favicon-16x16.png"
+		/>
+		<link rel="manifest" href="./site.webmanifest" />
+		<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ff8a00" />
+		<meta name="msapplication-TileColor" content="#ff8a00" />
+		<meta name="theme-color" content="#ffffff" />
+		<!-- End of favicons-->
+		<title>Stock check</title>
+	</head>
+	<body>
+		<header class="navbar bg-gray">
+			<div class="navbar-section">
+				<img
+					src="./assets/images/logo.min.svg"
+					alt="The logo: the letter 'g' in a circle."
+					width="48"
+					height="48"
+					class="navbar-brand"
+				/>
+			</div>
+			<div class="navbar-section links">
+				<a
+					href="https://gaspacchio.gitlab.io/back-to-the-future"
+					class="btn btn-link"
+					target="_blank"
+					rel="noreferrer noopener"
+					>Documentation</a
+				>
+				<a href="mailto:gaspard.bariller@crouzet.com" class="btn btn-link"
+					>Contact</a
+				>
+				<a
+					href="mailto:incoming+gaspacchio-back-to-the-future-17139958-issue-@incoming.gitlab.com"
+					class="btn btn-link"
+					>Report a problem</a
+				>
+			</div>
+		</header>
+		<div class="container columns">
+			<section class="column main-input col-3">
+				<h2>Parts</h2>
+				<form action="#" class="form-group" method="post">
+					<label for="file-upload" class="form-label"
+						>Select a set of parts to check:</label
+					>
+					<input
+						type="file"
+						id="file-upload"
+						accept=".txt,.csv"
+						class="form-input"
+						required
+					/>
+				</form>
+				<div class="btn-group">
+					<button class="btn btn-primary p-centered" id="get-stock">
+						Get stock history
+					</button>
+				</div>
+				<div id="partlist" class="data-view">
+					<h3>The list of parts</h3>
+					<div id="grid-partlist"></div>
+				</div>
+			</section>
+			<section id="data-container" class="column col-9 data-container">
+				<div id="info-loading" class="loading loading-lg"></div>
+				<div id="error-no-stock" class="info-display">
+					<div>
+						<h3 class="text-center">
+							No stock records found with this set of parts.
+						</h3>
+						<h4>What can I do?</h4>
+						<p>
+							Yous should check that the CSV file looks like the sample CSV
+							file:
+						</p>
+						<pre class="code" data-lang="parts.csv">
+              <code>
+                TFS-01-SP00-40C
+                TFS-01-SP00-WC
+                83169802
+                83169803
+                831698CR.5
+                831698CC.5
+                V15W11-DZ200-AW1
+                V15W11-EZ015B03-KAW1
+              </code>
+            </pre>
+					</div>
+				</div>
+
+				<div id="error-invalid-data" class="info-display">
+					<div>
+						<h3 class="text-center">Data provided is invalid.</h3>
+						<p>The file provided is invalid to get stock information.</p>
+					</div>
+				</div>
+				<div id="error-network-connection" class="info-display">
+					<div>
+						<h3 class="text-center">Network error</h3>
+						<p>
+							There was a network error while trying to connect to the API.
+							There is not that much that you can do, sorry about that...
+						</p>
+					</div>
+				</div>
+				<div id="error-no-data-to-download" class="info-display"></div>
+				<h2>Data</h2>
+				<button class="btn btn-success p-centered" id="download-button">
+					Download all the data
+				</button>
+				<select
+					name="part-number"
+					id="part-number-select"
+					class="form-select"
+				></select>
+				<div class="chart-container">
+					<canvas id="data-chart"></canvas>
+				</div>
+				<!-- Grid.js will populate the div below-->
+				<div id="data-result" class="data-view"></div>
+			</section>
+		</div>
+	</body>
+</html>
