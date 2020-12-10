@@ -12,6 +12,7 @@ stages:
   - sonarcloud
   - build
   - deploy
+  - renovate
 
 test:lighthouse:
   stage: test
@@ -138,6 +139,21 @@ deploy:
     paths:
       - dist/
   needs: ['build:js', 'build:php']
+
+renovate:
+  stage: renovate
+  variables:
+    TZ: Etc/UTC
+    DEBIAN_FRONTEND: noninteractive
+  image: ubuntu:20.04
+  before_script:
+    - apt-get update
+    - apt-get install -qq composer nodejs
+    - npm install -g renovate yarn
+  script:
+    - renovate
+  only:
+    - fix-renovate
 
 pages:
   stage: deploy

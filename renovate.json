@@ -1,0 +1,31 @@
+{
+	"endpoint": "https://self-hosted.gitlab/api/v4/",
+	"platform": "gitlab",
+	"logLevel": "debug",
+	"onboardingConfig": {
+		"extends": ["config:base"]
+	},
+	"repositories": ["gaspacchio/back-to-the-future"],
+	"assignees": ["gaspacchio"],
+	"branchPrefix": "dep-",
+	"labels": ["deps"],
+	"masterIssue": true,
+	"prCreation": "immediate",
+	"unicodeEmoji": true,
+	"vulnerabilityAlerts": {
+		"enabled": true,
+		"labels": ["bug", "deps"]
+	},
+	"packageRules": [
+		{
+			"packagePatterns": ["eslint"],
+			"groupName": "eslint",
+			"schedule": ["before 2am on monday"]
+		},
+		{
+			"packagePatterns": ["stylelint"],
+			"groupName": "stylelint",
+			"schedule": ["before 2am on monday"]
+		}
+	]
+}
