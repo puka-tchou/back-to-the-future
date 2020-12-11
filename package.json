@@ -41,7 +41,7 @@
 		"eslint-config-prettier": "6.13.0",
 		"mocha": "8.2.0",
 		"nyc": "15.1.0",
-		"parcel": "2.0.0-beta.1",
+		"parcel": "2.0.0-nightly.476",
 		"prettier": "2.1.2",
 		"sass": "1.28.0",
 		"stylelint": "13.7.2",
