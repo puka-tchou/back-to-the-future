@@ -25,19 +25,25 @@
 			"packagePatterns": [
 				"eslint"
 			],
-			"groupName": "eslint",
-			"schedule": [
-				"before 2am on monday"
-			]
+			"groupName": "eslint packages"
 		},
 		{
 			"packagePatterns": [
-				"stylelint"
+				"^stylelint"
 			],
-			"groupName": "stylelint",
-			"schedule": [
-				"before 2am on monday"
-			]
+			"groupName": "stylelint packages"
+		},
+		{
+			"packagePatterns": [
+				"^(@|)parcel"
+			],
+			"groupName": "parcel packages"
+		},
+		{
+			"packagePatterns": [
+				"^(@|)prettier"
+			],
+			"groupName": "prettier packages"
 		}
 	]
 }
