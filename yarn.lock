@@ -1586,6 +1586,13 @@
   dependencies:
     "@parcel/types" "2.0.0-beta.1"
 
+"@parcel/plugin@2.0.0-nightly.478+90a3f012":
+  version "2.0.0-nightly.478"
+  resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.0.0-nightly.478.tgz#a9194698eb688325ad289a7f1f89d85c95382a63"
+  integrity sha512-DVDYxzs1fInBKNAi/D6EllixqOq7UkNLPIap+VWXnIt8Wldvz/oxPEG7nXyyI6QyZvHCakxQnKKwjMYrGvtFHA==
+  dependencies:
+    "@parcel/types" "2.0.0-nightly.478+90a3f012"
+
 "@parcel/reporter-bundle-analyzer@2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@parcel/reporter-bundle-analyzer/-/reporter-bundle-analyzer-2.0.0-beta.1.tgz#98b39a6cc56792d48e83e7ec88b176adb133e600"
@@ -1910,13 +1917,13 @@
   dependencies:
     "@parcel/plugin" "2.0.0-beta.1"
 
-"@parcel/transformer-typescript-tsc@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-tsc/-/transformer-typescript-tsc-2.0.0-beta.1.tgz#25212133a2f03ab7f768f122eb3ccf8acc45b2db"
-  integrity sha512-Oi/gvJFLv1/4PMk9A6gja3gKEpHI1+CkKqZVmBg4+MJHoV0Y/DxfxpG1z6F+bZQNFK2JeU9AsJCa12/U0lajCA==
+"@parcel/transformer-typescript-tsc@2.0.0-nightly.478":
+  version "2.0.0-nightly.478"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-tsc/-/transformer-typescript-tsc-2.0.0-nightly.478.tgz#3c65449b871907adfbc18dff6f96d772c5860734"
+  integrity sha512-cfnQV+QxNhZB4BQbauDsb9FSdSj+LsVeCJcKP2RcoNjvSA6O+hGcjKVsim1qP8eksTCtn/n6O5XRx69xDkd7+A==
   dependencies:
-    "@parcel/plugin" "2.0.0-beta.1"
-    "@parcel/ts-utils" "2.0.0-beta.1"
+    "@parcel/plugin" "2.0.0-nightly.478+90a3f012"
+    "@parcel/ts-utils" "2.0.0-nightly.478+90a3f012"
 
 "@parcel/transformer-typescript-types@2.0.0-beta.1":
   version "2.0.0-beta.1"
@@ -1942,10 +1949,22 @@
   dependencies:
     nullthrows "^1.1.1"
 
+"@parcel/ts-utils@2.0.0-nightly.478+90a3f012":
+  version "2.0.0-nightly.478"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.0.0-nightly.478.tgz#4ac95d653f69b1fe12014141c51e0a935a4c6788"
+  integrity sha512-I3c8Foxd8e3wWmWO1/GvMoJfWAMChJFTchmhZqa9qYaANyq57ZxNMtx59EJxNxVHMTZ0XnZ/xFh/aCoTxyaNgg==
+  dependencies:
+    nullthrows "^1.1.1"
+
 "@parcel/types@2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.0.0-beta.1.tgz#c5581aa754c342a1e5ef382f2bf20555923b672a"
   integrity sha512-2aB5MoEyNUXb34IG1YVRiC5HTHgqWAX8/mM+JGAUit/kTb7eRVtnQtOhQHWyGyLqkEwbLrLo3s272sp5LNK90A==
+
+"@parcel/types@2.0.0-nightly.478+90a3f012":
+  version "2.0.0-nightly.478"
+  resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.0.0-nightly.478.tgz#dba6e8798fa07096daeeafc5798d372a5d52586a"
+  integrity sha512-mn4aY23VQWHd0cIu67JxazvR/sNzW+Ltemjm1mCU3umzWOdEJO7i/6Gkygg2rSVmwqDJmaQNLODVoNcoSS8FJQ==
 
 "@parcel/utils@2.0.0-beta.1":
   version "2.0.0-beta.1"
