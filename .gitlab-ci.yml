@@ -108,7 +108,7 @@ build:js:
 
 build:php:
   stage: build
-  image: composer:1.10.15
+  image: composer:1.10.19
   before_script:
     - php -v
   script:
