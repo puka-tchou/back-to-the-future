@@ -11,7 +11,8 @@
 		"deps"
 	],
 	"masterIssue": true,
-	"prCreation": "immediate",
+	"prCreation": "",
+	"recreateClosed": false,
 	"unicodeEmoji": true,
 	"vulnerabilityAlerts": {
 		"enabled": true,
