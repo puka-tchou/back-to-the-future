@@ -1,3 +1,4 @@
+import SlimSelect from 'slim-select';
 import { IAPIAnswer } from '../interface/IAPIAnswer';
 
 export class Dropdown {
@@ -12,18 +13,15 @@ export class Dropdown {
 	}
 
 	public populate(APIAnswer: IAPIAnswer): void {
-		this.clear();
+		const data = [];
 		for (const partNumber in APIAnswer.body) {
 			if (Object.prototype.hasOwnProperty.call(APIAnswer.body, partNumber)) {
-				const option = document.createElement('option');
-				option.textContent = partNumber;
-				option.value = partNumber;
-				this._HTMLElement.append(option);
+				data.push({ text: partNumber });
 			}
 		}
-	}
-
-	public clear(): void {
-		this._HTMLElement.innerHTML = '';
+		new SlimSelect({
+			select: this._HTMLElement,
+			data,
+		});
 	}
 }

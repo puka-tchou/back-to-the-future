@@ -7500,6 +7500,11 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+slim-select@1.26.2:
+  version "1.26.2"
+  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-1.26.2.tgz#b060aad3d1e91a0ddb3931a957353a9aa7e2cd35"
+  integrity sha512-OT3wlIwRcI4I6d4SaTcbBUW8SZSm10epqfamAQDmoto+1vBLjqghlZX0PJYWZ9TpE5S8pKD/mH8kc0Sa2AvNSQ==
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
