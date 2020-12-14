@@ -1,4 +1,5 @@
 import 'spectre.css';
+import '~/node_modules/slim-select/dist/slimselect.min.css';
 import { Api } from './api/api';
 import { AppFile } from './input/appFile';
 import { Excel } from './output/excel';
