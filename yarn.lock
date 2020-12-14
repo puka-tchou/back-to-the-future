@@ -4411,12 +4411,12 @@ graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-gridjs@1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/gridjs/-/gridjs-1.17.0.tgz#bd9697bd31800a2e6bba116bf6b3c05f0890e46f"
-  integrity sha512-Y/Za65jbPUXlFi68Db0nBDK23lEzIeM0w7NHZHA0hjfF4yqkrKSTGvjE8e4rBcIoLK7Rf1XFnpKDOY19TBvS/g==
+gridjs@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/gridjs/-/gridjs-3.2.0.tgz#e5b2c97f6ffc37876aa4b6b86392a1a28131d6d2"
+  integrity sha512-6A5ZyXiaMUc2V0RGbr9anMMYEyDATqCVnOteDG7TJNBpTVG7wr6db9nINvMC2VuqHqRzbyVZdUW++jbujZZiQg==
   dependencies:
-    preact "^10.4.8"
+    preact "^10.5.7"
     tslib "^2.0.1"
 
 growl@1.10.5:
@@ -6822,10 +6822,10 @@ posthtml@^0.13.4:
     posthtml-parser "^0.5.0"
     posthtml-render "^1.2.3"
 
-preact@^10.4.8:
-  version "10.4.8"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.8.tgz#8517b106cc5591eb675237c93da99ac052cf4756"
-  integrity sha512-uVLeEAyRsCkUEFhVHlOu17OxcrwC7+hTGZ08kBoLBiGHiZooUZuibQnphgMKftw/rqYntNMyhVCPqQhcyAGHag==
+preact@^10.5.7:
+  version "10.5.7"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.7.tgz#f1d84725539e18f7ccbea937cf3db5895661dbd3"
+  integrity sha512-4oEpz75t/0UNcwmcsjk+BIcDdk68oao+7kxcpc1hQPNs2Oo3ZL9xFz8UBf350mxk/VEdD41L5b4l2dE3Ug3RYg==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
