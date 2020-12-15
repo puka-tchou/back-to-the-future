@@ -32,20 +32,28 @@ export class Table {
 	}
 
 	private formatApiAnswer(APIAnswer: IAPIAnswer) {
-		const formattedData = [];
+		const formattedData: [string, number, number][] = [];
 
 		for (const part in APIAnswer.body) {
 			if (Object.prototype.hasOwnProperty.call(APIAnswer.body, part)) {
 				const stock = APIAnswer.body[part].body;
+				if (stock.length === 0) {
+					formattedData.push([part, 0, 0]);
+					console.debug(`${part} has no records, breaking.`);
+					break;
+				}
+				const lastDay = stock[stock.length - 1].date_checked;
 				let totalStock = 0;
-				let numberOfSuppliers = 0;
+				let dealers = 0;
 
 				stock.forEach((record) => {
-					totalStock += Number(record.parts_in_stock);
-					numberOfSuppliers++;
+					if (record.date_checked === lastDay) {
+						dealers++;
+						totalStock += Number(record.parts_in_stock);
+					}
 				});
 
-				formattedData.push([part, totalStock, numberOfSuppliers]);
+				formattedData.push([part, totalStock, dealers]);
 			}
 		}
 
