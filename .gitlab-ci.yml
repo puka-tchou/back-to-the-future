@@ -98,6 +98,7 @@ build:js:
   image: node:12.20.0
   before_script:
     - yarn install
+    - rm -v ./node_modules/slim-select/.browserslistrc
   script:
     - rm -rfv ./dist/
     - yarn run build
