@@ -23,11 +23,12 @@ class Route
     function doTheMagic()
     {
         $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
-        $requestedRoute = array_pop(explode('/', $url));
+        $requestedRoute = explode('/', $url);
+        $endpoint = array_pop($requestedRoute);
         $connectionFilter = new FilterConnection();
 
         if ($connectionFilter->connectionIsAllowed()) {
-            switch ($requestedRoute) {
+            switch ($endpoint) {
                 case 'add':
                     $this->add();
                     break;
