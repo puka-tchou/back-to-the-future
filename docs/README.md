@@ -4,13 +4,13 @@ The documentation for this tool is organized in subfolders. You will find user-s
 
 ## User-specific documentation
 
-_Head to the [/getting-started](./getting-started/) folder for more details_
+_Head over to the [/getting-started](./getting-started/) folder for more details_
 
 The principal tool is a web interface. It is accessible on desktop and on smartphone and should be really easy to use.
 
 ### Basic usage
 
-First, you need to select a `.csv` file. The file will be processed, and the graph will update accordingly. The chart displays the stock of a part-number for a retailer on each day it was updated. You can change the part-number you're viewing via the dropdown selector on top of the graph. If you hover over the dots, you will see the detailed stock for this day and retailer. Finally, if you click on a retailer name, you can hide it from the graph.
+First, you need to select a `.csv` file. The file will be processed, and the graph will update accordingly. The chart displays the stock of a part-number for a retailer on each day it was updated. You can change the part-number you're viewing via the dropdown selector located on top of the graph. If you hover over the dots, you will see the detailed stock for this day and retailer. Finally, if you click on a retailer name, you can hide it from the graph.
 
 ### What is a CSV file, and how can I create one?
 
