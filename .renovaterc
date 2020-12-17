@@ -37,7 +37,8 @@
 			"packagePatterns": [
 				"^(@|)parcel"
 			],
-			"groupName": "parcel packages"
+			"groupName": "parcel packages",
+			"allowedVersions": "/^[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+$/"
 		},
 		{
 			"packagePatterns": [
