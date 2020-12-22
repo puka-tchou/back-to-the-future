@@ -23,9 +23,9 @@
 	"packageRules": [
 		{
 			"packagePatterns": [
-				"eslint"
+				"^@typescript-eslint"
 			],
-			"groupName": "eslint packages"
+			"groupName": "typescript eslint packages"
 		},
 		{
 			"packagePatterns": [
