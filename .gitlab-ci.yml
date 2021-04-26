@@ -30,7 +30,7 @@ test:lighthouse:
 
 test:js:
   stage: test
-  image: node:12.20.0
+  image: node:12.22.1
   before_script:
     - yarn install
   script:
@@ -95,7 +95,7 @@ test:sonarcloud:
 
 build:js:
   stage: build
-  image: node:12.20.0
+  image: node:12.22.1
   before_script:
     - yarn install
     - rm -v ./node_modules/slim-select/.browserslistrc
