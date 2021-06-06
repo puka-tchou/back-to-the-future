@@ -22,7 +22,7 @@
 		"not dead"
 	],
 	"dependencies": {
-		"chart.js": "2.9.4",
+		"chart.js": "3.3.2",
 		"gridjs": "3.2.0",
 		"slim-select": "1.26.2",
 		"spectre.css": "0.5.9",
