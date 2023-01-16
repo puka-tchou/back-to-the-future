@@ -22,7 +22,7 @@
 		"not dead"
 	],
 	"dependencies": {
-		"chart.js": "4.1.1",
+		"chart.js": "4.1.2",
 		"gridjs": "5.1.0",
 		"slim-select": "2.3.3",
 		"spectre.css": "0.5.9",
@@ -38,7 +38,7 @@
 		"@typescript-eslint/eslint-plugin": "5.48.0",
 		"@typescript-eslint/parser": "5.48.0",
 		"chai": "4.3.7",
-		"eslint": "8.30.0",
+		"eslint": "8.31.0",
 		"eslint-config-prettier": "8.6.0",
 		"mocha": "10.2.0",
 		"nyc": "15.1.0",
