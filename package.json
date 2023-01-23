@@ -23,14 +23,14 @@
 	],
 	"dependencies": {
 		"chart.js": "4.1.2",
-		"gridjs": "5.1.0",
-		"slim-select": "2.3.3",
+		"gridjs": "6.0.5",
+		"slim-select": "2.4.1",
 		"spectre.css": "0.5.9",
 		"zipcelx": "1.6.2"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "2.8.2",
-		"@parcel/transformer-typescript-tsc": "2.8.2",
+		"@parcel/transformer-typescript-tsc": "2.8.3",
 		"@parcel/validator-typescript": "2.8.2",
 		"@prettier/plugin-xml": "2.2.0",
 		"@types/chart.js": "2.9.37",
@@ -43,7 +43,7 @@
 		"mocha": "10.2.0",
 		"nyc": "15.1.0",
 		"parcel": "2.8.2",
-		"prettier": "2.8.1",
+		"prettier": "2.8.3",
 		"sass": "1.57.1",
 		"stylelint": "14.16.1",
 		"stylelint-config-prettier": "9.0.4",
