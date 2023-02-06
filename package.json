@@ -22,7 +22,7 @@
 		"not dead"
 	],
 	"dependencies": {
-		"chart.js": "4.1.2",
+		"chart.js": "4.2.0",
 		"gridjs": "6.0.5",
 		"slim-select": "2.4.1",
 		"spectre.css": "0.5.9",
@@ -35,8 +35,8 @@
 		"@prettier/plugin-xml": "2.2.0",
 		"@types/chart.js": "2.9.37",
 		"@types/zipcelx": "1.5.0",
-		"@typescript-eslint/eslint-plugin": "5.48.0",
-		"@typescript-eslint/parser": "5.48.0",
+		"@typescript-eslint/eslint-plugin": "5.49.0",
+		"@typescript-eslint/parser": "5.49.0",
 		"chai": "4.3.7",
 		"eslint": "8.32.0",
 		"eslint-config-prettier": "8.6.0",
