@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"PHP": "^7.4.2",
+		"PHP": "^7.4.2|^8.0.0",
 		"ext-dom": "*",
 		"ext-filter": "*",
 		"ext-json": "*",
